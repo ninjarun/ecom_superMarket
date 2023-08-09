@@ -11,7 +11,7 @@ const ProductCarousel = (props) => {
   // SwiperCore.use([Navigation, Pagination]);
     // console.log(props)
     return (
-        <div style={{ direction: 'rtl' }} >
+        <div className='carouselWrap' style={{ direction: 'rtl' }} >
             {/* <h3>{props.prods[0].category}</h3> */}
             <Swiper
                 slidesPerView={5.5}
@@ -22,7 +22,7 @@ const ProductCarousel = (props) => {
                 modules={[Navigation]}
                 className="mySwiper"
                  breakpoints={{
-          460: {
+          430: {
             slidesPerView: 2,
             spaceBetween: 10,
           },
