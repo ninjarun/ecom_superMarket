@@ -16,7 +16,7 @@ const ProductCarousel = (props) => {
             <Swiper
                 slidesPerView={5.5}
                 spaceBetween={0.5}
-                loop={true}
+                // loop={true}
                 pagination={{ clickable: true, }}
                 navigation={true}
                 modules={[Navigation]}
