@@ -1,0 +1,67 @@
+.awaiting-shipment{
+  margin-top: 30px;
+margin-right: 10px;
+}
+.awaiting-shipment .order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    margin-right: 20px;
+    
+  }
+  
+  .awaiting-shipment th, .awaiting-shipment td {
+    padding: 8px;
+    /* text-align: left; */
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .awaiting-shipment th {
+    background-color: #f2f2f2;
+  }
+  
+  .awaiting-shipment tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .awaiting-shipment tr:hover {
+    background-color: #e2e2e2;
+  }
+  
+  .awaiting-shipment input {
+    width: 100%;
+    padding: 8px;
+  }
+  
+  .awaiting-shipment button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .awaiting-shipment button:hover {
+    background-color: #45a049;
+  }
+
+  .orders_info_wrapper{
+    padding: 5px;
+  }
+
+ .info_top{
+    display: flex;
+    justify-content: space-around;
+}
+  .track_update{
+    width: fit-content;
+}
+
+.cart_list{
+text-align: center;
+margin: auto;
+width: fit-content;
+}

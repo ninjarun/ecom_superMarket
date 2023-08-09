@@ -1,0 +1,195 @@
+.disabled_main_wrapper {
+  /* pointer-events: none; */
+  /* background-color: rgba(211, 211, 211, 0.5);  */
+  /* o/pacity: 0.5; */
+   display: flex;
+}
+
+.main_wrapper {
+  display: flex;
+}
+
+.products_wrapper {
+  overflow: auto;
+  width: 40%;
+  margin: auto;
+  height: 750px;
+}
+
+.info_wrapper {
+  justify-content: center;
+  width: 60%;
+  text-align: right;
+}
+
+.final_info {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  background-color: lightgray;
+  padding: 50px;
+  direction: rtl;
+  position: relative;
+}
+
+.payment_method_box {
+  background-color: lightgray;
+}
+
+.disabled_main_wrapper .payment_method_box{
+  pointer-events: all;
+  opacity: 1;
+}
+.info_box_chqout {
+  background-color: grey;
+  margin-top: 10px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+
+.hide {
+  display: none;
+}
+
+.continue_btn {
+  background-color: yellowgreen;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+
+  /* position: relative;
+  top: 230px;
+  right: 90px; */
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+
+
+
+table {
+  margin: auto;
+  width: 100%;
+  border-collapse: collapse;
+
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  text-align: right;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: right;
+}
+
+.product_img {
+  width: 80px;
+  height: 80px;
+}
+
+.product_title {
+  font-weight: bold;
+}
+
+.product_price,
+.subtotal {
+  font-style: italic;
+}
+
+.amount_wrapper {
+  display: flex;
+  justify-content: right;
+}
+
+
+.customer_info {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+  background-color: lightgray;
+  justify-content: center;
+  position: relative;
+}
+
+.animate__slideInDown {
+  animation-name: slideInDown;
+  animation-duration: 1s; /* Adjust the duration as needed */
+  animation-fill-mode: both; /* Keeps the element in the final state of the animation */
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 5px;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 5px;
+}
+
+.form-input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: end;
+}
+
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.triple-height {
+  height: 100px;
+  vertical-align: top;
+
+}
+
+
+.checkout_button {
+  background-color: lightblue;
+  text-align: center;
+  width: fit-content;
+  padding: 15px;
+  margin: auto;
+  margin-top: 10px;
+
+}
+.ship_options{
+  text-align: right;
+}
+.ship_option_radio{
+  height: 100px;
+
+}
+.radio_option_desc{
+  margin-top: 10px;
+  margin-right: 40px;
+}
+

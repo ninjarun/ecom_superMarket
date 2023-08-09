@@ -1,0 +1,36 @@
+.main_admin {
+    display: flex;
+    direction: rtl;
+
+}
+
+.action_box_ad {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding: 15px;
+    margin-top: 50px;
+    width: fit-content;
+    background-color: lightgray;
+    border: 0.5px solid gray;
+
+}
+
+.ad_link {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    padding-right: 7px;
+    text-decoration: none;
+}
+
+.ad_link:hover {
+    text-decoration: underline;
+}
+
+.outlet_admin {
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+}

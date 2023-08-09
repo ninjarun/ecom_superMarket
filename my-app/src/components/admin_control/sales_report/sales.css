@@ -1,0 +1,23 @@
+.main_sales h1{
+    margin-right: 15px;
+    margin-top: 30px;
+}
+.canvas{
+    margin-right: 25px;
+}
+.salesInfo{
+    border: 3px solid grey;
+    border-radius: 20px;
+    width:450px;
+    padding: 25px;
+    margin: auto;
+    margin-top: 20px;
+    
+    text-align: center;
+    font-size: larger;
+    font-weight: 500;
+}
+h4{
+    text-decoration: underline;
+    font-weight: 600;
+}

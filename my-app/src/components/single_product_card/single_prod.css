@@ -1,0 +1,160 @@
+.prod_box {
+  position: relative;
+  max-width: 250px;
+  min-width: 250px;
+  justify-content: center;
+  padding: 10px;
+  background-color: #FFFFFF;
+  margin: 5px;
+  border: 0.5px solid lightgray;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.prod_img {
+  height: 200px;
+  max-width: 230px;
+  margin: auto;
+  display: block;
+}
+
+
+.add2cart {
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.choose_quantity {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px;
+  transition: all 0.3s ease;
+}
+
+.add2cart.hide {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.choose_quantity.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.add_amount_prod_card {
+  padding: 4px;
+  position: relative;
+  /* top: -5px; */
+  background-color: #3A6B7E;
+  border-radius: 9px;
+  border: 0.5px solid lightgray;
+  margin-left: 10px;
+}
+
+.total_amount {
+  margin-top: 5px;
+}
+
+.decrease_amount_prod_card {
+  padding: 4px;
+  position: relative;
+  /* top: -5px; */
+  background-color: #3A6B7E;
+  border-radius: 9px;
+  border: 0.5px solid lightgray;
+  margin-right: 10px;
+}
+
+.btn_wrapper {
+  border-radius: 5px;
+  color: white;
+  max-height: 50px;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  width: 230px;
+  margin: 4px auto 1px;
+  /* background-color: darkgreen; */
+  background-color: #264653;
+  border: 0.5px solid lightgray;
+}
+
+.popbtn {
+  background-color:#E9C46A;
+  /* background-color: darkblue; */
+  color: black;
+}
+
+.product_title {
+  font-size: 13px;
+  text-align: right;
+  margin-top: 5px;
+  color: gray;
+}
+
+.product_price {
+  margin-top: 5px;
+  font-size: 18px;
+  text-align: right;
+}
+
+/* 
+.popupWrapper {
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+} */
+/* 
+.subWrapper {
+  background-color: lightgray;
+  display: flex;
+} */
+/* 
+.subWrapper2 {
+  display: block;
+  width: 40%;
+  margin: auto;
+} */
+
+/* .popup_prod_img {
+  display: block;
+  height: 500px;
+  margin: 10px;
+  margin: auto;
+
+} */
+/* 
+.prod_info {
+  margin: auto;
+  color: black;
+  border: solid;
+  padding: 20px;
+  height: 400px;
+  background-color: red;
+} */
+/* 
+.popupexit {
+  background-color: gray;
+  font-size: 25px;
+} */
+/* 
+.popup_title{
+text-align: right;
+font-size: 30px;
+margin-top:30px;
+}
+.popup_desc{
+  text-align: right;
+  font-size: 22px;
+  margin-top: 30px;
+}
+.popup_price{
+font-size: 22px;
+color: red;
+margin-top: 190px;
+margin-left: 30px;
+}  */

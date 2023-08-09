@@ -1,0 +1,13 @@
+import React from 'react';
+import BarcodeScanner from './BarcodeScanner';
+
+const Barcode_btn = () => {
+  return (
+    <div>
+      <h1>Barcode Scanner</h1>
+      <BarcodeScanner />
+    </div>
+  );
+};
+
+export default Barcode_btn;
