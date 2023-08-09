@@ -1,3 +1,4 @@
+// import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -7,6 +8,7 @@ import { Navigation } from 'swiper/modules';
 import SingleProd from '../single_product_card/SingleProd';
 
 const ProductCarousel = (props) => {
+  // SwiperCore.use([Navigation, Pagination]);
     // console.log(props)
     return (
         <div style={{ direction: 'rtl' }} >
@@ -20,7 +22,7 @@ const ProductCarousel = (props) => {
                 modules={[Navigation]}
                 className="mySwiper"
                  breakpoints={{
-          480: {
+          460: {
             slidesPerView: 2,
             spaceBetween: 10,
           },
