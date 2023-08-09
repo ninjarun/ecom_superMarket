@@ -5,7 +5,7 @@ import './NavBar.css'
 import Footer from "../Home/Footer";
 const NavBar = () => {
   const location = useLocation()
-  console.log(location)
+  // console.log(location)
   return (
     <>
 

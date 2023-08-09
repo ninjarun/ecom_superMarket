@@ -15,8 +15,8 @@ const Cart = () => {
         total += element.price * element.amount
         total=parseFloat( total.toFixed(2))
     });
-    console.log(amount_counter)
-    console.log(Cart)
+    // console.log(amount_counter)
+    // console.log(Cart)
     return (
 
         <div className='cart_main' >

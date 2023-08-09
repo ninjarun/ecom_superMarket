@@ -3,7 +3,7 @@ import axios from "axios";
 import { SERVER } from "../globalVar";
 
 export function fetchSales(sale) {
-    console.log(sale);
+    // console.log(sale);
     return new Promise((resolve) =>
       axios
         .get(`${SERVER}/orders`, { params: sale, headers: { "Content-Type": "application/json" } })

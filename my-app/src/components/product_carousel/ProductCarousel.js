@@ -1,4 +1,4 @@
-// import SwiperCore, { Navigation, Pagination } from 'swiper';
+// import SwiperCore, { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -22,22 +22,22 @@ const ProductCarousel = (props) => {
                 modules={[Navigation]}
                 className="mySwiper"
                  breakpoints={{
-          460: {
-            slidesPerView: 2,
-            spaceBetween: 10,
-          },
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 30,
-          },
-          1280: {
-            slidesPerView: 6,
-            spaceBetween: 40,
-          },
+                   1280: {
+                     slidesPerView: 6,
+                     spaceBetween: 40,
+                   },
+                   1024: {
+                     slidesPerView: 4,
+                     spaceBetween: 30,
+                   },
+                   768: {
+                     slidesPerView: 3,
+                     spaceBetween: 20,
+                    },
+                    300: {
+                      slidesPerView: 2,
+                      spaceBetween: 10,
+                    }
           // Add more breakpoints as needed
         }}
             

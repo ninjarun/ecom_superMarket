@@ -16,7 +16,7 @@ const SingleProd = (props) => {
   // console.log("object amount", objectWithId)
   let objectWithId;
   try { objectWithId = cart.cart.find(obj => obj.id === props.prod.id); } catch (error) { console.log(error) }
-console.log('single prod',props)
+// console.log('single prod',props)
 
   useEffect(() => {
     objectWithId ? setbutton_display(false) : setbutton_display(true)
