@@ -22,7 +22,7 @@ const ProductPopup = (props) => {
       trigger={<button className="btn_wrapper popbtn">פרטים</button>}
       modal
       nested
-      contentStyle={{ width: "", height: "" }}
+      contentStyle={{ width: "100%", height: "" }}
       closeOnDocumentClick // Enable auto-close on clicking outside the popup
     >
       {close => (

@@ -26,7 +26,7 @@
 
 .choose_quantity {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 6px;
   transition: all 0.3s ease;
 }
@@ -42,13 +42,13 @@
 }
 
 .add_amount_prod_card {
-  padding: 4px;
+  height: 40px;
+  padding: 4px 12px 4px 12px;
   position: relative;
   /* top: -5px; */
   background-color: #3A6B7E;
-  border-radius: 9px;
+  border-radius: 25px;
   border: 0.5px solid lightgray;
-  margin-left: 10px;
 }
 
 .total_amount {
@@ -56,13 +56,13 @@
 }
 
 .decrease_amount_prod_card {
-  padding: 4px;
+  height: 40px;
+  padding: 4px 14px 4px 14px;
   position: relative;
   /* top: -5px; */
   background-color: #3A6B7E;
-  border-radius: 9px;
+  border-radius: 25px;
   border: 0.5px solid lightgray;
-  margin-right: 10px;
 }
 
 .btn_wrapper {
@@ -98,63 +98,20 @@
   text-align: right;
 }
 
-/* 
-.popupWrapper {
-  position: absolute;
-  width: 70%;
-  height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 999;
-} */
-/* 
-.subWrapper {
-  background-color: lightgray;
-  display: flex;
-} */
-/* 
-.subWrapper2 {
-  display: block;
-  width: 40%;
-  margin: auto;
-} */
 
-/* .popup_prod_img {
-  display: block;
-  height: 500px;
-  margin: 10px;
-  margin: auto;
+/* For mobile devices */
+@media (max-width: 900px) {
+  .prod_box {
+      max-width: 190px;
+      min-width: 125px;
+  }
 
-} */
-/* 
-.prod_info {
-  margin: auto;
-  color: black;
-  border: solid;
-  padding: 20px;
-  height: 400px;
-  background-color: red;
-} */
-/* 
-.popupexit {
-  background-color: gray;
-  font-size: 25px;
-} */
-/* 
-.popup_title{
-text-align: right;
-font-size: 30px;
-margin-top:30px;
+  .prod_img {
+      max-width: 115px;
+      height:150px
+  }
+
+  .btn_wrapper {
+      width: 155px;
+  }
 }
-.popup_desc{
-  text-align: right;
-  font-size: 22px;
-  margin-top: 30px;
-}
-.popup_price{
-font-size: 22px;
-color: red;
-margin-top: 190px;
-margin-left: 30px;
-}  */

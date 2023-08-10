@@ -43,49 +43,7 @@ const SingleProd = (props) => {
         // title={props.title}
       >
       </ProductPopup>
-      {/* <div style={popup ? {position:'absolute'} : { display: 'none' }}>
-        <div className='popupWrapper'>
-          <div className='popupexit' onClick={() => setpopup(false)}>X</div>
-          <div className='subWrapper'>
-            <img className='popup_prod_img' alt='' src={`${SERVER}${props.img}`}></img>
-            <div className='subWrapper2'>
-              <div className='prod_info'>
-                <div className='popup_title'>{props.title}</div>
-                <div className='popup_desc'>{props.desc}</div>
-                <div className='popup_price' >{props.price}&#8362;</div>
-                <div className='btn_wrapper'>
-                  {
-                    button_display ?
-                      <div className='add2cart' onClick={() => {
-                        setbutton_display(!button_display)
-                        dispatch(add2cart({ 'id': props.id, 'title': props.title, 'price': props.price, 'img': props.img, 'amount': 1 }))
-                      }}>הוסף לסל
-                      </div>
-                      :
-                      <div className='choose_quantity' >
-                        <div className='decrease_amount_prod_card' onClick={() => {
-                          // { local_amount > 0 ? setlocal_amount(local_amount - 1) : setlocal_amount(0) };
-                          if (objectWithId.amount > 1) {
-                            dispatch(increment_amount({ 'id': props.id }))
-                          } else {
-                            setbutton_display(!button_display)
-                            dispatch(increment_amount({ 'id': props.id }))
-                          }
-                        }}>
-                          &nbsp; - &nbsp;</div>
-                        <div>{objectWithId ? <span>{objectWithId.amount}</span> : setbutton_display(!button_display)}</div>
-                        <div className='add_amount_prod_card' onClick={() => {
-                          dispatch(add2cart({ 'id': props.id, 'title': props.title, 'price': props.price, 'img': props.img, 'amount': 1 }))
-                        }}>
-                          &nbsp; + &nbsp; </div>
-                      </div>
-                  }
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
+    
 
       <div className='btn_wrapper'>
         {
@@ -106,12 +64,12 @@ const SingleProd = (props) => {
                   dispatch(increment_amount({ 'id': props.prod.id }))
                 }
               }}>
-                &nbsp; - &nbsp;</div>
+                 - </div>
               <div className='total_amount'>{objectWithId ? <span>{objectWithId.amount}</span> : setbutton_display(!button_display)}</div>
               <div className='add_amount_prod_card' onClick={() => {
                 dispatch(add2cart({ 'id': props.prod.id, 'title': props.prod.name, 'price': props.prod.price, 'img': props.prod.image, 'amount': 1 }))
               }}>
-                &nbsp; + &nbsp; </div>
+                 + </div>
             </div>
         }
       </div>

@@ -36,7 +36,7 @@ const ProductCarousel = (props) => {
                     },
                     300: {
                       slidesPerView: 2,
-                      spaceBetween: 10,
+                      spaceBetween: 1,
                     }
           // Add more breakpoints as needed
         }}
