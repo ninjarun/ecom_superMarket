@@ -184,10 +184,9 @@ const Checkout = () => {
           </div>
           <div className={userInfoFlag ? 'customer_info' : ' hide'}>
             {/* <div> */}
-            <div className='continue_btn' onClick={() => {
-              info_validator()
-
-            }}>המשך</div>
+            <div className='continue_btn' onClick={() => { info_validator() }}>
+              המשך
+            </div>
             <div className='left-side '>
               <input className='form-input' placeholder=':עיר*' onChange={(e) => setCity(e.target.value)}></input>
               <input className='form-input' placeholder=':רחוב*' onChange={(e) => setStreet(e.target.value)}></input>

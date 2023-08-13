@@ -193,3 +193,21 @@ th {
   margin-right: 40px;
 }
 
+@media (max-width: 900px) {
+.main_wrapper{
+  display: block;
+}
+.customer_info{
+  
+  display: block;
+padding-left:80px ;
+  /* text-align: center; */
+  /* justify-content: center; */
+}
+.info_wrapper{
+  width: 100%;
+}
+.products_wrapper{
+width: 100%;
+}
+}

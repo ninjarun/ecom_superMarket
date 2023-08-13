@@ -17,12 +17,20 @@ const ProductPopup = (props) => {
   useEffect(() => {
     objectWithId ? setbutton_display(false) : setbutton_display(true)
   }, [objectWithId])
+
+  const [isMobile, setIsMobile] = useState(false);  // 768 is an example breakpoint for mobile devices
+
+  useEffect(() => {
+    window.innerWidth <= 768 ? setIsMobile(true) : setIsMobile(false)
+  }, [])
+
+
   return (
     <Popup
       trigger={<button className="btn_wrapper popbtn">פרטים</button>}
       modal
       nested
-      contentStyle={{ width: "100%", height: "" }}
+      contentStyle={{ width:isMobile && "100%", height: "" }}
       closeOnDocumentClick // Enable auto-close on clicking outside the popup
     >
       {close => (
