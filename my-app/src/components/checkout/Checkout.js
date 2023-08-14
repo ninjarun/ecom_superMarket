@@ -187,17 +187,15 @@ const Checkout = () => {
             <div className='continue_btn' onClick={() => { info_validator() }}>
               המשך
             </div>
-            <div className='left-side '>
+            <div className='form_wrraper'>
+              <input className='form-input' placeholder=':שם מלא*' onChange={(e) => setFullName(e.target.value)}></input>
+              <input className='form-input' placeholder=':טלפון*' onChange={(e) => setPhone(e.target.value)}></input>
+              <input className='form-input' placeholder=':כתובת מייל*' type='email' onChange={(e) => setEmail(e.target.value)}></input>
               <input className='form-input' placeholder=':עיר*' onChange={(e) => setCity(e.target.value)}></input>
               <input className='form-input' placeholder=':רחוב*' onChange={(e) => setStreet(e.target.value)}></input>
               <input className='form-input' placeholder=':כניסה*' onChange={(e) => setAptNum(e.target.value)}></input>
               <input className='form-input' placeholder=':דירה*' onChange={(e) => setAptNum(e.target.value)}></input>
               <input className='form-input' placeholder=':מיקוד*' onChange={(e) => setZipCode(e.target.value)}></input>
-            </div>
-            <div className='right-side'>
-              <input className='form-input' placeholder=':שם מלא*' onChange={(e) => setFullName(e.target.value)}></input>
-              <input className='form-input' placeholder=':טלפון*' onChange={(e) => setPhone(e.target.value)}></input>
-              <input className='form-input' placeholder=':כתובת מייל*' type='email' onChange={(e) => setEmail(e.target.value)}></input>
               <textarea className='form-input triple-height' placeholder=':הערות' onChange={(e) => setComments(e.target.value)}></textarea>
             </div>
           </div>
@@ -232,11 +230,11 @@ const Checkout = () => {
                 <option value={2}>די אייץ אל</option>
               </select> */}
               <div className='ship_option_radio'>
-                <input value={1} e onChange={(e) => handle_shipping(e.target.value)} name='ship' type='radio'></input> איסוף עצמי<br />
+                <input className='radioBTN' value={1} e onChange={(e) => handle_shipping(e.target.value)} name='ship' type='radio'></input> איסוף עצמי<br />
                 <div className='radio_option_desc'>איסוף מככה וככה </div >
               </div>
               <div className='ship_option_radio'>
-                <input value={2} onChange={(e) => handle_shipping(e.target.value)} name='ship' type='radio'></input> משלוח עד הבית
+                <input className='radioBTN' value={2} onChange={(e) => handle_shipping(e.target.value)} name='ship' type='radio'></input> משלוח עד הבית
                 <div className='radio_option_desc'>משלוח עד הבית במחיר מככה וככה </div >
               </div>
               <div> סה"כ {total}&#8362; כולל משלוח</div>

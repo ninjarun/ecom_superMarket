@@ -62,11 +62,14 @@ export const productsSlice = createSlice({
                 // state.products =  action.payload
                 // console.log(action)
                 console.log('product added')
+                alert("מוצר נוסף בהצלחה")
             })
             .addCase(editProductAsync.fulfilled, (state, action) => {
                 // state.products =  action.payload
                 // console.log(action)
                 console.log('product updated')
+                alert("מוצר עודכן בהצלחה")
+
             });
 
     },

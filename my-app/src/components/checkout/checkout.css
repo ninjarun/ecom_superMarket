@@ -2,7 +2,7 @@
   /* pointer-events: none; */
   /* background-color: rgba(211, 211, 211, 0.5);  */
   /* o/pacity: 0.5; */
-   display: flex;
+  display: flex;
 }
 
 .main_wrapper {
@@ -34,12 +34,14 @@
 
 .payment_method_box {
   background-color: lightgray;
+margin: auto;
 }
 
-.disabled_main_wrapper .payment_method_box{
+.disabled_main_wrapper .payment_method_box {
   pointer-events: all;
   opacity: 1;
 }
+
 .info_box_chqout {
   background-color: grey;
   margin-top: 10px;
@@ -111,43 +113,42 @@ th {
   justify-content: right;
 }
 
-
 .customer_info {
-  display: flex;
+  /* display: flex;  */
+  /* flex-wrap: wrap; 
+  /* flex-direction: row-reverse;   */
   width: 100%;
   margin: auto;
   padding: 10px;
   background-color: lightgray;
-  justify-content: center;
   position: relative;
 }
 
 .animate__slideInDown {
   animation-name: slideInDown;
-  animation-duration: 1s; /* Adjust the duration as needed */
-  animation-fill-mode: both; /* Keeps the element in the final state of the animation */
+  animation-duration: 1s;
+  /* Adjust the duration as needed */
+  animation-fill-mode: both;
+  /* Keeps the element in the final state of the animation */
 }
 
 @keyframes slideInDown {
   from {
     transform: translateY(-100%);
   }
+
   to {
     transform: translateY(0);
   }
 }
-.right-side {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 5px;
-}
 
-.left-side {
+.form_wrraper {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 5px;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  width: 600px;
+  margin-left: auto;
+
 }
 
 .form-input {
@@ -181,33 +182,49 @@ th {
   margin-top: 10px;
 
 }
-.ship_options{
+
+.ship_options {
   text-align: right;
 }
-.ship_option_radio{
+
+.ship_option_radio {
   height: 100px;
 
 }
-.radio_option_desc{
+
+.radioBTN {
+  transform: scale(2.5);
+  margin-left: 20px;
+}
+
+.radio_option_desc {
   margin-top: 10px;
   margin-right: 40px;
 }
 
 @media (max-width: 900px) {
-.main_wrapper{
-  display: block;
-}
-.customer_info{
-  
-  display: block;
-padding-left:80px ;
-  /* text-align: center; */
-  /* justify-content: center; */
-}
-.info_wrapper{
-  width: 100%;
-}
-.products_wrapper{
-width: 100%;
-}
+  .main_wrapper {
+    display: block;
+  }
+
+  .customer_info {
+
+    display: block;
+    padding-left: 80px;
+    /* text-align: center; */
+    /* justify-content: center; */
+  }
+
+  .info_wrapper {
+    width: 100%;
+  }
+
+  .products_wrapper {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .form_wrraper {
+    width: 100%;
+  }
 }

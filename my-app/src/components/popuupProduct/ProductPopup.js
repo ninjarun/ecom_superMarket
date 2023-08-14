@@ -21,7 +21,7 @@ const ProductPopup = (props) => {
   const [isMobile, setIsMobile] = useState(false);  // 768 is an example breakpoint for mobile devices
 
   useEffect(() => {
-    window.innerWidth <= 768 ? setIsMobile(true) : setIsMobile(false)
+    window.innerWidth <= 900 ? setIsMobile(true) : setIsMobile(false)
   }, [])
 
 

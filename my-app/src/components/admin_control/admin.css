@@ -1,17 +1,17 @@
 .main_admin {
-    display: flex;
+    /* display: flex; */
     direction: rtl;
 
 }
 
 .action_box_ad {
     display: flex;
-    flex-direction: column;
-    position: fixed;
-    padding: 15px;
-    margin-top: 50px;
-    width: fit-content;
+    /* flex-direction: column; */
+    /* position: fixed; */
+    /* margin-top: 50px; */
+    width: 100%;
     background-color: lightgray;
+    justify-content: center;
     border: 0.5px solid gray;
 
 }
@@ -21,8 +21,8 @@
     font-size: 18px;
     font-weight: bold;
     color: black;
-    padding-right: 7px;
     text-decoration: none;
+    margin-right: 25px;
 }
 
 .ad_link:hover {
@@ -33,4 +33,15 @@
     width: 80%;
     margin: auto;
     padding: 10px;
+}
+
+
+
+@media (max-width: 900px) {
+    .outlet_admin {
+        width: 100%;
+        padding: 0px;
+        
+    }
+
 }

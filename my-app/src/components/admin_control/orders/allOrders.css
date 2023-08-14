@@ -80,3 +80,17 @@ padding: 10px;
   color: white;
   cursor: pointer;
 }
+
+
+
+@media (max-width: 900px) {
+
+
+.all-orders .order-table {
+  /* width: 100%; */
+  /* border-collapse: collapse; */
+  /* margin-top: 10px; */
+  margin-right: 0px;
+}
+
+}

@@ -2,7 +2,7 @@
   position: relative;
   max-width: 250px;
   min-width: 250px;
-  height: 350px;
+  /* height: 350px; */
   justify-content: center;
   padding: 10px;
   background-color: #FFFFFF;
@@ -91,6 +91,7 @@
   text-align: right;
   margin-top: 5px;
   color: gray;
+min-height: 45px;
 }
 
 .product_price {
@@ -105,11 +106,12 @@
   .prod_box {
       max-width: 190px;
       min-width: 125px;
+      height: 360px;
   }
 
   .prod_img {
       max-width: 115px;
-      height:150px
+      height:130px
   }
 
   .btn_wrapper {

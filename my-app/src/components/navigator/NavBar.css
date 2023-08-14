@@ -14,6 +14,9 @@
 
 .sidebar {
     display: none;
+    margin-right: 10px;
+    border: 0.5px solid;
+    border-radius: 20px;
 }
 
 .link_box {
@@ -54,7 +57,7 @@
 }
 
 .cart {
-    margin-left: 50px;
+    margin-left: 10px;
 }
 
 .logo {
@@ -62,7 +65,7 @@
     margin-right: 50px;
 }
 
-@media (max-width:767px) {
+@media (max-width:900px) {
     .link_box {
         display: none;
     }
@@ -77,5 +80,11 @@
         margin-right: initial;
 
     }
+.cart{
+    margin-left: 40px;
+}
+.sidebar{
+    margin-right: 40px;
+}
 
 }

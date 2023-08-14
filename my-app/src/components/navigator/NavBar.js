@@ -20,6 +20,7 @@ const NavBar = () => {
           <Link className={`link ${location.pathname === '/tracking' && 'active_link'}`} to="/tracking" >מעקב משלוחים</Link>
           <Link className={`link ${location.pathname === '/faq' && 'active_link'}`} to="/faq" >שאלות תשובות</Link>
           <Link className={`link ${location.pathname === '/contact' && 'active_link'}`} to="/contact" >צור קשר</Link>
+          <Link className={`link ${location.pathname === '/admin' && 'active_link'}`} to="/admin" >ADMIN</Link>
         </div>
         <h1 className="logo">PRIME</h1>
         <div className="sidebar">
