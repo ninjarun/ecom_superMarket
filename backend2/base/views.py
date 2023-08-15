@@ -1,8 +1,9 @@
 
 
+from django.core.mail import send_mail
 import os
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
+from django.http import BadHeaderError, HttpResponse, HttpResponseForbidden, JsonResponse
 from .models import Product, Order, OrderItem
 from .Serializer import ProductSerializer, OrderSerializer
 
@@ -33,10 +34,11 @@ from django.http import HttpRequest
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-#######################################
+###################################################################################################################
 # PROFILE VIEW
-######################################
+#################################################################################################################
 # login
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -65,13 +67,37 @@ def register(req):
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
+##################################################################################################################
+# EMAIL TESTING
+##################################################################################################################
 
-#######################################
+class MailMail(APIView):
+    def post(self, request, *args, **kwargs):
+        try:
+            send_mail(
+                'Test Subject',
+                'Test message body.',
+                'pizohim62@gmail.com',
+                ['orenyoni87@gmail.com'],
+                fail_silently=False,
+            )
+            return HttpResponse('Email successfully sent!')
+        except BadHeaderError:
+            return HttpResponse('Invalid header found!')
+
+        except Exception as e:
+            return HttpResponse(f"An error occurred: {e}")
+
+##################################################################################################################
+# END EMAIL TESTING
+##################################################################################################################
+
+##################################################################################################################
 # PRODUCTS VIEW
-######################################
+##################################################################################################################
 class Products(APIView):
     parser_class = (MultiPartParser, FormParser)
-    
+
     def post(self, request, *args, **kwargs):
         api_serializer = ProductSerializer(data=request.data)
 
@@ -86,12 +112,13 @@ class Products(APIView):
         products = Product.objects.all()
         api_serializer = ProductSerializer(products, many=True)
         return Response(api_serializer.data)
-    
+
     def put(self, request, *args, **kwargs):
         print(request.data)
         product_id = request.data['id']
         product = get_object_or_404(Product, pk=product_id)
-        api_serializer = ProductSerializer(product, data=request.data, partial=True)
+        api_serializer = ProductSerializer(
+            product, data=request.data, partial=True)
 
         if api_serializer.is_valid():
             api_serializer.save()
@@ -106,9 +133,9 @@ class Products(APIView):
         # product.is_available = False  # Set the availability status to False
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-#######################################
+###################################################################################################################
 # ORDERS VIEW
-######################################
+##################################################################################################################
 
 
 class OrderAPIView(APIView):
@@ -155,14 +182,14 @@ class OrderAPIView(APIView):
                     item_data['product'] = ProductSerializer(product).data
 
             return Response(serialized_data)
-        
+
         return Response(
             {'error': 'Please provide an order ID or email.'},
             status=status.HTTP_400_BAD_REQUEST
         )
-    
+
     def put(self, request):
-        order_id=request.data.get('order_id')
+        order_id = request.data.get('order_id')
         try:
             order = Order.objects.get(id=order_id)
         except Order.DoesNotExist:
@@ -185,9 +212,9 @@ class OrderAPIView(APIView):
         return Response(serializer.data)
 
 
-######################################
+##################################################################################################################
 # STRIPE VIEW
-######################################
+##################################################################################################################
 
 
 @api_view(['GET'])
@@ -200,9 +227,9 @@ def create_payment(req):
     total = 0
     for i in req.data['items']:
         price = float(i['price'])
-        quantity= int(i['quantity'])
+        quantity = int(i['quantity'])
         total += price*quantity
-    total=int(total*100)
+    total = int(total*100)
     intent = stripe.PaymentIntent.create(
         # payment_method_types=['card'],
         amount=total,
@@ -249,18 +276,18 @@ def my_webhook_view(request):
         payment_intent = event.data.object  # contains a stripe.PaymentIntent
         tmpCart = json.loads(payment_intent.metadata.cart)
         data = {"items": tmpCart,
-                   "full_name": payment_intent.shipping.name,
-                    "telephone_number":payment_intent.shipping.phone,
-                    "email":payment_intent.receipt_email,
-                    "zipcode":payment_intent.shipping.address.postal_code,
-                    "city":payment_intent.shipping.address.city,
-                    "street":payment_intent.shipping.address.line1,
-                    "apartment":payment_intent.shipping.address.line2,
-                    "payment_status":"intent",
-                    "payment_intent":payment_intent.id,
-                    "comments":payment_intent.metadata.comments,
-                    "payment_intent":payment_intent.id
-                   }
+                "full_name": payment_intent.shipping.name,
+                "telephone_number": payment_intent.shipping.phone,
+                "email": payment_intent.receipt_email,
+                "zipcode": payment_intent.shipping.address.postal_code,
+                "city": payment_intent.shipping.address.city,
+                "street": payment_intent.shipping.address.line1,
+                "apartment": payment_intent.shipping.address.line2,
+                "payment_status": "intent",
+                "payment_intent": payment_intent.id,
+                "comments": payment_intent.metadata.comments,
+                "payment_intent": payment_intent.id
+                }
         serializer = OrderSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
@@ -280,14 +307,14 @@ def my_webhook_view(request):
         try:
             order = Order.objects.get(payment_intent=payment_intent_id)
             order.payment_status = "paid"
-            serializer = OrderSerializer(instance=order, data={"payment_status": "paid"}, partial=True)
+            serializer = OrderSerializer(
+                instance=order, data={"payment_status": "paid"}, partial=True)
             if serializer.is_valid():
                 serializer.save()
             else:
                 return HttpResponse(serializer.errors, status=400)
         except Order.DoesNotExist:
             print("Order not found for payment_intent: {}".format(payment_intent_id))
-        
 
     else:
         print('Unhandled event type {}'.format(event.type))

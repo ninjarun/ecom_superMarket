@@ -209,3 +209,12 @@ STRIPE_PUBLIC_KEY = 'pk_test_51NK4fEFATBoorzcqV46OMUhuUu3uILHVgBqQDgkaIOcANlLPKY
 
 
 DEFAULT_CHARSET = 'utf-8'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'pizohim62@gmail.com'
+EMAIL_HOST_PASSWORD = 'pcflxdqnxijkkqgf'

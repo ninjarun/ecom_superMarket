@@ -13,5 +13,7 @@ urlpatterns = [
  
     path('stripe-webhook', views.my_webhook_view),#STRIPE
 
+    path('mail',views.MailMail.as_view()),
+
 ]
 
