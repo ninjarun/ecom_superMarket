@@ -3,7 +3,7 @@
 from django.core.mail import send_mail
 import os
 from django.shortcuts import render
-from django.http import BadHeaderError, HttpResponse, HttpResponseForbidden, JsonResponse
+from django.http import BadHeaderError, FileResponse, HttpResponse, HttpResponseForbidden, JsonResponse
 from .models import Product, Order, OrderItem
 from .Serializer import ProductSerializer, OrderSerializer
 
@@ -89,8 +89,16 @@ class MailMail(APIView):
             return HttpResponse(f"An error occurred: {e}")
 
 ##################################################################################################################
-# END EMAIL TESTING
+# DOWNLOAD DATABASE BACKUP
 ##################################################################################################################
+class Backup_database(APIView):
+    def get(self, request, *args, **kwargs):
+        # Make sure to add security checks, like admin-only access
+        path_to_db = "./db.sqlite3"
+        response = FileResponse(open(path_to_db, 'rb'))
+        response['Content-Disposition'] = 'attachment; filename="db_backup.sqlite3"'
+        return response
+
 
 ##################################################################################################################
 # PRODUCTS VIEW
