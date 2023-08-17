@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from datetime import timedelta
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     "corsheaders",
     # 'base.apps.BaseConfig',
     'rest_framework_simplejwt.token_blacklist',
+    # 'whitenoise.runserver_nostatic',
 
 
 ]
@@ -106,6 +108,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
 
@@ -179,14 +182,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+# STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
 
 
 STATIC_URL = '/static/'
@@ -195,18 +197,22 @@ MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'frontend/build/static'
+    # BASE_DIR / 'frontend/build/static'
 ]
 
 
 
 
 MEDIA_ROOT = BASE_DIR / 'static/images'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STRIPE_SECRET_KEY = 'sk_test_51NK4fEFATBoorzcqwLOYovKRBlhTaifmsUu3rSXUHnWkzt9XG9O6bo4rLCZcUDEzEs0VtQFakpdF0JBSScKaarAl0047sorG4L'
 STRIPE_PUBLIC_KEY = 'pk_test_51NK4fEFATBoorzcqV46OMUhuUu3uILHVgBqQDgkaIOcANlLPKYOIHSwJ8wyS71pIzTuLybaBFJTuQBttl895kyly00FbfSSn8s'
 
+
+# WHITENOISE_ROOT = BASE_DIR / 'static/images'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 DEFAULT_CHARSET = 'utf-8'

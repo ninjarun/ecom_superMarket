@@ -30,7 +30,7 @@ const Home = () => {
       }
     }
   }, [homeDisplay, categories]);
-
+console.log(categories)
   return (
     <div >
       <Hero></Hero>
