@@ -204,8 +204,8 @@ STATICFILES_DIRS = [
 
 
 MEDIA_ROOT = BASE_DIR / 'static/images'
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STRIPE_SECRET_KEY = 'sk_test_51NK4fEFATBoorzcqwLOYovKRBlhTaifmsUu3rSXUHnWkzt9XG9O6bo4rLCZcUDEzEs0VtQFakpdF0JBSScKaarAl0047sorG4L'
 STRIPE_PUBLIC_KEY = 'pk_test_51NK4fEFATBoorzcqV46OMUhuUu3uILHVgBqQDgkaIOcANlLPKYOIHSwJ8wyS71pIzTuLybaBFJTuQBttl895kyly00FbfSSn8s'
