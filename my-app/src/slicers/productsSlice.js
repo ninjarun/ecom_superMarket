@@ -3,7 +3,8 @@ import { addProduct, fetchProducts, editProduct } from './productsAPI';
 
 const initialState = {
     products: [],
-    categories: []
+    categories: [],
+    status:"idle"
 };
 export const fetchProductsAsync = createAsyncThunk(
     'products/fetchProducts',
@@ -40,9 +41,15 @@ export const productsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            // .addCase(incrementAsync.pending, (state) => {
-            //   state.status = 'loading';
-            // })
+            .addCase(fetchProductsAsync.pending, (state) => {
+              state.status = 'loading';
+            })
+            .addCase(addProductAsync.pending, (state) => {
+                state.status = 'loading';
+              })
+              .addCase(editProductAsync.pending, (state) => {
+                state.status = 'loading';
+              })
             .addCase(fetchProductsAsync.fulfilled, (state, action) => {
                 state.products = action.payload;
                 const tmpProds = [...action.payload];
@@ -57,18 +64,23 @@ export const productsSlice = createSlice({
                   tmpCats[element.category].products.push(element);
                 });
                 state.categories = Object.values(tmpCats);
+                state.status='idle'
               })
             .addCase(addProductAsync.fulfilled, (state, action) => {
                 // state.products =  action.payload
                 // console.log(action)
                 console.log('product added')
                 alert("מוצר נוסף בהצלחה")
+                state.status='idle'
+
             })
             .addCase(editProductAsync.fulfilled, (state, action) => {
                 // state.products =  action.payload
                 // console.log(action)
                 console.log('product updated')
                 alert("מוצר עודכן בהצלחה")
+                state.status='idle'
+
 
             });
 
@@ -78,6 +90,7 @@ export const productsSlice = createSlice({
 export const { setcategories } = productsSlice.actions;
 export const selecProducts = (state) => state.products;
 export const selectCategories = (state) => state.products.categories;
+export const selectStatus = (state) => state.products.status;
 // export const incrementIfOdd = (amount) => (dispatch, getState) => {
 //   const currentValue = selectCount(getState());
 //   if (currentValue % 2 === 1) {

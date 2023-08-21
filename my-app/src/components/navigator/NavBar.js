@@ -3,11 +3,43 @@ import Sidebar from "./Sidebar/Sidebar";
 import Cart from "./Cart/Cart";
 import './NavBar.css'
 import Footer from "../Home/Footer";
+import { useSelector } from "react-redux";
+import { selectStatus } from "../../slicers/productsSlice";
 const NavBar = () => {
   const location = useLocation()
-  // console.log(location)
+  const status = useSelector(selectStatus)
+  console.log(status)
   return (
     <>
+      {/* THIS DIV IS RESPONSIBLE FOR ACITVATING SPINNER WHEN SITE LOADING */}
+      <div
+        style={{
+          display: status === 'loading' ? 'block' : 'none',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',  // semi-transparent white
+          zIndex: 999   // overlay z-index
+        }}>
+
+        <div
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 1000  // spinner z-index
+          }}>
+
+          <div style={{ height: '15rem', width: '15rem' }} className="spinner-border" role="status">
+            <span className="sr-only"></span>
+          </div>
+        </div>
+      </div>
+
+
 
       <nav className="navigator">
         <div className="cart">
