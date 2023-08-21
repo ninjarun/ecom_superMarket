@@ -1,3 +1,4 @@
+from collections import Counter
 import os
 from django.db import models
 from PIL import Image
@@ -17,45 +18,56 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
-    def remove_green_background(self, image_field):
+    @staticmethod
+    def detect_background_color(img):
+        width, height = img.size
+        border_pixels = [
+            img.getpixel((0, 0)),
+            img.getpixel((0, height-1)),
+            img.getpixel((width-1, 0)),
+            img.getpixel((width-1, height-1)),
+            img.getpixel((width//2, 0)),
+            img.getpixel((0, height//2)),
+            img.getpixel((width-1, height//2)),
+            img.getpixel((width//2, height-1))
+        ]
+        color_counts = Counter(border_pixels)
+        return color_counts.most_common(1)[0][0]
+
+    def remove_background(self, image_field, tolerance=50):
         if not image_field or not image_field.path or not os.path.exists(image_field.path):
-            # If the image doesn't exist, simply return without doing anything.
             return
-    
+
         img = Image.open(image_field.path)
         img = img.convert("RGBA")
+        bg_color = self.detect_background_color(img)
         datas = img.getdata()
         newData = []
-    
+
         for item in datas:
-            r, g, b, a = item
-            # Adjusted conditions:
-            if (r in list(range(0, 80)) and 
-                g in list(range(80, 256)) and 
-                b in list(range(0, 160))):
-                newData.append((255, 255, 255, 0))  # Change to transparent
+            if all([abs(item[i] - bg_color[i]) < tolerance for i in range(3)]):
+                newData.append((255, 255, 255, 0))  # Make it transparent
             else:
                 newData.append(item)
-    
+
         img.putdata(newData)
         img.save(image_field.path, "PNG")
 
-
-    # Overriding the default save method
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # Calling the real save() method first
+        super().save(*args, **kwargs)
 
-        # Processing each image after model save
+        # Process each image
         if self.image:
-            self.remove_green_background(self.image)
+            self.remove_background(self.image)
         if self.image2:
-            self.remove_green_background(self.image2)
+            self.remove_background(self.image2)
         if self.image3:
-            self.remove_green_background(self.image3)
+            self.remove_background(self.image3)
         if self.image4:
-            self.remove_green_background(self.image4)
+            self.remove_background(self.image4)
         if self.image5:
-            self.remove_green_background(self.image5)
+            self.remove_background(self.image5)
+
 
 class Order(models.Model):
     full_name = models.CharField(max_length=255, default='John Doe')

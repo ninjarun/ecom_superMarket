@@ -39,13 +39,13 @@ const ProductPopup = (props) => {
           <div className='subWrapper'>
             <div className='images_wrapper'>
 
-              <img className='popup_prod_img' alt='' src={`${SERVER}${display_img}`}></img>
+              <img className='popup_prod_img' alt='' src={`${SERVER}/static${display_img}`}></img>
               <div className='small_images'>
-                {props.prod.image !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(props.prod.image)} className='small_img' alt='' src={`${SERVER}${props.prod.image}`}></img>}
-                {props.prod.image2 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(props.prod.image2)} className='small_img' alt='' src={`${SERVER}${props.prod.image2}`}></img>}
-                {props.prod.image3 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(props.prod.image3)} className='small_img' alt='' src={`${SERVER}${props.prod.image3}`}></img>}
-                {props.prod.image4 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(props.prod.image4)} className='small_img' alt='' src={`${SERVER}${props.prod.image4}`}></img>}
-                {props.prod.image5 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(props.prod.image5)} className='small_img' alt='' src={`${SERVER}${props.prod.image5}`}></img>}
+                {props.prod.image !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(props.prod.image)} className='small_img' alt='' src={`${SERVER}/static${props.prod.image}`}></img>}
+                {props.prod.image2 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(props.prod.image2)} className='small_img' alt='' src={`${SERVER}/static${props.prod.image2}`}></img>}
+                {props.prod.image3 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(props.prod.image3)} className='small_img' alt='' src={`${SERVER}/static${props.prod.image3}`}></img>}
+                {props.prod.image4 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(props.prod.image4)} className='small_img' alt='' src={`${SERVER}/static${props.prod.image4}`}></img>}
+                {props.prod.image5 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(props.prod.image5)} className='small_img' alt='' src={`${SERVER}/static${props.prod.image5}`}></img>}
               </div>
             </div>
             <div className='subWrapper2'>
