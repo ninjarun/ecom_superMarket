@@ -27,7 +27,7 @@ const SingleProd = (props) => {
 
     <div className='prod_box'>
       <div onClick={() => setpopup(true)}>
-        <img className='prod_img' alt='' src={`${SERVER}/static/${props.prod.image}`}></img>
+        <img className='prod_img' alt='' src={`${SERVER}/static${props.prod.image}`}></img>
         <div className='product_title'>{props.prod.name}</div>
         <div className='product_price'>&#8362;{props.prod.price}</div>
         {/* <button onClick={() => dispatch(add2cart({ 'id': props.id, 'title': props.title, 'price': props.price, 'img': props.img, 'amount': 1 }))}>הוסף לסל</button> */}
