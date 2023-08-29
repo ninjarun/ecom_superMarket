@@ -91,6 +91,9 @@
         /* background-color: yellow; */
     }
     .catDisplay{
-        width: 99%;
+        width: 100%;
+    }
+    .prodsCatWrap{
+        justify-content: center;
     }
 }
