@@ -1,0 +1,128 @@
+.mainProductContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.contentWrapper {
+    padding: 20px;
+    display: flex;
+    width: 85%;
+}
+
+.detailSection {
+    display: block;
+    width: 45%;
+    margin: auto;
+    height: 600px;
+}
+
+.mainImage {
+    background-color: lightgray;
+    height: 600px;
+    width: 600px;
+    margin: auto;
+}
+
+.productInfo {
+    margin: 15px;
+    color: black;
+    padding: 15px;
+    height: 580px;
+}
+
+.productTitle {
+    text-align: right;
+    font-size: 28px;
+    border-bottom: 0.5px solid lightgray;
+}
+
+.productDescription {
+    text-align: right;
+    font-size: 16px;
+    margin-top: 10px;
+    max-height: 400px;
+    min-height: 300px;
+}
+
+.productPrice {
+    font-size: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: right;
+}
+
+.thumbnailImages {
+    height: 200px;
+    width: 30px;
+    margin-left: 15px;
+}
+
+.small_img {
+    height: 70px;
+    width: 70px;
+    margin-top: 20px;
+    border: 0.5px solid lightgray;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.imageSection {
+    margin: auto;
+    display: flex;
+}
+
+.buttonContainer {
+    border-radius: 5px;
+    color: white;
+    max-height: 50px;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    width: 230px;
+    margin: 4px auto 1px;
+    /* background-color: darkgreen; */
+    background-color: #264653;
+    border: 0.5px solid lightgray;
+  
+  }
+
+@media (max-width: 900px) {
+    .contentWrapper {
+        padding-top: 10px;
+        display: block;
+        width: 99%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .imageSection {
+        margin: auto;
+        display: block;
+    }
+
+    .thumbnailImages {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        height: fit-content;
+    }
+
+    .small_img {
+        display: none;
+        margin-right: 15px;
+    }
+
+    .detailSection {
+        width: 100%;
+        height: 250px;
+    }
+
+    .productTitle {
+        font-size: 18px;
+    }
+
+    .productDescription {
+        font-size: 13px;
+        min-height: 30px;
+    }
+}

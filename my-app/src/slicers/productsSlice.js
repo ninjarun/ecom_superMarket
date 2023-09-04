@@ -1,96 +1,118 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { addProduct, fetchProducts, editProduct } from './productsAPI';
+import { addProduct, fetchProducts, editProduct, fetchOneProduct } from './productsAPI';
 
 const initialState = {
-    products: [],
-    categories: [],
-    status:"idle"
+  products: [],
+  product: null,
+  categories: [],
+  status: "idle"
 };
 export const fetchProductsAsync = createAsyncThunk(
-    'products/fetchProducts',
-    async () => {
-        const response = await fetchProducts();
-        return response.data;
-    }
+  'products/fetchProducts',
+  async () => {
+    const response = await fetchProducts();
+    return response.data;
+  }
 );
 
-export const addProductAsync = createAsyncThunk(
-    'products/addproduct',
-    async (product) => {
-        const response = await addProduct(product);
-        return response.data;
+export const fetchOneProductAsync = createAsyncThunk(
+  'products/fetchOneProduct',
+  async (productID, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const existingProduct = state.products.products.find(p => p.id === productID);
+    
+    // If product exists in the state, return it immediately.
+    if (existingProduct) {
+      return existingProduct;
     }
+    
+    // Otherwise fetch the product.
+    console.log('fetching from API', productID)
+    const response = await fetchOneProduct(productID);
+    return response.data;
+  }
+);
+export const addProductAsync = createAsyncThunk(
+  'products/addproduct',
+  async (product) => {
+    const response = await addProduct(product);
+    return response.data;
+  }
 );
 
 export const editProductAsync = createAsyncThunk(
-    'products/editproduct',
-    async (product) => {
-        console.log("edit")
-        const response = await editProduct(product);
-        return response.data;
-    }
+  'products/editproduct',
+  async (product) => {
+    console.log("edit")
+    const response = await editProduct(product);
+    return response.data;
+  }
 );
 
 export const productsSlice = createSlice({
-    name: 'products',
-    initialState,
-    reducers: {
-        setcategories: (state, action) => {
-            return
-        },
+  name: 'products',
+  initialState,
+  reducers: {
+    setcategories: (state, action) => {
+      return
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchProductsAsync.pending, (state) => {
-              state.status = 'loading';
-            })
-            .addCase(addProductAsync.pending, (state) => {
-                state.status = 'loading';
-              })
-              .addCase(editProductAsync.pending, (state) => {
-                state.status = 'loading';
-              })
-            .addCase(fetchProductsAsync.fulfilled, (state, action) => {
-                state.products = action.payload;
-                const tmpProds = [...action.payload];
-                const tmpCats = {};
-                tmpProds.forEach(element => {
-                  if (!tmpCats[element.category]) {
-                    tmpCats[element.category] = {
-                      category: element.category,
-                      products: [],
-                    };
-                  }
-                  tmpCats[element.category].products.push(element);
-                });
-                state.categories = Object.values(tmpCats);
-                state.status='idle'
-              })
-            .addCase(addProductAsync.fulfilled, (state, action) => {
-                // state.products =  action.payload
-                // console.log(action)
-                console.log('product added')
-                alert("מוצר נוסף בהצלחה")
-                state.status='idle'
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProductsAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(addProductAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(editProductAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchProductsAsync.fulfilled, (state, action) => {
+        state.products = action.payload;
+        const tmpProds = [...action.payload];
+        const tmpCats = {};
+        tmpProds.forEach(element => {
+          if (!tmpCats[element.category]) {
+            tmpCats[element.category] = {
+              category: element.category,
+              products: [],
+            };
+          }
+          tmpCats[element.category].products.push(element);
+        });
+        state.categories = Object.values(tmpCats);
+        state.status = 'idle'
+      })
+      .addCase(addProductAsync.fulfilled, (state, action) => {
+        // state.products =  action.payload
+        // console.log(action)
+        console.log('product added')
+        alert("מוצר נוסף בהצלחה")
+        state.status = 'idle'
 
-            })
-            .addCase(editProductAsync.fulfilled, (state, action) => {
-                // state.products =  action.payload
-                // console.log(action)
-                console.log('product updated')
-                alert("מוצר עודכן בהצלחה")
-                state.status='idle'
+      })
+      .addCase(editProductAsync.fulfilled, (state, action) => {
+        // state.products =  action.payload
+        // console.log(action)
+        console.log('product updated')
+        alert("מוצר עודכן בהצלחה")
+        state.status = 'idle'
+      })
+      .addCase(fetchOneProductAsync.fulfilled, (state, action) => {
+        state.product =action.payload
+        console.log('success',action.payload)
+      });
 
 
-            });
-
-    },
+  },
 });
 
 export const { setcategories } = productsSlice.actions;
-export const selecProducts = (state) => state.products;
+export const selecProducts = (state) => state.products.products;
 export const selectCategories = (state) => state.products.categories;
 export const selectStatus = (state) => state.products.status;
+export const selectProduct = (state) =>state.products.product;
 // export const incrementIfOdd = (amount) => (dispatch, getState) => {
 //   const currentValue = selectCount(getState());
 //   if (currentValue % 2 === 1) {

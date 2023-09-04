@@ -18,6 +18,7 @@ import AdminWelcome from "./components/admin_control/AdminWelcome";
 import AllOrders from "./components/admin_control/orders/AllOrders";
 import AwaitingShipment from "./components/admin_control/orders/AwaitingShipment";
 import ProductManage from "./components/admin_control/productManager/ProuctManage";
+import SingleProductPage from "./components/single_product_page/SingleProductPage";
 
 export default function App() {
 
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/tracking" element={<Tracking />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/completion" element={<Completion />} />
+            <Route path="/product/:productId" element={<SingleProductPage />} />
           <Route path="/admin" element={<AdminWelcome />} >
             <Route index element={<Admin />}/>
             <Route path="/admin/allorders" element={<AllOrders />} />

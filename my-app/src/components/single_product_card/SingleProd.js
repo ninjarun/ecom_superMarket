@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { SERVER } from '../../globalVar'
 import ProductPopup from '../popuupProduct/ProductPopup'
+import { Link } from 'react-router-dom'
 
 const SingleProd = (props) => {
   // const Cart = useSelector(selecCart)
@@ -27,22 +28,16 @@ const SingleProd = (props) => {
 
     <div className='prod_box'>
       <div onClick={() => setpopup(true)}>
-        <img className='prod_img' alt={props.prod.name} src={`${SERVER}/static${props.prod.image}`} loading='lazy'></img>
+        <Link to={`/product/${props.prod.id}`}>
+          <img className='prod_img' alt={props.prod.name} src={`${SERVER}/static${props.prod.image}`} loading='lazy'></img>
+        </Link>
         <div className='product_title'>{props.prod.name}</div>
         <div className='product_price'>&#8362;{props.prod.price}</div>
         {/* <button onClick={() => dispatch(add2cart({ 'id': props.id, 'title': props.title, 'price': props.price, 'img': props.img, 'amount': 1 }))}>הוסף לסל</button> */}
       </div>
       <div className='action_btn_set_bottom'>
         {/* POPUP WINDOW */}
-        <ProductPopup
-          prod={props.prod}
-        // price={props.price}
-        // desc={props.desc}
-        // img={props.img}
-        // id={props.id}
-        // title={props.title}
-        >
-        </ProductPopup>
+        {/* <ProductPopup          prod={props.prod}        >        </ProductPopup> */}
 
 
         <div className='btn_wrapper'>

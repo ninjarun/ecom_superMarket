@@ -116,10 +116,21 @@ class Products(APIView):
             print('error', api_serializer.errors)
             return Response(api_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    # def get(self, request, *args, **kwargs):
+    #     products = Product.objects.all()
+    #     api_serializer = ProductSerializer(products, many=True)
+    #     return Response(api_serializer.data)
     def get(self, request, *args, **kwargs):
-        products = Product.objects.all()
-        api_serializer = ProductSerializer(products, many=True)
-        return Response(api_serializer.data)
+        product_id = request.query_params.get('id', None)
+
+        if product_id:
+            product = get_object_or_404(Product, pk=product_id)
+            api_serializer = ProductSerializer(product)
+            return Response(api_serializer.data)
+        else:
+            products = Product.objects.all()
+            api_serializer = ProductSerializer(products, many=True)
+            return Response(api_serializer.data)
 
     def put(self, request, *args, **kwargs):
         print(request.data)
