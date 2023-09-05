@@ -150,7 +150,8 @@ class SitemapGeneratorView(APIView):
 
         # Create the ElementTree and write to file
         tree = ET.ElementTree(urlset)
-        with open("sitemap.xml", "wb") as fh:
+        static_path = os.path.join(settings.STATIC_ROOT, 'sitemap.xml')
+        with open(static_path, "wb") as fh:
             tree.write(fh)
 
         return Response({"message": "Sitemap generated successfully"}, status=status.HTTP_200_OK)
