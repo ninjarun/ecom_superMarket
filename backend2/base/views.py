@@ -33,6 +33,8 @@ from django.http import HttpRequest
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+import xml.etree.ElementTree as ET
+
 
 ###################################################################################################################
 # PROFILE VIEW
@@ -88,6 +90,72 @@ class MailMail(APIView):
         except Exception as e:
             return HttpResponse(f"An error occurred: {e}")
 
+
+##################################################################################################################
+# DOWNLOAD COMPLETE SITE MAP FOR SEO PURPOSES  
+##################################################################################################################
+class SitemapGeneratorView(APIView):
+    def get(self, request, *args, **kwargs):
+        FrontEndDomain = 'https://silver-cocada-e03718.netlify.app/'
+        
+        # Get all products from the database
+        products = Product.objects.all()
+
+        additional_urls = [
+            {"url": f'{FrontEndDomain}', "lastmod": "2023-01-01", "changefreq": "daily", "priority": "1.0"},
+            {"url": f'{FrontEndDomain}aboutus', "lastmod": "2023-01-01", "changefreq": "daily", "priority": "0.5"},
+            {"url": f'{FrontEndDomain}contactus', "lastmod": "2023-01-02", "changefreq": "monthly", "priority": "0.5"},
+            {"url": f'{FrontEndDomain}checkout', "lastmod": "2023-01-02", "changefreq": "monthly", "priority": "0.5"},
+            # Add more URLs here
+        ]
+
+        # Serialize the products
+        api_serializer = ProductSerializer(products, many=True)
+        serialized_products = api_serializer.data
+
+        # Create the root element for the sitemap
+        urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+
+        # Adding additional URLs
+        for additional_url in additional_urls:
+            url = ET.SubElement(urlset, "url")
+            loc = ET.SubElement(url, "loc")
+            loc.text = additional_url['url']  # Using the full URL
+            
+            lastmod = ET.SubElement(url, "lastmod")
+            lastmod.text = additional_url['lastmod']  # Dynamic value
+            
+            changefreq = ET.SubElement(url, "changefreq")
+            changefreq.text = additional_url['changefreq']  # Dynamic value
+            
+            priority = ET.SubElement(url, "priority")
+            priority.text = additional_url['priority']  # Dynamic value
+
+        # Loop through each serialized product to populate the sitemap
+        for product in serialized_products:
+            url = ET.SubElement(urlset, "url")
+            full_url = f'{FrontEndDomain}product/{product["id"]}'  # Composing the URL
+            
+            loc = ET.SubElement(url, "loc")
+            loc.text = full_url  # Using the full URL
+            
+            lastmod = ET.SubElement(url, "lastmod")
+            lastmod.text = product.get("lastmod", "2023-01-01")  # Placeholder
+            
+            changefreq = ET.SubElement(url, "changefreq")
+            changefreq.text = product.get("changefreq", "monthly")  # Default value
+            
+            priority = ET.SubElement(url, "priority")
+            priority.text = product.get("priority", "0.8")  # Default value
+
+        # Create the ElementTree and write to file
+        tree = ET.ElementTree(urlset)
+        with open("sitemap.xml", "wb") as fh:
+            tree.write(fh)
+
+        return Response({"message": "Sitemap generated successfully"}, status=status.HTTP_200_OK)
+
+
 ##################################################################################################################
 # DOWNLOAD DATABASE BACKUP
 ##################################################################################################################
@@ -116,10 +184,6 @@ class Products(APIView):
             print('error', api_serializer.errors)
             return Response(api_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    # def get(self, request, *args, **kwargs):
-    #     products = Product.objects.all()
-    #     api_serializer = ProductSerializer(products, many=True)
-    #     return Response(api_serializer.data)
     def get(self, request, *args, **kwargs):
         product_id = request.query_params.get('id', None)
 

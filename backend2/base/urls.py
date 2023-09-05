@@ -14,6 +14,6 @@ urlpatterns = [
     path('stripe-webhook', views.my_webhook_view),#STRIPE
 
     path('backup',views.Backup_database.as_view()),
-
+    path('generate_sitemap', views.SitemapGeneratorView.as_view(), name='generate_sitemap'),
 ]
 

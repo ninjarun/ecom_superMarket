@@ -25,7 +25,6 @@ const SingleProd = (props) => {
 
 
   return (
-
     <div className='prod_box'>
       <div onClick={() => setpopup(true)}>
         <Link to={`/product/${props.prod.id}`}>
