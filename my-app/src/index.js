@@ -20,8 +20,18 @@ import AwaitingShipment from "./components/admin_control/orders/AwaitingShipment
 import ProductManage from "./components/admin_control/productManager/ProuctManage";
 import SingleProductPage from "./components/single_product_page/SingleProductPage";
 
-export default function App() {
+// import { useEffect } from 'react';
+// import { useHistory } from 'react-router-dom';
 
+export default function App() {
+  // const history = useHistory();
+
+  // useEffect(() => {
+  //   // Your custom logic to detect the route
+  //   if (window.location.pathname === '/sitemap.xml') {
+  //     window.location.href = 'https://firstback.onrender.com/static/sitemap.xml'; // replace with your backend URL
+  //   }
+  // }, [history]);
   return (
     <BrowserRouter>
       <Provider store={store}>
