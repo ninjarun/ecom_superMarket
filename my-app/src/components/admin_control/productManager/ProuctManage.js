@@ -64,7 +64,7 @@ const ProductManage = () => {
             <option>בחר קטגוריה</option>
             {categories.map((cat, i) => <option key={i}>{cat['category']}</option>)}
           </select>
-          <div className='search_btn' onClick={()=>handle_category()}>סנן לפי קטגוריה</div>
+          <div className='search_btn' onClick={() => handle_category()}>סנן לפי קטגוריה</div>
         </div>
         <div className='search_box'>
           <input value={search_id} onChange={(e) => setsearch_id(e.target.value)} placeholder='חיפוש לפי מזהה'></input>

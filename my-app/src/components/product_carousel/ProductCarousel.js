@@ -23,7 +23,7 @@ const ProductCarousel = (props) => {
                 className="mySwiper"
                  breakpoints={{
                    1280: {
-                     slidesPerView:6,
+                     slidesPerView:5.5,
                      spaceBetween: 0,
                    },
                    1024: {

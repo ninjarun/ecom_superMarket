@@ -11,15 +11,11 @@ import { Helmet } from 'react-helmet';
 import './home.css'
 import { SERVER } from '../../globalVar'
 
-
-
 const Home = () => {
   const dispatch = useAppDispatch()
   const categories = useSelector(selectCategories)
   const [homeDisplay, sethomeDisplay] = useState('all')
   const [cat_prods, setcat_prods] = useState([])
-  // const [pageTitle, setpageTitle] = useState(second)
-  // const [pageDescription, setpageDescription] = useState(second)
 
   useEffect(() => {
     dispatch(fetchProductsAsync())
@@ -34,10 +30,8 @@ const Home = () => {
       }
     }
   }, [homeDisplay, categories]);
-  // console.log(categories)
 
   let positionCounter = 1;
-  // test test test SEO PRODUCTS DATA
   const itemData = categories && categories.map(cat => {
     // console.log(cat['products'])
 
@@ -72,14 +66,12 @@ const Home = () => {
 
   })
 
-
   const structuredData = itemData && JSON.stringify({
     "@context": "https://schema.org",
     "@type": "ItemList",
     "itemListElement": itemData.flat()
   });
 
-  console.log(structuredData)
   return (
 
     <div >
@@ -87,12 +79,9 @@ const Home = () => {
         <title>{homeDisplay === 'all' ? 'All Products' : `Category: ${homeDisplay}`}</title>
         <meta name="description" content="Welcome to the best Candy store" />
         <meta name="keywords" content="chocholate, candy, snacks" />
-
         <script type="application/ld+json">
           {structuredData}
         </script>
-
-
       </Helmet>
 
       <Hero></Hero>
