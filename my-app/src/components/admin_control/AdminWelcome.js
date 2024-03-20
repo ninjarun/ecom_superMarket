@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import './admin.css'
 import { Helmet } from 'react-helmet'
+import { fetchProductsAsync, selecProducts } from '../../slicers/productsSlice'
+import { useAppDispatch } from '../../app/hooks'
+import { useSelector } from 'react-redux'
 
 const AdminWelcome = () => {
+//   const dispatch = useAppDispatch();
+//   const products = useSelector(selecProducts);
+  
+//   useEffect(() => {
+//     dispatch(fetchProductsAsync());
+
+// }, [dispatch])
 
   return (
     <div className='main_admin'>

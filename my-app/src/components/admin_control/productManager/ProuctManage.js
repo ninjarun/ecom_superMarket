@@ -5,32 +5,35 @@ import { useAppDispatch } from '../../../app/hooks';
 import "./ProductManage.css"
 const ProductManage = () => {
   const dispatch = useAppDispatch();
-  const products = useSelector(selecProducts);
   const categories = useSelector(selectCategories)
   const [editedProducts, setEditedProducts] = useState([]);
   const [search_id, setsearch_id] = useState("")
   const [search_title, setsearch_title] = useState("")
   const [selectedCat, setselectedCat] = useState("second")
   const [table_display, settable_display] = useState([])
-
+  const products = useSelector(selecProducts);
+  console.log(products)
+  
+  
+  
   useEffect(() => {
     dispatch(fetchProductsAsync());
-    settable_display(products.products)
+    settable_display(products)
   }, [dispatch]);
-
+  
 
   const handle_search_id = () => {
-    const tmpprod = products.products.filter(item => item.id === parseInt(search_id));
+    const tmpprod = products.filter(item => item.id === parseInt(search_id));
     settable_display(tmpprod)
     setsearch_id("")
   }
   const handle_search_title = () => {
-    const tmpprod = products.products.filter(item => item.name.includes(search_title))
+    const tmpprod = products.filter(item => item.name.includes(search_title))
     settable_display(tmpprod)
     setsearch_title("")
   }
   const handle_category = () => {
-    const tmpprod = products.products.filter(item => item.category.includes(selectedCat))
+    const tmpprod = products.filter(item => item.category.includes(selectedCat))
 
     settable_display(tmpprod)
   }
@@ -75,7 +78,7 @@ const ProductManage = () => {
           <div className='search_btn' onClick={() => search_title.length != "" ? handle_search_title() : alert('שדה ריק')}>חפש לפי שם</div>
         </div>
       </div>
-      {table_display.length !== products.products.length && <div className='search_btn' onClick={() => settable_display(products.products)}>הצג את כל המוצרים</div>}
+      {table_display.length !== products.length && <div className='search_btn' onClick={() => settable_display(products)}>הצג את כל המוצרים</div>}
       <div className='table_wrap'>
         <table>
           <thead>
