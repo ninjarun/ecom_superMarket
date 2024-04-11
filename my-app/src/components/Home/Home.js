@@ -10,6 +10,7 @@ import ProductPopup from '../popuupProduct/ProductPopup'
 import { Helmet } from 'react-helmet';
 import './home.css'
 import { SERVER } from '../../globalVar'
+import Cart from "../navigator/Cart/Cart"
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -74,7 +75,7 @@ const Home = () => {
 
   return (
 
-    <div >
+    <div className='mainDiv'>
       <Helmet>
         <title>{homeDisplay === 'all' ? 'All Products' : `Category: ${homeDisplay}`}</title>
         <meta name="description" content="Welcome to the best Candy store" />
@@ -84,52 +85,57 @@ const Home = () => {
         </script>
       </Helmet>
 
-      <Hero></Hero>
-
-      {/* WHOLE CATEGORY PRODUCT DISPLAY - WILL BE SHOWEN ONCE USE CLICKS ON SHOW ALL */}
-      {homeDisplay != 'all' &&
-        <div className='catDisplay'>
-          <div className='cat_title'>
-            {homeDisplay}
-          </div>
-          <div className='goBackBTN' onClick={() => sethomeDisplay('all')}>
-            חזור אל כל המוצרים
-          </div>
-          <div className='prodsCatWrap'>
-            {cat_prods.map((prod, i) => (
-              <SingleProd
-                prod={prod}
-                // price={prod.price}
-                // img={prod.image}
-                // id={prod.id}
-                // title={prod.name}
-                amount={0}
-                key={i}>
-
-              </SingleProd >
-            ))}
-          </div>
-        </div>}
-
-      {/* CAROUSEL DISPLAY DIVIDED BY CATEGORIES */}
-      <div className='carouselsWrapper'>
-        {homeDisplay == 'all' && (categories.map((cat, i) =>
-          <div style={{ marginTop: '30px' }} key={i}>
-            <div className='carousel_headling'              >
-              <div onClick={() => sethomeDisplay(cat['category'])} style={{ height: '25px', display: 'flex', marginTop: '5px', zIndex: '2' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
-                  <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                </svg>
-                <div style={{ marginRight: '10px', marginLeft: '10px' }}>הצג הכל</div>
-              </div>
-              <div className='subtitle'> {cat['category']}</div>
-            </div>
-            <ProductCarousel prods={cat['products']}></ProductCarousel>
-          </div>
-        ))}
+      <div className='forCart'>
+        <Cart></Cart>
       </div>
-      <Footer></Footer>
-      {/* <ProductPopup></ProductPopup> */}
+      <div className='show'>
+        <Hero></Hero>
+
+        {/* WHOLE CATEGORY PRODUCT DISPLAY - WILL BE SHOWEN ONCE USE CLICKS ON SHOW ALL */}
+        {homeDisplay != 'all' &&
+          <div className='catDisplay'>
+            <div className='cat_title'>
+              {homeDisplay}
+            </div>
+            <div className='goBackBTN' onClick={() => sethomeDisplay('all')}>
+              חזור אל כל המוצרים
+            </div>
+            <div className='prodsCatWrap'>
+              {cat_prods.map((prod, i) => (
+                <SingleProd
+                  prod={prod}
+                  // price={prod.price}
+                  // img={prod.image}
+                  // id={prod.id}
+                  // title={prod.name}
+                  amount={0}
+                  key={i}>
+
+                </SingleProd >
+              ))}
+            </div>
+          </div>}
+
+        {/* CAROUSEL DISPLAY DIVIDED BY CATEGORIES */}
+        <div className='carouselsWrapper'>
+          {homeDisplay == 'all' && (categories.map((cat, i) =>
+            <div style={{ marginTop: '30px', marginRight: '15px' }} key={i}>
+              <div className='carousel_headling'              >
+                <div onClick={() => sethomeDisplay(cat['category'])} style={{ height: '25px', display: 'flex', marginTop: '5px', zIndex: '2' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                  </svg>
+                  <div style={{ marginRight: '10px', marginLeft: '10px' ,width:'100px'}}>{cat['products'].length} הצג הכל</div>
+                </div>
+                <div className='subtitle'> {cat['category']}</div>
+              </div>
+              <ProductCarousel prods={cat['products']}></ProductCarousel>
+            </div>
+          ))}
+        </div>
+        <Footer></Footer>
+        {/* <ProductPopup></ProductPopup> */}
+      </div>
     </div>
   )
 }

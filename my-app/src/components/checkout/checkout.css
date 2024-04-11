@@ -14,14 +14,15 @@
   width: 40%;
   margin: auto;
   height: 750px;
+  padding-top: 50px;
 }
 
 .info_wrapper {
   justify-content: center;
   width: 60%;
   text-align: right;
+  padding-top: 50px;
 }
-
 .final_info {
   width: 100%;
   margin: auto;
@@ -34,7 +35,6 @@
 
 .payment_method_box {
   background-color: lightgray;
-margin: auto;
 }
 
 .disabled_main_wrapper .payment_method_box {

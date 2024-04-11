@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import './productCarousel.css';
 import { Navigation } from 'swiper/modules';
 import SingleProd from '../single_product_card/SingleProd';
+import SingleProd2 from '../single_product_card2/SingleProd2';
 
 const ProductCarousel = (props) => {
   // SwiperCore.use([Navigation, Pagination]);
@@ -14,8 +15,8 @@ const ProductCarousel = (props) => {
         <div className='carouselWrap' style={{ direction: 'rtl' }} >
             {/* <h3>{props.prods[0].category}</h3> */}
             <Swiper
-                slidesPerView={5.5}
-                spaceBetween={0.5}
+                slidesPerView={6}
+                spaceBetween={0}
                 loop={true}
                 pagination={{ clickable: true, }}
                 navigation={true}
@@ -23,7 +24,7 @@ const ProductCarousel = (props) => {
                 className="mySwiper"
                  breakpoints={{
                    1280: {
-                     slidesPerView:5.5,
+                     slidesPerView:5,
                      spaceBetween: 0,
                    },
                    1024: {
@@ -44,8 +45,8 @@ const ProductCarousel = (props) => {
 
             >
                 {props.prods.map((prod, i) =>
-                    <SwiperSlide key={i}  >
-                        <SingleProd
+                    <SwiperSlide  key={i}  >
+                        <SingleProd2
                             prod={prod}
                             // price={prod.price}
                             // desc={prod.description}
@@ -54,7 +55,7 @@ const ProductCarousel = (props) => {
                             // title={prod.name}
                             amount={0}
                         >
-                        </SingleProd >
+                        </SingleProd2 >
                     </SwiperSlide>
                 )}
                 {/* 

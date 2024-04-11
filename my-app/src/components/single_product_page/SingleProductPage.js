@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../app/hooks';
 import { SERVER } from '../../globalVar';
 import { add2cart, increment_amount, selecCart } from '../navigator/Cart/cartSlice';
-
 import "./singProductPage.css";
 
 const SingleProductPage = () => {
@@ -84,7 +83,9 @@ const SingleProductPage = () => {
         // })) // Assuming you have this data
     };
     
-
+    const goBack = () => {
+        window.history.back();
+      };
     return (
         <div className="mainProductContainer">
            {product && <Helmet>
@@ -97,7 +98,7 @@ const SingleProductPage = () => {
                                </script>
             </Helmet>}
          
-
+            <div className='backBTN' onClick={goBack}>חזרה לעמוד ראשי</div>
 
             {product &&
                 <div className="contentWrapper">

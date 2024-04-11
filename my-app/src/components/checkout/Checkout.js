@@ -15,12 +15,13 @@ const Checkout = () => {
   const [flag, setflag] = useState(true)
   const [userInfoFlag, setuserInfoFlag] = useState(true)
   const [shipmentMethodFlag, setshipmentMethodFlag] = useState(false)
-  const [paymentMethodFlag, setpaymentMethodFlag] = useState(false)
+  const [paymentMethodFlag, setpaymentMethodFlag] = useState()
   // end flags
   const [subtotal, setsubtotal] = useState(0) //total payment amount
   const [total, settotal] = useState(0) // total payment amount including shipping
   const [prod_amount, setprod_amount] = useState(0) //amount of products in cart
   const [ShippingMethod, setShippingMethod] = useState('') //shipping method user choosed
+
 
   // form variables
   const [FullName, setFullName] = useState('')
@@ -97,10 +98,10 @@ const Checkout = () => {
     console.log('handling shipping')
     console.log(value)
     // Check what kind of shipping method user wants before calculating total 
-    if (value == 1) {
+    if (value === 1) {
       settotal(subtotal + 100)
 
-    } else if (value == 2) {
+    } else if (value === 2) {
       settotal(subtotal + 200)
     }
 
@@ -159,7 +160,7 @@ const Checkout = () => {
                   </td>
                   <td>{product.price}&#8362;</td>
                   <td>{product.title}</td>
-                  <td style={{ textAlign: 'center' }}><img src={`${SERVER}${product.img}`} className='product_img'></img></td>
+                  <td style={{ textAlign: 'center' }}><img src={`${SERVER}/static${product.img}`} className='product_img'></img></td>
                 </tr>
               ))}
             </tbody>

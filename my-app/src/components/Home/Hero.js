@@ -2,7 +2,7 @@ import React from 'react'
 
 const Hero = () => {
     return (
-        <div style={{width:'95%',margin:'auto'}} >
+        <div style={{width:'98%',margin:'80px auto'}} >
             <div   id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div  className="carousel-inner">
                     <div className="carousel-item active">

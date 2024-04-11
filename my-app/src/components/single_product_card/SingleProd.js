@@ -59,7 +59,9 @@ const SingleProd = (props) => {
                   }
                 }}>
                   - </div>
-                <div className='total_amount'>{objectWithId ? <span>{objectWithId.amount}</span> : setbutton_display(!button_display)}</div>
+                <div className='total_amount'>
+                  {objectWithId ? <span>{objectWithId.amount}</span> : setbutton_display(!button_display)}
+                </div>
                 <div className='add_amount_prod_card' onClick={() => {
                   dispatch(add2cart({ 'id': props.prod.id, 'title': props.prod.name, 'price': props.prod.price, 'img': props.prod.image, 'amount': 1 }))
                 }}>

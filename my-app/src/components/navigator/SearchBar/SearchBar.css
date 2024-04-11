@@ -1,0 +1,45 @@
+/* SearchBar.css */
+.searchBar {
+    width: 800px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 10px 10px 10px 70px;
+    
+}
+
+.dropContent_search {
+    background-color: red;
+    width: 800px;
+    position: absolute;
+    margin-top: -5px;
+    overflow-y: auto;
+    max-height: 600px;
+    margin-right: 20px;
+    width: 80%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.searched_prod {
+    display: flex;
+    justify-content: space-around;
+    direction: rtl;
+}
+
+.prod_title_search {
+    width: 60%;
+}
+
+
+.dropContent_search img {
+    /* display: block; */
+    /* margin: 0 auto 10px; */
+}
+
+.dropContent_search div {
+    text-align: center;
+}

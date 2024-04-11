@@ -1,9 +1,21 @@
 .mainProductContainer {
     display: flex;
     justify-content: center;
+    padding-top: 100px;
+}
+
+.backBTN {
+    background-color: red;
+    height: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+position: absolute;
 }
 
 .contentWrapper {
+    margin-top: 40px;
     padding: 20px;
     display: flex;
     width: 85%;
@@ -17,7 +29,7 @@
 }
 
 .mainImage {
-    background-color: lightgray;
+    background-color: #e4e1e1;
     height: 600px;
     width: 600px;
     margin: auto;
@@ -83,8 +95,8 @@
     /* background-color: darkgreen; */
     background-color: #264653;
     border: 0.5px solid lightgray;
-  
-  }
+
+}
 
 @media (max-width: 900px) {
     .contentWrapper {
