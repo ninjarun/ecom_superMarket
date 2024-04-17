@@ -20,11 +20,11 @@ const Cart = () => {
     return (
 
         <div className='cart_main' >
-            <div style={{ fontSize: "xx-large", textAlign: "center", padding: "5px", height: "75px",backgroundColor:'gray',color:'white' }}>
+            <div className='cart_title' >
                 העגלה שלי
 
             </div>
-
+            <div className='empty_box1'></div>
             {Cart.cart.map((product, index) =>
                 <div className='one_product' key={index}>
                     <div className='title_amount'>

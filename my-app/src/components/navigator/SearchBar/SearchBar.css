@@ -5,8 +5,8 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-    margin: 10px 10px 10px 70px;
-    
+    margin: 5px 5px 5px 50px;
+    text-align: right;
 }
 
 .dropContent_search {
@@ -22,16 +22,21 @@
     padding: 10px;
     border-radius: 4px;
     background-color: #f9f9f9;
+    border: solid 2px ;
 }
 
 .searched_prod {
     display: flex;
     justify-content: space-around;
     direction: rtl;
+    border-bottom: solid 0.5px;
+    margin-top: 5px;
 }
 
 .prod_title_search {
     width: 60%;
+    margin-top: 30px;
+    font-size: larger;
 }
 
 
@@ -42,4 +47,75 @@
 
 .dropContent_search div {
     text-align: center;
+    
 }
+
+.clearButton {
+    width: fit-content;
+    height: 40px;
+    position: absolute;
+    background-color: transparent;
+    color: black;
+    left: 130px;
+    top: 13px;
+
+
+}
+
+
+.btn_wrapper_searchbar {
+    border-radius: 5px;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    /* background-color: #264653; */
+    height: 40px;
+    width: 10%;
+    margin-top: 30px;
+    /* border: solid 1px ; */
+}
+
+.add2cart_searchbar {
+padding: 5px;
+border-radius: 5px;
+    border: solid 1px;
+
+}
+
+.add2cart_searchbar,
+.choose_quantity_searchbar {
+    /* padding: 10px; */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.choose_quantity_searchbar {
+    display: flex;
+    justify-content: space-between;
+}
+.decrease_amount_prod_card_searchbar{
+color: red;
+border: solid 1px red;
+}
+.add_amount_prod_card_searchbar{
+    color: green;
+    border: solid 1px green;
+}
+.add_amount_prod_card_searchbar,
+.decrease_amount_prod_card_searchbar {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #3A6B7E; */
+    border-radius: 5px;
+}
+
+
+.total_amount_searchbar {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-weight: bold;
+  }

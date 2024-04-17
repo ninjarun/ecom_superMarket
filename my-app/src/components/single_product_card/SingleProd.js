@@ -1,4 +1,4 @@
-import './single_prod.css'
+// import './single_prod.css'
 import { add2cart, increment_amount, selecCart } from '../navigator/Cart/cartSlice'
 // import { useSelector } from 'react-redux'
 import { useAppDispatch } from '../../app/hooks'
