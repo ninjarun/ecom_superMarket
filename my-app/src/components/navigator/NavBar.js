@@ -63,9 +63,9 @@ const NavBar = () => {
         </div> */}
 
 
-        <div className="sidebar">
+        {/* <div className="sidebar">
           <Sidebar ></Sidebar>
-        </div>
+        </div> */}
       </nav>
       <div style={{ width: "100%", margin: "auto" }}>
         {/* <div style={{ height: "80px" }}></div> */}

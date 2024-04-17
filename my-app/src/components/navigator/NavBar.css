@@ -30,7 +30,7 @@
     /* font-weight: bold; */
     /* color: white; */
     color: white;
-    margin-right: 40px;
+    /* margin-right: 40px; */
     text-decoration: none;
     /* background-color: red; */
     text-shadow: 1px 1px 2px #666666;
@@ -90,5 +90,13 @@
     .sidebar {
         margin-right: 40px;
     }
+    .navigator{
+        width: 100%;
+        margin: 0px;
+        display: block;
+        text-align: center;
+        
+    }
+
 
 }

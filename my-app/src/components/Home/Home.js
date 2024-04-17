@@ -119,7 +119,7 @@ const Home = () => {
         {/* CAROUSEL DISPLAY DIVIDED BY CATEGORIES */}
         <div className='carouselsWrapper'>
           {homeDisplay == 'all' && (categories.map((cat, i) =>
-            <div style={{ marginTop: '30px', marginRight: '15px' }} key={i}>
+            <div className='oneCarousel'  key={i}>
               <div className='carousel_headling'              >
                 <div onClick={() => sethomeDisplay(cat['category'])} style={{ height: '25px', display: 'flex', marginTop: '5px', zIndex: '2' }}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">

@@ -44,7 +44,7 @@ const SearchBar = () => {
             <div className="searchBarWithButton">
                 <input
                     className="searchBar"
-                    placeholder="מוצר \ מותג \ קטגוריה Queen Store"
+                    placeholder="חיפוש - מוצר \ מותג \ קטגוריה"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onClick={toggleSearch}
@@ -58,7 +58,8 @@ const SearchBar = () => {
                     {filteredProducts.map((product, index) => (
                         <div className='searched_prod' key={index}>
                             <img src={`${SERVER}/static${product.image}`} alt="Product" width="100px" height="100px" />
-                            <div className='prod_title_search'>{product.name} {product.price}&#8362;</div>
+                            <div className='prod_title_search'>{product.name}</div>
+                            <div className='prod_price_search'> {product.price}&#8362;</div>
                             <div className='btn_wrapper_searchbar'>
                                 {cart.cart.find(item => item.id === product.id) ? (
                                     <div className='choose_quantity_searchbar'>

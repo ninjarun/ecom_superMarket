@@ -1,8 +1,8 @@
 import React from 'react'
-
+import './hero.css'
 const Hero = () => {
     return (
-        <div style={{width:'98%',margin:'80px auto'}} >
+        <div className='hero' >
             <div   id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div  className="carousel-inner">
                     <div className="carousel-item active">

@@ -12,7 +12,7 @@ const ProductCarousel = (props) => {
   // SwiperCore.use([Navigation, Pagination]);
     // console.log(props)
     return (
-        <div className='carouselWrap' style={{ direction: 'rtl' }} >
+        <div className='carouselWrap'  >
             {/* <h3>{props.prods[0].category}</h3> */}
             <Swiper
                 slidesPerView={6}
