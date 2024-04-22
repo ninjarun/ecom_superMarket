@@ -15,8 +15,8 @@ const ProductCarousel = (props) => {
         <div className='carouselWrap'  >
             {/* <h3>{props.prods[0].category}</h3> */}
             <Swiper
-                slidesPerView={6}
-                spaceBetween={0}
+                slidesPerView={4}
+                spaceBetween={10}
                 loop={true}
                 pagination={{ clickable: true, }}
                 navigation={true}
@@ -24,8 +24,8 @@ const ProductCarousel = (props) => {
                 className="mySwiper"
                  breakpoints={{
                    1280: {
-                     slidesPerView:5,
-                     spaceBetween: 0,
+                     slidesPerView:4,
+                     spaceBetween: 1,
                    },
                    1024: {
                      slidesPerView: 4,

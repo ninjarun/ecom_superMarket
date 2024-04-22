@@ -1,38 +1,60 @@
-/* #app {
-    height: 100%;
-  }
-  html,
-  body {
-    position: relative;
-    height: 100%;
-  }
-  
-  body {
-    background: #eee;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color: #000;
-    margin: 0;
-    padding: 0;
-  }
-   */
 
+
+
+.swiper {
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+}
+
+
+.carouselWrap {
+  width: 100%;
+  direction: rtl;
+  margin: 0;
+  padding: 0;
+  /* padding-right: 15px; */
+}
+
+
+
+/* Override default Swiper styles */
+.swiper-slide {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure Swiper container takes full width */
 .mySwiper {
+  display: flex;
+  justify-content: center; /* Center slides horizontally */
+  align-items: center; /* Center slides vertically */
+  gap: 1px; /* Adjust spacing between slides */
   width: 100%;
   height: 100%;
 }
 
 
-.swiper {
-  margin-left: auto;
-  margin-right: auto;
+
+
+/* productCarousel.css */
+
+/* Increase the size and boldness of navigation buttons */
+.swiper-button-prev, .swiper-button-next {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.carouselWrap {
-  width: 100%;
-  direction: rtl;
-  /* padding-right: 15px; */
+/* Position the navigation buttons outside of the card */
+.swiper-button-prev {
+  left: 10px; /* Adjust this value according to your layout */
+  background-color: red;
 }
+
+.swiper-button-next {
+  right: 10px; /* Adjust this value according to your layout */
+  background-color: red;
+}
+
 
 
 
