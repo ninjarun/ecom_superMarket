@@ -22,9 +22,8 @@ const Cart = () => {
         <div className='cart_main' >
             <div className='cart_title' >
                 העגלה שלי
-
             </div>
-            <div className='empty_box1'></div>
+            <div className='empty_box'></div>
             {Cart.cart.map((product, index) =>
                 <div className='one_product' key={index}>
                     <div className='title_amount'>
