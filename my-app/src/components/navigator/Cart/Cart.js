@@ -4,7 +4,7 @@ import './cart.css'
 import { useAppDispatch } from '../../../app/hooks'
 import { Link } from 'react-router-dom'
 import { SERVER } from '../../../globalVar'
-const Cart = () => {
+const Cart = (props) => {
     const Cart = useSelector(selecCart)
     const dispatch = useAppDispatch()
     // this var is responsible for the sub-total of each prouct in the cart
@@ -58,7 +58,7 @@ const Cart = () => {
 
                 <div className='total_calculator'>&#8362;{total} סה"כ לתשלום</div>
                 {/* <div  data-bs-dismiss="offcanvas" > */}
-                <Link to='/checkout' className='checkout_btn '>מעבר לתשלום</Link>
+                <Link to='/checkout' className='checkout_btn ' onClick={props.closeCart}>מעבר לתשלום</Link>
             </div>
 
 

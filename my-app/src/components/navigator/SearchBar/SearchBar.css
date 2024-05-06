@@ -126,6 +126,18 @@ border: solid 1px red;
     padding: 0 10px;
     font-weight: bold;
   }
+  .clearButtonMobile{
+    display: none;
+    width: fit-content;
+    height: 40px;
+    position: absolute;
+    background-color: transparent;
+    color: black;
+    left: 50px;
+    top: 0px;
+    /* align-items: center; */
+
+  }
 
   @media screen and (max-width: 1200px) {
   
@@ -156,7 +168,9 @@ margin-top: 55px;
     display: none;
 
 }
-
+.clearButtonMobile{
+    display: block;
+  }
 
 
 }

@@ -6,16 +6,16 @@ import './SearchBar.css';
 import { useAppDispatch } from '../../../app/hooks';
 import { add2cart, increment_amount, selecCart } from '../Cart/cartSlice';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
     const dispatch = useAppDispatch();
     const prods = useSelector(selecProducts);
-    const [searchTerm, setSearchTerm] = useState("");
+    // const [props.searchTerm, setSearchTerm] = useState("");
     const [searchOpen, setSearchOpen] = useState(false);
     const cart = useSelector(selecCart);
     const searchRef = useRef(null);
 
     const filteredProducts = prods.filter(product =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        product.name.toLowerCase().includes(props.searchTerm.toLowerCase()));
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
@@ -31,7 +31,7 @@ const SearchBar = () => {
     };
 
     const clearSearch = () => {
-        setSearchTerm("");
+        props.setSearch("");
         setSearchOpen(false);
     };
 
@@ -45,15 +45,18 @@ const SearchBar = () => {
                 <input
                     className="searchBar"
                     placeholder="חיפוש - מוצר \ מותג \ קטגוריה"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    value={props.searchTerm}
+                    onChange={(e) => props.setSearch(e.target.value)}
                     onClick={toggleSearch}
                 />
-                {searchTerm && (
+                {props.searchTerm && (
+                    <div>
                     <button className="clearButton" onClick={clearSearch}>X</button>
+                    
+                    </div>
                 )}
             </div>
-            {searchOpen && searchTerm && (
+            {searchOpen && props.searchTerm && (
                 <div className="dropContent_search" ref={searchRef}>
                     {filteredProducts.map((product, index) => (
                         <div className='searched_prod' key={index}>

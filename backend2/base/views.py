@@ -217,6 +217,7 @@ class Products(APIView):
         product.delete()
         # product.is_available = False  # Set the availability status to False
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
 
 ###################################################################################################################
 # ORDERS VIEW

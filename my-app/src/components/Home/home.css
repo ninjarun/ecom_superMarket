@@ -143,15 +143,16 @@
 
     .show {
         width: 100%;
-        margin-top: 90px;
-margin-left: 0;
+        margin-top: 30px;
+        margin-left: 0;
     }
 
     .oneCarousel {
         margin-right: 0px;
         margin-top: 10px;
     }
-    .subtitle{
+
+    .subtitle {
         font-size: 20px;
     }
 }

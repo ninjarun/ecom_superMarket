@@ -18,9 +18,9 @@ const Home = () => {
   const [homeDisplay, sethomeDisplay] = useState('all')
   const [cat_prods, setcat_prods] = useState([])
   const [cartOpen, setcartOpen] = useState(false)
-  useEffect(() => {
-    dispatch(fetchProductsAsync())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(fetchProductsAsync())
+  // }, [dispatch])
   useEffect(() => {
     if (homeDisplay !== 'all') {
       let currentCatProds = categories.find(cat => cat.category === homeDisplay);

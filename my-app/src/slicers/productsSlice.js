@@ -113,11 +113,5 @@ export const selecProducts = (state) => state.products.products;
 export const selectCategories = (state) => state.products.categories;
 export const selectStatus = (state) => state.products.status;
 export const selectProduct = (state) =>state.products.product;
-// export const incrementIfOdd = (amount) => (dispatch, getState) => {
-//   const currentValue = selectCount(getState());
-//   if (currentValue % 2 === 1) {
-//     dispatch(incrementByAmount(amount));
-// }
-// };
 
 export default productsSlice.reducer;

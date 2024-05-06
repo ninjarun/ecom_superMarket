@@ -19,11 +19,15 @@ import AllOrders from "./components/admin_control/orders/AllOrders";
 import AwaitingShipment from "./components/admin_control/orders/AwaitingShipment";
 import ProductManage from "./components/admin_control/productManager/ProuctManage";
 import SingleProductPage from "./components/single_product_page/SingleProductPage";
-
+import Category_page from "./components/category_page/Category_page";
+import { useEffect } from "react";
+import { useAppDispatch } from "./app/hooks";
+import { fetchProductsAsync } from "./slicers/productsSlice";
 // import { useEffect } from 'react';
 // import { useHistory } from 'react-router-dom';
 
 export default function App() {
+  
   // const history = useHistory();
 
   // useEffect(() => {
@@ -46,6 +50,8 @@ export default function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/completion" element={<Completion />} />
             <Route path="/product/:productId" element={<SingleProductPage />} />
+            <Route path="/:category" element={<Category_page />} />
+
           <Route path="/admin" element={<AdminWelcome />} >
             <Route index element={<Admin />}/>
             <Route path="/admin/allorders" element={<AllOrders />} />
