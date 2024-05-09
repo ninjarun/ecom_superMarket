@@ -47,12 +47,12 @@
 /* Position the navigation buttons outside of the card */
 .swiper-button-prev {
   left: 10px; /* Adjust this value according to your layout */
-  background-color: red;
+  /* background-color: red; */
 }
 
 .swiper-button-next {
   right: 10px; /* Adjust this value according to your layout */
-  background-color: red;
+  /* background-color: red; */
 }
 
 

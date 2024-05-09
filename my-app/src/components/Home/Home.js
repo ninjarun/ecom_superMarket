@@ -73,6 +73,8 @@ const Home = () => {
     "itemListElement": itemData.flat()
   });
 
+
+  // console.log(categories[(Math.floor(Math.random() * categories.length))]);
   return (
 
     <div className='mainDiv'>

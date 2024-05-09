@@ -110,7 +110,8 @@
 
 
 @media screen and (max-width: 1200px) {
-    .mainDiv {}
+    .mainDiv {
+    }
 
     .carouselsWrapper {
         width: 100%;

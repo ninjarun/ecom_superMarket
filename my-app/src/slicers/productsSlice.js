@@ -3,6 +3,7 @@ import { addProduct, fetchProducts, editProduct, fetchOneProduct } from './produ
 
 const initialState = {
   products: [],
+  wishList: [],
   product: null,
   categories: [],
   status: "idle"
@@ -20,12 +21,12 @@ export const fetchOneProductAsync = createAsyncThunk(
   async (productID, thunkAPI) => {
     const state = thunkAPI.getState();
     const existingProduct = state.products.products.find(p => p.id === productID);
-    
+
     // If product exists in the state, return it immediately.
     if (existingProduct) {
       return existingProduct;
     }
-    
+
     // Otherwise fetch the product.
     console.log('fetching from API', productID)
     const response = await fetchOneProduct(productID);
@@ -55,6 +56,32 @@ export const productsSlice = createSlice({
   reducers: {
     setcategories: (state, action) => {
       return
+    },
+    add2wish: (state, action) => {
+      const tmpWishProd = action.payload;
+    
+      // Check if the product already exists in the wishList
+      const existingIndex = state.wishList.findIndex(item => item.id === tmpWishProd.id);
+    
+      if (existingIndex !== -1) {
+        // If the product exists, remove it from the wishList
+        const newWishList = [...state.wishList.slice(0, existingIndex), ...state.wishList.slice(existingIndex + 1)];
+        console.log('true');
+        return {
+          ...state,
+          wishList: newWishList
+        };
+      } else {
+        // If the product doesn't exist, add it to the wishList
+        const newWishList = [...state.wishList, tmpWishProd];
+        console.log('false');
+        return {
+          ...state,
+          wishList: newWishList
+        };
+      }
+      console.log(state.wishList)
+// };
     },
   },
   extraReducers: (builder) => {
@@ -100,18 +127,19 @@ export const productsSlice = createSlice({
         state.status = 'idle'
       })
       .addCase(fetchOneProductAsync.fulfilled, (state, action) => {
-        state.product =action.payload
-        console.log('success',action.payload)
+        state.product = action.payload
+        console.log('success', action.payload)
       });
 
 
   },
 });
 
-export const { setcategories } = productsSlice.actions;
+export const { setcategories, add2wish } = productsSlice.actions;
 export const selecProducts = (state) => state.products.products;
 export const selectCategories = (state) => state.products.categories;
 export const selectStatus = (state) => state.products.status;
-export const selectProduct = (state) =>state.products.product;
+export const selectProduct = (state) => state.products.product;
+export const selectWish = (state) => state.products.wishList;
 
 export default productsSlice.reducer;

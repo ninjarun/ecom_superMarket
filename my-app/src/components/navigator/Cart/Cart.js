@@ -16,7 +16,6 @@ const Cart = (props) => {
         total = parseFloat(total.toFixed(2))
     });
     // console.log(amount_counter)
-    console.log(Cart)
     return (
 
         <div className='cart_main' >

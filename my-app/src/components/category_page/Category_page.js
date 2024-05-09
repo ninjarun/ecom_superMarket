@@ -5,6 +5,7 @@ import { selectCategories } from '../../slicers/productsSlice';
 import Cart from '../navigator/Cart/Cart';
 import './category_page.css'
 import SingleProd from '../single_product_card/SingleProd';
+import SingleProd2 from '../single_product_card2/SingleProd2';
 const Category_page = () => {
     const { category } = useParams();
     const categories = useSelector(selectCategories);
@@ -21,7 +22,7 @@ const Category_page = () => {
 
                     {/* {categories[`${category}`].category_object} */}
                     {category_object.products.map((prod, i) => (
-                        <SingleProd
+                        <SingleProd2
                             prod={prod}
                             // price={prod.price}
                             // img={prod.image}
@@ -30,7 +31,7 @@ const Category_page = () => {
                             amount={0}
                             key={i}>
 
-                        </SingleProd >
+                        </SingleProd2 >
 
                     ))}
                 </div>
