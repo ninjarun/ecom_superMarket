@@ -15,7 +15,7 @@ const SingleProductPage = () => {
     const cart = useSelector(selecCart);
     const [display_img, setdisplay_img] = useState('static/images/placeholder.png');
     const [button_display, setbutton_display] = useState(true);
-
+console.log(product)
     let objectWithId;
     try {
         objectWithId = cart.cart.find(obj => obj.id === product.id);
@@ -103,9 +103,11 @@ const SingleProductPage = () => {
             {product &&
                 <div className="contentWrapper">
                     <div className="imageSection">
-                        <img className="mainImage" alt="" src={`${SERVER}/static${display_img}`}></img>
+                        <img className="mainImage" alt="p" src={`${SERVER}/static${display_img}`}></img>
                         <div className="thumbnailImages">
-                            {product.image !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(product.image)} className='small_img' alt='' src={`${SERVER}/static${product.image}`}></img>}
+
+
+                            {product.image  !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(product.image)} className='small_img' alt='' src={`${SERVER}/static${product.image}`}></img>}
                             {product.image2 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(product.image2)} className='small_img' alt='' src={`${SERVER}/static${product.image2}`}></img>}
                             {product.image3 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(product.image3)} className='small_img' alt='' src={`${SERVER}/static${product.image3}`}></img>}
                             {product.image4 !== "/images/placeholder.png" && <img onClick={() => setdisplay_img(product.image4)} className='small_img' alt='' src={`${SERVER}/static${product.image4}`}></img>}

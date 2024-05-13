@@ -225,6 +225,7 @@ class Products(APIView):
 
 
 class OrderAPIView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         # print(request.data)
         serializer = OrderSerializer(data=request.data)

@@ -71,6 +71,7 @@
 }
 
 .small_img {
+    display: block;
     height: 70px;
     width: 70px;
     margin-top: 20px;
@@ -111,6 +112,7 @@
         width: 99%;
         margin: auto;
         text-align: center;
+        /* background-color: red; */
     }
 
     .imageSection {
@@ -131,7 +133,7 @@
     }
 
     .small_img {
-        display: none;
+        /* display: none; */
         margin-right: 15px;
     }
 

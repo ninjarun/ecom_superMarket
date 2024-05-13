@@ -17,14 +17,14 @@ const ProductCarousel = (props) => {
       <Swiper
         slidesPerView={4}
         spaceBetween={10}
-        loop={true}
+        loop={false}
         pagination={{ clickable: true, }}
-        navigation={false}
+        navigation={true}
         modules={[Navigation]}
         className="mySwiper"
         breakpoints={{
           1280: {
-            slidesPerView: 4,
+            slidesPerView: 5.5,
             spaceBetween: 1,
           },
           1024: {

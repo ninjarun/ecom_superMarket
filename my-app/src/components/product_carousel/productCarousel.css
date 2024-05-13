@@ -29,7 +29,7 @@
   justify-content: center; /* Center slides horizontally */
   align-items: center; /* Center slides vertically */
   gap: 1px; /* Adjust spacing between slides */
-  width: 100%;
+  width: 98%;
   height: 100%;
 }
 
@@ -46,6 +46,7 @@
 
 /* Position the navigation buttons outside of the card */
 .swiper-button-prev {
+
   left: 10px; /* Adjust this value according to your layout */
   /* background-color: red; */
 }
@@ -60,7 +61,9 @@
 
 @media (max-width:900px) {
 
-
+.mySwiper{
+  width: 100%;
+}
 .carouselWrap{
 }
 
