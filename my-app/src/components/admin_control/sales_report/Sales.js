@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchSalesAsync, selectSales } from '../../../slicers/salesSlice';
 import { Chart, CategoryScale, BarController, BarElement } from 'chart.js/auto';
 import "./sales.css"
-const Sales = () => {
+const Sales = (axx) => {
   const chartRef = useRef(null);
   const sales = useSelector(selectSales);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchSalesAsync());
+    dispatch(fetchSalesAsync(axx));
   }, [dispatch]);
 
   useEffect(() => {

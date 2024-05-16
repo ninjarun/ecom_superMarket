@@ -7,9 +7,10 @@ const initialState = {
 };
 export const fetchSalesAsync = createAsyncThunk(
     'sales/fetchSales',
-    async () => {
+    async (axx) => {
+        console.log(axx)
         const sale = { all: "all" }
-        const response = await fetchSales(sale);
+        const response = await fetchSales(sale,axx);
         return response.data;
     }
 );
@@ -37,7 +38,7 @@ export const salesSlice = createSlice({
             //   state.status = 'loading';
             // })
             .addCase(fetchSalesAsync.fulfilled, (state, action) => {
-                console.log(action.payload)
+                // console.log(action.payload)
                 let tmpAr = action.payload
                 // tmpAr.forEach(element => {
                     // element.date_ordered = new Date(element.date_ordered).toLocaleDateString()

@@ -10,10 +10,11 @@ urlpatterns = [
     path('orders',views.OrderAPIView.as_view()),
     path('config', views.get_config, ),#STRIPE
     path('create-payment-intent',views.create_payment),#STRIPE
- 
     path('stripe-webhook', views.my_webhook_view),#STRIPE
 
     path('backup',views.Backup_database.as_view()),
     path('generate_sitemap', views.SitemapGeneratorView.as_view(), name='generate_sitemap'),
+    path('email',views.MailMail.as_view()),
+
 ]
 

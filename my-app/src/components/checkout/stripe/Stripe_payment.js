@@ -13,7 +13,7 @@ const Stripe_payment = (props) => {
 
       const { publishableKey } = await r.json();
       setStripePromise(loadStripe(publishableKey));
-      console.log(publishableKey)
+      // console.log(publishableKey)
     });
   }, []);
 
