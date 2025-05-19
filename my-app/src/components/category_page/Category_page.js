@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { selectCategories } from '../../slicers/productsSlice';
 import Cart from '../navigator/Cart/Cart';
 import './category_page.css'
-import SingleProd from '../single_product_card/SingleProd';
+// import SingleProd from '../single_product_card/SingleProd';
 import SingleProd2 from '../single_product_card2/SingleProd2';
 const Category_page = () => {
     const { category } = useParams();

@@ -114,7 +114,7 @@ const NavBar = () => {
 
         <Link className="link" style={{ color: 'white' }} to="/">Queen Store </Link>
 
-        {/* SIDE BAR */}
+        {/* SIDE BAR - Categories*/}
         <div style={{ padding: '5px' }} onClick={() => setsideBarOpen(!sideBarOpen)}>
           <svg color="white" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
@@ -134,7 +134,7 @@ const NavBar = () => {
           ))}
         </div>
         {/* END SIDE BAR */}
-
+        
         {/* WISH LIST ICON */}
         <div onClick={() => setwishOpen(!wishOpen)} style={{ padding: '5px' }}>
           <svg color="gold" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">

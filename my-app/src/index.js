@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/navigator/NavBar";
 import Home from "./components/Home/Home";
-import Aboutus from "./components/aboutus/Aboutus";
-import Faq from "./components/faq/Faq";
-import Tracking from "./components/tracking/Tracking";
-import ContactUs from "./components/contactus/ContactUs";
+// import Aboutus from "./components/aboutus/Aboutus";
+// import Faq from "./components/faq/Faq";
+// import Tracking from "./components/tracking/Tracking";
+// import ContactUs from "./components/contactus/ContactUs";
 import './index.css'
 import { Provider } from "react-redux";
 import { store } from "./app/store"
@@ -20,9 +20,9 @@ import AwaitingShipment from "./components/admin_control/orders/AwaitingShipment
 import ProductManage from "./components/admin_control/productManager/ProuctManage";
 import SingleProductPage from "./components/single_product_page/SingleProductPage";
 import Category_page from "./components/category_page/Category_page";
-import { useEffect } from "react";
-import { useAppDispatch } from "./app/hooks";
-import { fetchProductsAsync } from "./slicers/productsSlice";
+// import { useEffect } from "react";
+// import { useAppDispatch } from "./app/hooks";
+// import { fetchProductsAsync } from "./slicers/productsSlice";
 // import { useEffect } from 'react';
 // import { useHistory } from 'react-router-dom';
 
@@ -43,10 +43,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<NavBar />}>
             <Route index element={<Home />} />
-            <Route path="/aboutus" element={<Aboutus />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/faq" element={<Faq />} />
-            <Route path="/tracking" element={<Tracking />} />
+            {/* <Route path="/faq" element={<Faq />} /> */}
+            {/* <Route path="/tracking" element={<Tracking />} /> */}
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/completion" element={<Completion />} />
             <Route path="/product/:productId" element={<SingleProductPage />} />

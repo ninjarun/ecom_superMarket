@@ -69,27 +69,6 @@ def register(req):
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
-##################################################################################################################
-# EMAIL TESTING
-##################################################################################################################
-
-class MailMail(APIView):
-    def post(self, request, *args, **kwargs):
-        try:
-            send_mail(
-                'Test Subject',
-                'Test message body.',
-                'pizohim62@gmail.com',
-                ['orenyoni87@gmail.com'],
-                fail_silently=False,
-            )
-            return HttpResponse('Email successfully sent!')
-        except BadHeaderError:
-            return HttpResponse('Invalid header found!')
-
-        except Exception as e:
-            return HttpResponse(f"An error occurred: {e}")
-
 
 ##################################################################################################################
 # DOWNLOAD COMPLETE SITE MAP FOR SEO PURPOSES  
@@ -394,10 +373,13 @@ def my_webhook_view(request):
         try:
             order = Order.objects.get(payment_intent=payment_intent_id)
             order.payment_status = "paid"
+            tmpitems=OrderItem.objects.filter(order=order.id)
+            [print(i) for i in tmpitems]
             serializer = OrderSerializer(
                 instance=order, data={"payment_status": "paid"}, partial=True)
             if serializer.is_valid():
                 serializer.save()
+
             else:
                 return HttpResponse(serializer.errors, status=400)
         except Order.DoesNotExist:
@@ -407,3 +389,24 @@ def my_webhook_view(request):
         print('Unhandled event type {}'.format(event.type))
 
     return HttpResponse(status=200)
+
+##################################################################################################################
+# EMAIL TESTING
+##################################################################################################################
+
+class MailMail(APIView):
+    def post(self, request, *args, **kwargs):
+        try:
+            send_mail(
+                'Test Subject',
+                'Test message body.',
+                'pizohim62@gmail.com',
+                ['orenyoni87@gmail.com'],
+                fail_silently=False,
+            )
+            return HttpResponse('Email successfully sent!')
+        except BadHeaderError:
+            return HttpResponse('Invalid header found!')
+
+        except Exception as e:
+            return HttpResponse(f"An error occurred: {e}")

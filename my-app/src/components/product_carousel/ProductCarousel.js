@@ -5,7 +5,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './productCarousel.css';
 import { Navigation} from 'swiper/modules';
-import SingleProd from '../single_product_card/SingleProd';
+// import SingleProd from '../single_product_card/SingleProd';
 import SingleProd2 from '../single_product_card2/SingleProd2';
 
 const ProductCarousel = (props) => {
@@ -24,7 +24,7 @@ const ProductCarousel = (props) => {
         className="mySwiper"
         breakpoints={{
           1280: {
-            slidesPerView: 5.5,
+            slidesPerView: 5.3,
             spaceBetween: 1,
           },
           1024: {
