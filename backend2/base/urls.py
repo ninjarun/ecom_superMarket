@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('login', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('register',views.register ),
+    path('register/',views.register ),
     path('products',views.Products.as_view()),
     path('orders',views.OrderAPIView.as_view()),
     path('config', views.get_config, ),#STRIPE
@@ -18,3 +18,4 @@ urlpatterns = [
 
 ]
 
+    
