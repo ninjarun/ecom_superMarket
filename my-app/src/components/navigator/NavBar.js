@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { SERVER } from "../../globalVar";
 import { selecCart } from "./Cart/cartSlice";
+
 // import SearchBar from "./SearchBar/SearchBar";
 const NavBar = () => {
   const location = useLocation()
@@ -29,6 +30,16 @@ const NavBar = () => {
   }
 
   const dispatch = useAppDispatch()
+
+  // responsible for updating local storage for cart items
+  const cartState = useSelector(selecCart)
+  useEffect(() => {
+    console.log('saving**********')
+    localStorage.setItem('cart', JSON.stringify(cartState.cart));
+
+  }, [cartState])
+
+
 
   // this use effect was moved to here from home since i need the products earlier!
   useEffect(() => {
@@ -60,6 +71,7 @@ const NavBar = () => {
 
   const cartProdCounter = cart.cart.length
   return (
+
     <>
       {/* THIS DIV IS RESPONSIBLE FOR ACITVATING SPINNER WHEN SITE LOADING */}
       <div
@@ -121,7 +133,7 @@ const NavBar = () => {
           </svg>
         </div>
         <div className={`sideBar ${sideBarOpen ? 'open' : ''}`}>
-          <div className="closeSideBar" style={{display: sideBarOpen ? '' : 'none' }} onClick={() => setsideBarOpen(!sideBarOpen)}>
+          <div className="closeSideBar" style={{ display: sideBarOpen ? '' : 'none' }} onClick={() => setsideBarOpen(!sideBarOpen)}>
             X
           </div>
           {categories.map((cat) => (
@@ -134,7 +146,7 @@ const NavBar = () => {
           ))}
         </div>
         {/* END SIDE BAR */}
-        
+
         {/* WISH LIST ICON */}
         <div onClick={() => setwishOpen(!wishOpen)} style={{ padding: '5px' }}>
           <svg color="gold" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -143,7 +155,7 @@ const NavBar = () => {
         </div>
         <div className={`wishList ${wishOpen ? 'open' : ''}`}>
           <div className="wishTitle">Wish List</div>
-          <div className="closeWish" style={{display: wishOpen?'':'none'}} onClick={() => setwishOpen(!wishOpen)}>X</div>
+          <div className="closeWish" style={{ display: wishOpen ? '' : 'none' }} onClick={() => setwishOpen(!wishOpen)}>X</div>
 
           {nav_wishlist.map((wishProd, i) =>
             <div>

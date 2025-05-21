@@ -1,10 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchCart } from './cartAPI';
 
-const initialState = {
-  cart: [],
-  flag:true
-};
+// const initialState = {
+//   cart: [],
+//   flag:true
+// };
+
+const savedCart = localStorage.getItem('cart');
+const initialState = savedCart
+  ? { cart: JSON.parse(savedCart), flag: true }
+  : { cart: [], flag: true };
+
+
 export const fetchCartAsync = createAsyncThunk(
   'cart/fetchCart',
   async () => {
@@ -58,14 +65,18 @@ export const cartSlice = createSlice({
       state.cart = [...action.payload.cart.cart]
       console.log(state.cart)
     },
-    meme:(state,action)=>{
-      const tmpar=localStorage.getItem('cart');
-      console.log(tmpar)
+    // meme:(state,action)=>{
+    //   const tmpar=localStorage.getItem('cart');
+    //   console.log(tmpar)
 
-      state.cart=[...tmpar]
+    //   state.cart=[...tmpar]
+    // }
+
+    meme: (state, action) => {
+      const tmpar = JSON.parse(localStorage.getItem('cart') || '[]');
+      state.cart = [...tmpar];
     }
-
-
+    
 
   },
 

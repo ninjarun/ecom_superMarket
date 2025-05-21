@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../app/hooks';
 import { SERVER } from '../../globalVar';
 import { add2cart, increment_amount, selecCart } from '../navigator/Cart/cartSlice';
 import "./singProductPage.css";
+import Cart from '../navigator/Cart/Cart';
 
 const SingleProductPage = () => {
     const { productId } = useParams();
@@ -149,6 +150,9 @@ console.log(product)
                     </div>
                 </div>
             }
+<div className='category_cart'>
+    <Cart />
+</div>
         </div>
     );
 }

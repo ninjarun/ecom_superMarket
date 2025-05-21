@@ -26,6 +26,25 @@ export function fetchOneProduct(productID) {
       });
   });
 }
+
+
+export function fetchCat(catID) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${SERVER}/products`, {
+        params: {
+          category: catID,
+        },
+      })
+      .then((res) => {
+        resolve({ data: res.data });
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
 export function addProduct(prod) {
   return new Promise((resolve) =>
     axios

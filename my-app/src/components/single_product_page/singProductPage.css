@@ -2,6 +2,9 @@
     display: flex;
     justify-content: center;
     padding-top: 100px;
+    width: 80%;
+    right: 0    ;
+    position: fixed;
 }
 
 .backBTN {
@@ -98,6 +101,20 @@
     background-color: #264653;
     border: 0.5px solid lightgray;
 
+}
+
+.category_cart{
+    position: fixed;
+    width: 20%;
+    overflow-y: auto;
+    height: 100%;
+    /* border-right: 1px black solid; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Define the shadow */
+    /* backgrou
+    nd-color: yellow; */
+    top: 0;
+    left: 0;
 }
 
 @media (max-width: 900px) {

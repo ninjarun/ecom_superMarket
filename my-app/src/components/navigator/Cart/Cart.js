@@ -26,7 +26,13 @@ const Cart = (props) => {
             {Cart.cart.map((product, index) =>
                 <div className='one_product' key={index}>
                     <div className='title_amount'>
-                        <div className='prod_title'>{product.title}</div>
+                        {/* <div className='prod_title'>{product.title}</div> */}
+                        <div className='prod_title'>
+                            {product.title.length > 50
+                                ? product.title.slice(0, 50) + '...'
+                                : product.title}
+                        </div>
+
                         <div style={{ display: "flex", justifyContent: 'space-around' }}>
                             <div className='prod_total'>&#8362;{parseFloat(product.price * product.amount).toFixed(2)}</div>
                             <div className='prod_amount'>

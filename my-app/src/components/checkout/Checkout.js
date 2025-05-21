@@ -266,7 +266,7 @@ const Checkout = () => {
 
       {/* <div className='checkout_button' onClick={checkout_validator}>המשך לתשלום</div> */}
 
-      {/* {!flag ? <Paypal_btn UserInfo={UserInfo} cart={Cart.cart} total={total}></Paypal_btn> : <span></span>} */}
+      {!flag ? <Paypal_btn UserInfo={UserInfo} cart={Cart.cart} total={total}></Paypal_btn> : <span></span>}
 
     </div >
 

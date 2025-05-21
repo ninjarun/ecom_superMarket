@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { addProduct, fetchProducts, editProduct, fetchOneProduct } from './productsAPI';
+import { addProduct, fetchProducts, editProduct, fetchOneProduct, fetchCat } from './productsAPI';
 
 const initialState = {
   products: [],
@@ -33,6 +33,28 @@ export const fetchOneProductAsync = createAsyncThunk(
     return response.data;
   }
 );
+
+
+export const fetchCategoryAsync = createAsyncThunk(
+  'products/fetchCatgory',
+  async (catID, thunkAPI) => {
+    console.log(catID,'%%%%%%%%%%%%%%')
+    const state = thunkAPI.getState();
+    const existingProduct = state.products.products;
+
+    // If product exists in the state, return it immediately.
+    if (existingProduct) {
+      console.log('exiting****************')
+      return existingProduct;
+    }
+
+    // Otherwise fetch the product.
+    console.log('fetching from API', catID)
+    const response = await fetchCat(catID);
+    return response.data;
+  }
+);
+
 export const addProductAsync = createAsyncThunk(
   'products/addproduct',
   async (product) => {
@@ -129,8 +151,11 @@ export const productsSlice = createSlice({
       .addCase(fetchOneProductAsync.fulfilled, (state, action) => {
         state.product = action.payload
         console.log('success', action.payload)
+      })
+      .addCase(fetchCategoryAsync.fulfilled, (state, action) => {
+        state.products = action.payload
+        console.log('success category', action.payload)
       });
-
 
   },
 });
