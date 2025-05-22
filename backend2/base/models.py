@@ -3,6 +3,9 @@ import os
 from django.db import models
 from PIL import Image
 
+from rembg import remove
+from io import BytesIO
+from PIL import Image
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -17,41 +20,62 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-    
-    @staticmethod
-    def detect_background_color(img):
-        width, height = img.size
-        border_pixels = [
-            img.getpixel((0, 0)),
-            img.getpixel((0, height-1)),
-            img.getpixel((width-1, 0)),
-            img.getpixel((width-1, height-1)),
-            img.getpixel((width//2, 0)),
-            img.getpixel((0, height//2)),
-            img.getpixel((width-1, height//2)),
-            img.getpixel((width//2, height-1))
-        ]
-        color_counts = Counter(border_pixels)
-        return color_counts.most_common(1)[0][0]
-
-    def remove_background(self, image_field, tolerance=50):
+        
+    def remove_background(self, image_field):
         if not image_field or not image_field.path or not os.path.exists(image_field.path):
             return
 
-        img = Image.open(image_field.path)
-        img = img.convert("RGBA")
-        bg_color = self.detect_background_color(img)
-        datas = img.getdata()
-        newData = []
+        with open(image_field.path, 'rb') as f:
+            input_image = f.read()
 
-        for item in datas:
-            if all([abs(item[i] - bg_color[i]) < tolerance for i in range(3)]):
-                newData.append((255, 255, 255, 0))  # Make it transparent
-            else:
-                newData.append(item)
+        output_image = remove(input_image)
 
-        img.putdata(newData)
-        img.save(image_field.path, "PNG")
+        img = Image.open(BytesIO(output_image)).convert("RGBA")
+
+        # Save as new .png file in same directory
+        base, ext = os.path.splitext(image_field.path)
+        new_path = base + ".png"
+        img.save(new_path, format="PNG")
+
+        # Update the field path in DB
+        relative_path = image_field.name.rsplit(".", 1)[0] + ".png"
+        image_field.name = relative_path
+        image_field.file.name = relative_path
+
+    # @staticmethod
+    # def detect_background_color(img):
+    #     width, height = img.size
+    #     border_pixels = [
+    #         img.getpixel((0, 0)),
+    #         img.getpixel((0, height-1)),
+    #         img.getpixel((width-1, 0)),
+    #         img.getpixel((width-1, height-1)),
+    #         img.getpixel((width//2, 0)),
+    #         img.getpixel((0, height//2)),
+    #         img.getpixel((width-1, height//2)),
+    #         img.getpixel((width//2, height-1))
+    #     ]
+    #     color_counts = Counter(border_pixels)
+    #     return color_counts.most_common(1)[0][0]
+
+    # def remove_background(self, image_field, tolerance=50):
+    #     if not image_field or not image_field.path or not os.path.exists(image_field.path):
+    #         return
+
+    #     img = Image.open(image_field.path)
+    #     img = img.convert("RGBA")
+    #     bg_color = self.detect_background_color(img)
+    #     datas = img.getdata()
+    #     newData = []
+
+    #     for item in datas:
+    #         if all([abs(item[i] - bg_color[i]) < tolerance for i in range(3)]):
+    #             newData.append((255, 255, 255, 0))  # Make it transparent
+    #         else:
+    #             newData.append(item)
+
+    #     img.putdata(newData)
+    #     img.save(image_field.path, "PNG")
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

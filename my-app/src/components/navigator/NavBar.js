@@ -73,16 +73,28 @@ const NavBar = () => {
   return (
 
     <>
-      <div className="whatsappBtn">
-
+        {/* whatsaap contact button */}
+      {/* <div className="whatsappBtn">
         <a
           href="https://wa.me/1234567890?text=Hi%20there%2C%20I%20need%20some%20help!"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img height={80}    src='https://cdn-icons-png.freepik.com/512/3536/3536445.png'></img>
+          <img height={80} src='https://cdn-icons-png.freepik.com/512/3536/3536445.png'></img>
         </a>
-      </div>
+      </div> */}
+      {/* end whatsapp */}
+      {!location.pathname.startsWith('/admin') && (
+  <div className="whatsappBtn">
+    <a
+      href="https://wa.me/1234567890?text=Hi%20there%2C%20I%20need%20some%20help!"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img height={80} src="https://cdn-icons-png.freepik.com/512/3536/3536445.png" alt="WhatsApp" />
+    </a>
+  </div>
+)}
 
       {/* THIS DIV IS RESPONSIBLE FOR ACITVATING SPINNER WHEN SITE LOADING */}
       <div
