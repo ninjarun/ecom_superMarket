@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { add2cart, increment_amount, remove_prod_from_cart, selecCart } from './cartSlice'
+import { add2cart, cleanCart, increment_amount, remove_prod_from_cart, selecCart } from './cartSlice'
 import './cart.css'
 import { useAppDispatch } from '../../../app/hooks'
 import { Link } from 'react-router-dom'
@@ -19,6 +19,13 @@ const Cart = (props) => {
     return (
 
         <div className='cart_main' >
+            <div className='cleanCart' onClick={() => {
+                localStorage.removeItem('cart');
+                dispatch(cleanCart())
+            }}>נקה עגלה
+            </div>
+
+            {/* </button> */}
             <div className='cart_title' >
                 העגלה שלי
             </div>

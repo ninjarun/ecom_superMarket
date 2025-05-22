@@ -1,3 +1,17 @@
+.cleanCart {
+    font-size: small;
+    position: absolute;
+    z-index: 9999;
+    background-color: lightseagreen;
+    color: white;
+    padding: 7px;
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+
+}
+
 .cart_main {
     /* width: 20%; */
     overflow-y: auto;
@@ -78,7 +92,7 @@
     border-radius: 5px;
     padding: 0px 5px 0px 5px;
     color: red;
-    border: 1px solid ;
+    border: 1px solid;
     font-weight: bold;
 }
 
@@ -127,11 +141,10 @@
     color: white;
     border-radius: 5px 5px 0px 0px;
     /* justify-content: center; */
-    border-top: 1px solid black ;
-    
-    border-top-left-radius: 15px;
-    border-top-right-radius:15px
+    border-top: 1px solid black;
 
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px
 }
 
 .total_calculator {
@@ -169,10 +182,10 @@
 }
 
 
-.cart_title{
+.cart_title {
     position: fixed;
     width: 20%;
-z-index: 999;
+    z-index: 999;
     font-size: xx-large;
     text-align: center;
     padding: 5px;
@@ -180,12 +193,12 @@ z-index: 999;
     background-color: #008744;
     color: white;
     border-bottom-left-radius: 15px;
-    border-bottom-right-radius:15px;
+    border-bottom-right-radius: 15px;
 }
 
 @media screen and (max-width: 1200px) {
 
-.cart_title{
-    width: 100%;
-}
+    .cart_title {
+        width: 100%;
+    }
 }

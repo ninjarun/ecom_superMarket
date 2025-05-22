@@ -37,7 +37,7 @@ export const cartSlice = createSlice({
         state.cart = [...state.cart, action.payload]
       }
     },
-    increment_amount: (state, action) => {
+      increment_amount: (state, action) => {
       const tmpAr = state.cart
       const tmpProd = action.payload
 
@@ -75,7 +75,10 @@ export const cartSlice = createSlice({
     meme: (state, action) => {
       const tmpar = JSON.parse(localStorage.getItem('cart') || '[]');
       state.cart = [...tmpar];
-    }
+    },
+    cleanCart:(state,action)=>{
+      state.cart=[]
+    },
     
 
   },
@@ -93,7 +96,7 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { add2cart, increment_amount, remove_prod_from_cart, change_amount_prod ,meme} = cartSlice.actions;
+export const { add2cart, increment_amount, remove_prod_from_cart, change_amount_prod ,meme,cleanCart} = cartSlice.actions;
 export const selecCart = (state) => state.cart;
 // export const incrementIfOdd = (amount) => (dispatch, getState) => {
 //   const currentValue = selectCount(getState());
