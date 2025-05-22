@@ -20,87 +20,96 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    #     img.save(image_field.path, "PNG")
         
     def remove_background(self, image_field):
-        if not image_field or not image_field.path or not os.path.exists(image_field.path):
+        # Fast checks to prevent unnecessary work
+        if not image_field or not getattr(image_field, 'path', None) or not os.path.exists(image_field.path):
             return
 
-        with open(image_field.path, 'rb') as f:
-            input_image = f.read()
+        # Use rembg to remove background without loading entire image into Pillow unless necessary
+        try:
+            with open(image_field.path, 'rb') as f:
+                input_image = f.read()
 
-        output_image = remove(input_image)
+            output_image = remove(input_image)  # Already returns a PNG with transparency
 
-        img = Image.open(BytesIO(output_image)).convert("RGBA")
+            new_path = os.path.splitext(image_field.path)[0] + ".png"
 
-        # Save as new .png file in same directory
-        base, ext = os.path.splitext(image_field.path)
-        new_path = base + ".png"
-        img.save(new_path, format="PNG")
+            # Save directly without reprocessing in Pillow if no change is needed
+            with open(new_path, 'wb') as out_f:
+                out_f.write(output_image)
 
-        # Update the field path in DB
-        relative_path = image_field.name.rsplit(".", 1)[0] + ".png"
-        image_field.name = relative_path
-        image_field.file.name = relative_path
+            # Update image field's relative path
+            relative_path = image_field.name.rsplit('.', 1)[0] + '.png'
+            image_field.name = relative_path
+            image_field.file.name = relative_path
+        except Exception as e:
+            print(f"Error processing image {image_field.name}: {e}")
 
-    # @staticmethod
-    # def detect_background_color(img):
-    #     width, height = img.size
-    #     border_pixels = [
-    #         img.getpixel((0, 0)),
-    #         img.getpixel((0, height-1)),
-    #         img.getpixel((width-1, 0)),
-    #         img.getpixel((width-1, height-1)),
-    #         img.getpixel((width//2, 0)),
-    #         img.getpixel((0, height//2)),
-    #         img.getpixel((width-1, height//2)),
-    #         img.getpixel((width//2, height-1))
-    #     ]
-    #     color_counts = Counter(border_pixels)
-    #     return color_counts.most_common(1)[0][0]
+    def save(self, *args, **kwargs):
+        # Save once to ensure paths exist
+        super().save(*args, **kwargs)
 
-    # def remove_background(self, image_field, tolerance=50):
+        # Collect images in a loop to reduce repetition
+        image_fields = ['image', 'image2', 'image3', 'image4', 'image5']
+        updated = False
+
+        for field in image_fields:
+            image_field = getattr(self, field, None)
+            if image_field:
+                self.remove_background(image_field)
+                updated = True
+
+        # Save once again only if paths were updated
+        if updated:
+            super().save(update_fields=image_fields)
+
+    # def remove_background(self, image_field):
     #     if not image_field or not image_field.path or not os.path.exists(image_field.path):
     #         return
 
-    #     img = Image.open(image_field.path)
-    #     img = img.convert("RGBA")
-    #     bg_color = self.detect_background_color(img)
-    #     datas = img.getdata()
-    #     newData = []
+    #     with open(image_field.path, 'rb') as f:
+    #         input_image = f.read()
 
-    #     for item in datas:
-    #         if all([abs(item[i] - bg_color[i]) < tolerance for i in range(3)]):
-    #             newData.append((255, 255, 255, 0))  # Make it transparent
-    #         else:
-    #             newData.append(item)
+    #     output_image = remove(input_image)
 
-    #     img.putdata(newData)
-    #     img.save(image_field.path, "PNG")
+    #     img = Image.open(BytesIO(output_image)).convert("RGBA")
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+    #     # Save as new .png file in same directory
+    #     base, ext = os.path.splitext(image_field.path)
+    #     new_path = base + ".png"
+    #     img.save(new_path, format="PNG")
 
-        # Process each image and modify their path
-        updated = False
-        if self.image:
-            self.remove_background(self.image)
-            updated = True
-        if self.image2:
-            self.remove_background(self.image2)
-            updated = True
-        if self.image3:
-            self.remove_background(self.image3)
-            updated = True
-        if self.image4:
-            self.remove_background(self.image4)
-            updated = True
-        if self.image5:
-            self.remove_background(self.image5)
-            updated = True
+    #     # Update the field path in DB
+    #     relative_path = image_field.name.rsplit(".", 1)[0] + ".png"
+    #     image_field.name = relative_path
+    #     image_field.file.name = relative_path
 
-        # Save again to update image path fields (.png files)
-        if updated:
-            super().save(update_fields=['image', 'image2', 'image3', 'image4', 'image5'])
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+
+    #     # Process each image and modify their path
+    #     updated = False
+    #     if self.image:
+    #         self.remove_background(self.image)
+    #         updated = True
+    #     if self.image2:
+    #         self.remove_background(self.image2)
+    #         updated = True
+    #     if self.image3:
+    #         self.remove_background(self.image3)
+    #         updated = True
+    #     if self.image4:
+    #         self.remove_background(self.image4)
+    #         updated = True
+    #     if self.image5:
+    #         self.remove_background(self.image5)
+    #         updated = True
+
+    #     # Save again to update image path fields (.png files)
+    #     if updated:
+    #         super().save(update_fields=['image', 'image2', 'image3', 'image4', 'image5'])
 
 
 
