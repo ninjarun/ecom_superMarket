@@ -80,17 +80,28 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        # Process each image
+        # Process each image and modify their path
+        updated = False
         if self.image:
             self.remove_background(self.image)
+            updated = True
         if self.image2:
             self.remove_background(self.image2)
+            updated = True
         if self.image3:
             self.remove_background(self.image3)
+            updated = True
         if self.image4:
             self.remove_background(self.image4)
+            updated = True
         if self.image5:
             self.remove_background(self.image5)
+            updated = True
+
+        # Save again to update image path fields (.png files)
+        if updated:
+            super().save(update_fields=['image', 'image2', 'image3', 'image4', 'image5'])
+
 
 
 class Order(models.Model):
