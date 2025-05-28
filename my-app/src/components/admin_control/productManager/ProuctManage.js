@@ -47,8 +47,8 @@
 
 //   const handleProductRMV = (prod) => {
 //     dispatch(removeProductAsync(prod))
-  
-    
+
+
 //   };
 
 //   const handleInputChange = (event, productId, field) => {
@@ -220,6 +220,56 @@ const ProductManage = () => {
     }
   };
 
+  // const handleAvalability = (product) => {
+  //   console.log(product, 'PRODUCT AVALABILITY')
+  //   const tmpProd = { ...product }
+  //   tmpProd.available = true
+  //   dispatch(editProductAsync(tmpProd)
+
+
+  // )
+
+  //   // dispatch(ed)
+  //   console.log(tmpProd, 'PRODUCT AVALABILITY')
+
+  // }
+  // const handleAvalability = (product) => {
+
+  //   console.log(product, 'PRODUCT AVAILABILITY');
+  //   let tmpProd = products.find((p)=>p.id===product.id)
+  //   tmpProd={...tmpProd}
+  //   tmpProd.available = !tmpProd.available
+
+  //   console.log(typeof tmpProd.available)
+  //   dispatch(editProductAsync(tmpProd));
+  // };
+
+  const handleAvalability = (productId, currentValue) => {
+    setEditedProducts((prev) => {
+      const existing = prev.find((p) => p.id === productId);
+      let updated;
+
+      if (existing) {
+        updated = prev.map((p) =>
+          p.id === productId ? { ...p, available: !currentValue } : p
+        );
+      } else {
+        updated = [...prev, { id: productId, available: !currentValue }];
+      }
+
+      // Find the updated product to dispatch
+      const updatedProduct = updated.find((p) => p.id === productId);
+
+      // Dispatch after state update
+      setTimeout(() => {
+        dispatch(editProductAsync(updatedProduct));
+      }, 0);
+
+      return updated;
+    });
+  };
+
+
   const handleRemove = (productId) => {
     dispatch(removeProductAsync({ id: productId }));
   };
@@ -238,6 +288,7 @@ const ProductManage = () => {
     });
   };
 
+  console.log(products)
   return (
     <div className="productManage_wrap">
       <h1>ניהול מוצרים</h1>
@@ -298,7 +349,7 @@ const ProductManage = () => {
               <th>תאור</th>
               <th className="price" >מחיר</th>
               <th>קטגוריה</th>
-              {/* <th>תמונה</th> */}
+              <th>זמינות</th>
               <th>עדכן</th>
               <th>מחק</th>
             </tr>
@@ -338,6 +389,17 @@ const ProductManage = () => {
                 {/* <td>
                   <input type="file" onChange={(e) => handleInputChange(e, product.id, "image")} />
                 </td> */}
+                <td >
+                  {/* <label><input type="radio" name="available" value="True" checked /> זמין</label>
+                  <label><input type="radio" name="available" value="False" /> לא זמין</label> */}
+                  {/* <div className="availableRadio" onClick={() => handleAvalability(product)} >kkkkk</div> */}
+                  <input
+                    type="checkbox"
+                    checked={product.available}
+                    onChange={() => handleAvalability(product.id, product.available)}
+                  />
+
+                </td>
                 <td>
                   <button className="upd_btn" onClick={() => handleUpdate(product.id)}>
                     עדכן

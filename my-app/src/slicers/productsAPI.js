@@ -59,16 +59,32 @@ export function addProduct(prod) {
 
 
 export function editProduct(prod) {
-  return new Promise((resolve) =>
+  return new Promise((resolve, reject) =>
     axios
       .put(`${SERVER}/products`, prod, {
         headers: {
           "content-type": "multipart/form-data",
-        }
+        },
       })
       .then((res) => resolve({ data: res.data }))
+      .catch((err) => {
+        console.error("Error editing product:", err.response?.data || err.message);
+        reject(err);
+      })
   );
 }
+
+// export function editProduct(prod) {
+//   return new Promise((resolve) =>
+//     axios
+//       .put(`${SERVER}/products`, prod, {
+//         headers: {
+//           "content-type": "multipart/form-data",
+//         }
+//       })
+//       .then((res) => resolve({ data: res.data }))
+//   );
+// }
 
 // export function removeProduct(prod) {
 //   return new Promise((resolve) =>

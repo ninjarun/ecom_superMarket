@@ -39,7 +39,7 @@ export const fetchOneProductAsync = createAsyncThunk(
 export const fetchCategoryAsync = createAsyncThunk(
   'products/fetchCatgory',
   async (catID, thunkAPI) => {
-    console.log(catID,'%%%%%%%%%%%%%%')
+    console.log(catID, '%%%%%%%%%%%%%%')
     const state = thunkAPI.getState();
     const existingProduct = state.products.products;
 
@@ -89,49 +89,49 @@ export const productsSlice = createSlice({
     setcategories: (state, action) => {
       return
     },
-//     add2wish: (state, action) => {
-//       const tmpWishProd = action.payload;
-    
-//       // Check if the product already exists in the wishList
-//       const existingIndex = state.wishList.findIndex(item => item.id === tmpWishProd.id);
-    
-//       if (existingIndex !== -1) {
-//         // If the product exists, remove it from the wishList
-//         const newWishList = [...state.wishList.slice(0, existingIndex), ...state.wishList.slice(existingIndex + 1)];
-//         console.log('true');
-//         return {
-//           ...state,
-//           wishList: newWishList
-//         };
-//       } else {
-//         // If the product doesn't exist, add it to the wishList
-//         const newWishList = [...state.wishList, tmpWishProd];
-//         console.log('false');
-//         return {
-//           ...state,
-//           wishList: newWishList
-//         };
-//       }
-//       console.log(state.wishList)
-// // };
-//     },
-add2wish: (state, action) => {
-  const tmpWishProd = action.payload;
+    //     add2wish: (state, action) => {
+    //       const tmpWishProd = action.payload;
 
-  const existingIndex = state.wishList.findIndex(item => item.id === tmpWishProd.id);
+    //       // Check if the product already exists in the wishList
+    //       const existingIndex = state.wishList.findIndex(item => item.id === tmpWishProd.id);
 
-  if (existingIndex !== -1) {
-    // Remove from wishlist
-    const newWishList = [...state.wishList.slice(0, existingIndex), ...state.wishList.slice(existingIndex + 1)];
-    state.wishList = newWishList;
-    localStorage.setItem('wishList', JSON.stringify(state.wishList));
-  } else {
-    // Add to wishlist
-    const newWishList = [...state.wishList, tmpWishProd];
-    state.wishList = newWishList;
-    localStorage.setItem('wishList', JSON.stringify(state.wishList));
-  }
-},
+    //       if (existingIndex !== -1) {
+    //         // If the product exists, remove it from the wishList
+    //         const newWishList = [...state.wishList.slice(0, existingIndex), ...state.wishList.slice(existingIndex + 1)];
+    //         console.log('true');
+    //         return {
+    //           ...state,
+    //           wishList: newWishList
+    //         };
+    //       } else {
+    //         // If the product doesn't exist, add it to the wishList
+    //         const newWishList = [...state.wishList, tmpWishProd];
+    //         console.log('false');
+    //         return {
+    //           ...state,
+    //           wishList: newWishList
+    //         };
+    //       }
+    //       console.log(state.wishList)
+    // // };
+    //     },
+    add2wish: (state, action) => {
+      const tmpWishProd = action.payload;
+
+      const existingIndex = state.wishList.findIndex(item => item.id === tmpWishProd.id);
+
+      if (existingIndex !== -1) {
+        // Remove from wishlist
+        const newWishList = [...state.wishList.slice(0, existingIndex), ...state.wishList.slice(existingIndex + 1)];
+        state.wishList = newWishList;
+        localStorage.setItem('wishList', JSON.stringify(state.wishList));
+      } else {
+        // Add to wishlist
+        const newWishList = [...state.wishList, tmpWishProd];
+        state.wishList = newWishList;
+        localStorage.setItem('wishList', JSON.stringify(state.wishList));
+      }
+    },
 
   },
 
@@ -150,13 +150,17 @@ add2wish: (state, action) => {
       .addCase(removeProductAsync.pending, (state) => {
         state.status = 'loading';
       })
-  
+
       // FULFILLED
       .addCase(fetchProductsAsync.fulfilled, (state, action) => {
         state.products = action.payload;
         const tmpProds = [...action.payload];
+        // const tmpProds = action.payload.filter(p => p.available === true);
+        let filtered = tmpProds.filter(p => p.available === true);
+
+        console.log(filtered)
         const tmpCats = {};
-        tmpProds.forEach(element => {
+        filtered.forEach(element => {
           if (!tmpCats[element.category]) {
             tmpCats[element.category] = {
               category: element.category,
@@ -179,9 +183,9 @@ add2wish: (state, action) => {
         state.status = 'idle';
       })
       .addCase(removeProductAsync.fulfilled, (state, action) => {
-        console.log('product removed',action.meta.arg['id']);
-        let deletedid=action.meta.arg['id']
-        console.log(deletedid,'************************************')
+        console.log('product removed', action.meta.arg['id']);
+        let deletedid = action.meta.arg['id']
+        console.log(deletedid, '************************************')
         // state.products = state.products.filter(product => product.id !== deletedid);
         // fetchProducts()
         alert("מוצר נמחק בהצלחה");
@@ -195,7 +199,7 @@ add2wish: (state, action) => {
         state.products = action.payload;
         console.log('success category', action.payload);
       })
-  
+
       // REJECTED
       .addCase(fetchProductsAsync.rejected, (state, action) => {
         state.status = 'failed';
@@ -228,7 +232,7 @@ add2wish: (state, action) => {
         alert("שגיאה בטעינת קטגוריה");
       });
   }
-  
+
   // extraReducers: (builder) => {
   //   builder
   //     .addCase(fetchProductsAsync.pending, (state) => {
@@ -280,7 +284,7 @@ add2wish: (state, action) => {
   //       console.log('product updated')
   //       alert("מוצר נמחק בהצלחה")
   //       state.status = 'idle'
-        
+
   //     })
   //     .addCase(fetchOneProductAsync.fulfilled, (state, action) => {
   //       state.product = action.payload

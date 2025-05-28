@@ -17,35 +17,36 @@ class Product(models.Model):
     image4 = models.ImageField(null=True, blank=True, default='placeholder.png')
     image5 = models.ImageField(null=True, blank=True, default='placeholder.png')
     category = models.CharField(max_length=50, default='Default')
-
+    available = models.BooleanField(default=True, blank=True)
+    
     def __str__(self):
         return self.name
-    #     img.save(image_field.path, "PNG")
+    ##    img.save(image_field.path, "PNG")
         
-    def remove_background(self, image_field):
-        # Fast checks to prevent unnecessary work
-        if not image_field or not getattr(image_field, 'path', None) or not os.path.exists(image_field.path):
-            return
+    # def remove_background(self, image_field):
+    #     # Fast checks to prevent unnecessary work
+    #     if not image_field or not getattr(image_field, 'path', None) or not os.path.exists(image_field.path):
+    #         return
 
-        # Use rembg to remove background without loading entire image into Pillow unless necessary
-        try:
-            with open(image_field.path, 'rb') as f:
-                input_image = f.read()
+    #     # Use rembg to remove background without loading entire image into Pillow unless necessary
+    #     try:
+    #         with open(image_field.path, 'rb') as f:
+    #             input_image = f.read()
 
-            output_image = remove(input_image)  # Already returns a PNG with transparency
+    #         output_image = remove(input_image)  # Already returns a PNG with transparency
 
-            new_path = os.path.splitext(image_field.path)[0] + ".png"
+    #         new_path = os.path.splitext(image_field.path)[0] + ".png"
 
-            # Save directly without reprocessing in Pillow if no change is needed
-            with open(new_path, 'wb') as out_f:
-                out_f.write(output_image)
+    #         # Save directly without reprocessing in Pillow if no change is needed
+    #         with open(new_path, 'wb') as out_f:
+    #             out_f.write(output_image)
 
-            # Update image field's relative path
-            relative_path = image_field.name.rsplit('.', 1)[0] + '.png'
-            image_field.name = relative_path
-            image_field.file.name = relative_path
-        except Exception as e:
-            print(f"Error processing image {image_field.name}: {e}")
+    #         # Update image field's relative path
+    #         relative_path = image_field.name.rsplit('.', 1)[0] + '.png'
+    #         image_field.name = relative_path
+    #         image_field.file.name = relative_path
+    #     except Exception as e:
+    #         print(f"Error processing image {image_field.name}: {e}")
 
     def save(self, *args, **kwargs):
         # Save once to ensure paths exist
@@ -58,7 +59,7 @@ class Product(models.Model):
         for field in image_fields:
             image_field = getattr(self, field, None)
             if image_field:
-                self.remove_background(image_field)
+                # self.remove_background(image_field)
                 updated = True
 
         # Save once again only if paths were updated

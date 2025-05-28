@@ -21,6 +21,15 @@ const Home = () => {
   // useEffect(() => {
   //   dispatch(fetchProductsAsync())
   // }, [dispatch])
+
+
+  // const filteredCategories = categories.map(cat => ({
+  //   ...cat,
+  //   products: cat.products.filter(prod => prod.available === true)
+  // }));
+  // console.log(filteredCategories)
+
+  
   useEffect(() => {
     if (homeDisplay !== 'all') {
       let currentCatProds = categories.find(cat => cat.category === homeDisplay);
@@ -86,10 +95,10 @@ const Home = () => {
           {structuredData}
         </script>
       </Helmet>
-      
+
       {/* <button className='cartBTN' onClick={() => setcartOpen(!cartOpen)}>Cart</button> */}
       {/* <div className='forCart' style={{ display: cartOpen ? 'block' : 'none' }}> */}
-        <div className='forCart'>
+      <div className='forCart'>
         <Cart></Cart>
         {/* <div onClick={() => setcartOpen(!cartOpen)}>X</div> */}
 
@@ -108,7 +117,8 @@ const Home = () => {
             </div>
             <div className='prodsCatWrap'>
               {cat_prods.map((prod, i) => (
-                <SingleProd
+               
+               <SingleProd
                   prod={prod}
                   // price={prod.price}
                   // img={prod.image}
@@ -120,6 +130,21 @@ const Home = () => {
                 </SingleProd >
               ))}
             </div>
+
+            {/* <div className='prodsCatWrap'>
+              {cat_prods
+                .filter(prod => prod.available === false)
+                .map((prod, i) => (
+                  <SingleProd
+                    prod={prod}
+                    amount={0}
+                    key={prod.id || i}
+                  />
+                ))}
+            </div> */}
+
+
+
           </div>}
 
         {/* CAROUSEL DISPLAY DIVIDED BY CATEGORIES */}

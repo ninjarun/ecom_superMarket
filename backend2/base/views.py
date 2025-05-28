@@ -35,7 +35,10 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 import xml.etree.ElementTree as ET
 from django.http import Http404
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import get_object_or_404
 ###################################################################################################################
 # PROFILE VIEW
 #################################################################################################################
@@ -193,11 +196,22 @@ class Products(APIView):
             products = Product.objects.all()
             api_serializer = ProductSerializer(products, many=True)
             return Response(api_serializer.data)
-
+    
     def put(self, request, *args, **kwargs):
-        print(request.data)
-        product_id = request.data['id']
+        product_id = request.data.get('id')
+        if product_id is None:
+            return Response({'error': 'Missing product ID'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            product_id = int(product_id)
+        except ValueError:
+            return Response({'error': 'Invalid product ID'}, status=status.HTTP_400_BAD_REQUEST)
+
         product = get_object_or_404(Product, pk=product_id)
+
+        available = request.data.get('available')
+        print(available, '***********************************************8')
+
         api_serializer = ProductSerializer(
             product, data=request.data, partial=True)
 
@@ -206,6 +220,40 @@ class Products(APIView):
             return Response(api_serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(api_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    # def put(self, request, *args, **kwargs):
+    #     product_id = int(request.data['id'])
+    #     print(product_id)
+    #     product = get_object_or_404(Product, pk=product_id)
+    #     print(request.data['available'],'***********************************************8')
+    #     api_serializer = ProductSerializer(
+    #         product, data=request.data, partial=True)
+
+    #     if api_serializer.is_valid():
+    #         api_serializer.save()
+    #         return Response(api_serializer.data, status=status.HTTP_200_OK)
+    #     else:
+    #         return Response(api_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    # def put(self, request, *args, **kwargs):
+    #         try:
+    #             product_id = int(request.data.get('id'))
+    #         except (ValueError, TypeError):
+    #             return Response({'error': 'Invalid or missing product ID'}, status=status.HTTP_400_BAD_REQUEST)
+
+    #         product = get_object_or_404(Product, pk=product_id)
+
+    #         serializer = ProductSerializer(product, data=request.data, partial=True)
+
+    #         if serializer.is_valid():
+    #             serializer.save()
+    #             return Response(serializer.data, status=status.HTTP_200_OK)
+    #         else:
+    #             print("Serializer errors:", serializer.errors)  # 👈 Important for debugging
+    #             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
     # def delete(self, request, *args, **kwargs):
         # product_id = request.data['id']
