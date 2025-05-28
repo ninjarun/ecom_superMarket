@@ -124,7 +124,7 @@ console.log(product)
                                     button_display ?
                                         <div className='add2cart' onClick={() => {
                                             setbutton_display(!button_display)
-                                            dispatch(add2cart({ 'id': product.id, 'title': product.title, 'price': product.price, 'img': product.image, 'amount': 1 }))
+                                            dispatch(add2cart({ 'id': product.id, 'title': product.name, 'price': product.price, 'img': product.image, 'amount': 1 }))
                                         }}>הוסף לסל
                                         </div>
                                         :

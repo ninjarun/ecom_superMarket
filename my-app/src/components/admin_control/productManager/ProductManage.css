@@ -1,4 +1,4 @@
-.productManage_wrap {
+/* .productManage_wrap {
     margin-top: 30px;
     margin-right: 10px;
 }
@@ -14,10 +14,6 @@
     width:fit-content;
     display: flex;
     text-align: center;
-}
-.prod_search input{
-    /* background-color: antiquewhite; */
-    /* margin-right: 50px; */
 }
 .search_box{
     margin-right: 50px;
@@ -46,3 +42,186 @@
     color: whitesmoke;
     cursor: pointer;
 }
+.del_btn{
+    background-color: red;
+    padding: 7px 12px 7px 12px;
+    border-radius: 10px;
+    color: whitesmoke;
+    cursor: pointer;
+} */
+
+
+/* ***************************** */
+.productManage_wrap {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .prod_search {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .search_box {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  
+  .search_box input,
+  .search_box select {
+    padding: 5px 8px;
+    font-size: 1rem;
+  }
+  
+  .search_btn {
+    padding: 6px 12px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .search_btn:hover {
+    background-color: #135ba1;
+  }
+  
+  .reset_btn {
+    margin-bottom: 20px;
+  }
+  
+  .table_wrap {
+    overflow-x: auto;
+  }
+  
+  .product_table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .product_table th,
+  .product_table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: middle;
+  }
+  
+  /* Price column */
+  th.price, td.price {
+    width: 90px;
+    text-align: center;
+  }
+  
+  /* Inputs in table */
+  .product_table input[type="text"],
+  .product_table input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  /* Limit width of price input */
+  td.price input {
+    max-width: 80px;
+    text-align: center;
+  }
+  
+  /* Buttons */
+  .upd_btn,
+  .del_btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  
+  .upd_btn {
+    background-color: #4caf50;
+    color: white;
+    margin-right: 5px;
+  }
+  
+  .upd_btn:hover {
+    background-color: #3a8c38;
+  }
+  
+  .del_btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .del_btn:hover {
+    background-color: #b32e24;
+  }
+  
+  /* Responsive classes */
+  .desktop_only {
+    display: block;
+  }
+  
+  .mobile_only {
+    display: none;
+  }
+  
+  /* Mobile */
+  @media screen and (max-width: 768px) {
+    .desktop_only {
+      display: none;
+    }
+    .mobile_only {
+      display: block;
+    }
+  
+    .card_wrap {
+      padding: 10px;
+    }
+  
+    .product_card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 12px;
+      margin-bottom: 15px;
+      background: #fafafa;
+    }
+  
+    .card_header_mobile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .title_id_wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .product_title {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  
+    .product_id {
+      font-size: 0.85rem;
+      color: #555;
+    }
+  
+    .card_buttons_inline_mobile {
+      display: flex;
+      gap: 10px;
+    }
+  
+    .card_buttons_inline_mobile button {
+      padding: 6px 14px;
+      font-size: 0.9rem;
+    }
+  }
+  

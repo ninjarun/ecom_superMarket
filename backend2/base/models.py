@@ -65,52 +65,6 @@ class Product(models.Model):
         if updated:
             super().save(update_fields=image_fields)
 
-    # def remove_background(self, image_field):
-    #     if not image_field or not image_field.path or not os.path.exists(image_field.path):
-    #         return
-
-    #     with open(image_field.path, 'rb') as f:
-    #         input_image = f.read()
-
-    #     output_image = remove(input_image)
-
-    #     img = Image.open(BytesIO(output_image)).convert("RGBA")
-
-    #     # Save as new .png file in same directory
-    #     base, ext = os.path.splitext(image_field.path)
-    #     new_path = base + ".png"
-    #     img.save(new_path, format="PNG")
-
-    #     # Update the field path in DB
-    #     relative_path = image_field.name.rsplit(".", 1)[0] + ".png"
-    #     image_field.name = relative_path
-    #     image_field.file.name = relative_path
-
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
-
-    #     # Process each image and modify their path
-    #     updated = False
-    #     if self.image:
-    #         self.remove_background(self.image)
-    #         updated = True
-    #     if self.image2:
-    #         self.remove_background(self.image2)
-    #         updated = True
-    #     if self.image3:
-    #         self.remove_background(self.image3)
-    #         updated = True
-    #     if self.image4:
-    #         self.remove_background(self.image4)
-    #         updated = True
-    #     if self.image5:
-    #         self.remove_background(self.image5)
-    #         updated = True
-
-    #     # Save again to update image path fields (.png files)
-    #     if updated:
-    #         super().save(update_fields=['image', 'image2', 'image3', 'image4', 'image5'])
-
 
 
 class Order(models.Model):

@@ -45,7 +45,8 @@ const Checkout = () => {
       'street': Street,
       'apartment': AptNum,
       'zipcode': ZipCode,
-      'comments': Comments
+      'comments': Comments,
+
     };
 
     let error = null;
@@ -266,7 +267,7 @@ const Checkout = () => {
 
       {/* <div className='checkout_button' onClick={checkout_validator}>המשך לתשלום</div> */}
 
-      {!flag ? <Paypal_btn UserInfo={UserInfo} cart={Cart.cart} total={total}></Paypal_btn> : <span></span>}
+      {/* {!flag ? <Paypal_btn UserInfo={UserInfo} cart={Cart.cart} total={total}></Paypal_btn> : <span></span>} */}
 
     </div >
 

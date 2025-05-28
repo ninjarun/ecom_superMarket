@@ -2,6 +2,7 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 // import Sidebar from "./Sidebar/Sidebar";
 import Cart from "./Cart/Cart";
 import './NavBar.css'
+import './NavBarSideBar.css'
 
 import Footer from "../Home/Footer";
 import { useSelector } from "react-redux";
@@ -73,17 +74,21 @@ const NavBar = () => {
   return (
 
     <>
-        {/* whatsaap contact button */}
-      {/* <div className="whatsappBtn">
-        <a
-          href="https://wa.me/1234567890?text=Hi%20there%2C%20I%20need%20some%20help!"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img height={80} src='https://cdn-icons-png.freepik.com/512/3536/3536445.png'></img>
-        </a>
-      </div> */}
-      {/* end whatsapp */}
+      {/* whatsaap contact button */}
+      {/* whatsapp contact button */}
+      {!location.pathname.startsWith('/admin') && !location.pathname.startsWith('/checkout') && !wishOpen && !cartOpen && !sideBarOpen && (
+        <div className="whatsappBtn">
+          <a
+            href="https://wa.me/1234567890?text=Hi%20there%2C%20I%20need%20some%20help!"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img height={80} src="https://cdn-icons-png.freepik.com/512/3536/3536445.png" alt="WhatsApp" />
+          </a>
+        </div>
+      )}
+
+      {/*         
       {!location.pathname.startsWith('/admin') && (
   <div className="whatsappBtn">
     <a
@@ -94,7 +99,7 @@ const NavBar = () => {
       <img height={80} src="https://cdn-icons-png.freepik.com/512/3536/3536445.png" alt="WhatsApp" />
     </a>
   </div>
-)}
+)} */}
 
       {/* THIS DIV IS RESPONSIBLE FOR ACITVATING SPINNER WHEN SITE LOADING */}
       <div
@@ -150,25 +155,25 @@ const NavBar = () => {
         <Link className="link" style={{ color: 'white' }} to="/">Queen Store </Link>
 
         {/* SIDE BAR - Categories*/}
-        <div style={{ padding: '5px' }} onClick={() => setsideBarOpen(!sideBarOpen)}>
-          <svg color="white" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+         <div className="sidebarToggle" onClick={() => setsideBarOpen(!sideBarOpen)}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
+            <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
           </svg>
         </div>
-        <div className={`sideBar ${sideBarOpen ? 'open' : ''}`}>
-          <div className="closeSideBar" style={{ display: sideBarOpen ? '' : 'none' }} onClick={() => setsideBarOpen(!sideBarOpen)}>
-            X
+
+        <div className={`sideBar redesigned ${sideBarOpen ? 'open' : ''}`}>
+          <div className="closeSideBar" onClick={() => setsideBarOpen(!sideBarOpen)}>
+            &times;
           </div>
-          {categories.map((cat) => (
-            <Link className="sideBarLink" style={{ color: 'black' }} onClick={() => setsideBarOpen(!setsideBarOpen)} to={`/${cat['category']}`}>
-              <div className="sideBarCategory" >
-                {cat['category']}
-              </div>
-            </Link>
-            // <Link to={`/${cat['category']}`}></Link>
-          ))}
-        </div>
-        {/* END SIDE BAR */}
+          <h3 className="sideBarTitle">קטגוריות</h3>
+          <div className="sideBarContent">
+            {categories.map((cat) => (
+              <Link key={cat.category} className="sideBarLink" onClick={() => setsideBarOpen(!sideBarOpen)} to={`/${cat.category}`}>
+                <div className="sideBarCategory">{cat.category}</div>
+              </Link>
+            ))}
+          </div>
+        </div> 
 
         {/* WISH LIST ICON */}
         <div onClick={() => setwishOpen(!wishOpen)} style={{ padding: '5px' }}>

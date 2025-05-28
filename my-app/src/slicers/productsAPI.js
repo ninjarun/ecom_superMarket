@@ -69,9 +69,25 @@ export function editProduct(prod) {
       .then((res) => resolve({ data: res.data }))
   );
 }
-// export function rmv_prod(creds) {
-//   return new Promise<{ data: any }>((resolve) =>
-//   axios.delete(SERVER + `myProducts/${creds}`)
+
+// export function removeProduct(prod) {
+//   return new Promise((resolve) =>
+//     axios
+//       .delete(`${SERVER}/products`, {
+//         data: prod,
+//         headers: {
+//           "content-type": "multipart/form-data",
+//         }
+//       })
 //       .then((res) => resolve({ data: res.data }))
 //   );
 // }
+export function removeProduct(prod) {
+  return axios.delete(`${SERVER}/products`, {
+    data: prod,
+    headers: {
+      "content-type": "multipart/form-data",
+    },
+  });
+}
+

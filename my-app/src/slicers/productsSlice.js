@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { addProduct, fetchProducts, editProduct, fetchOneProduct, fetchCat } from './productsAPI';
+import { addProduct, fetchProducts, editProduct, fetchOneProduct, fetchCat, removeProduct } from './productsAPI';
 
 const initialState = {
   products: [],
@@ -73,6 +73,15 @@ export const editProductAsync = createAsyncThunk(
   }
 );
 
+export const removeProductAsync = createAsyncThunk(
+  'products/removieproduct',
+  async (id) => {
+    console.log("remove")
+    const response = await removeProduct(id);
+    return response.data;
+  }
+);
+
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
@@ -125,8 +134,10 @@ add2wish: (state, action) => {
 },
 
   },
+
   extraReducers: (builder) => {
     builder
+      // PENDING
       .addCase(fetchProductsAsync.pending, (state) => {
         state.status = 'loading';
       })
@@ -136,6 +147,11 @@ add2wish: (state, action) => {
       .addCase(editProductAsync.pending, (state) => {
         state.status = 'loading';
       })
+      .addCase(removeProductAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+  
+      // FULFILLED
       .addCase(fetchProductsAsync.fulfilled, (state, action) => {
         state.products = action.payload;
         const tmpProds = [...action.payload];
@@ -150,33 +166,132 @@ add2wish: (state, action) => {
           tmpCats[element.category].products.push(element);
         });
         state.categories = Object.values(tmpCats);
-        state.status = 'idle'
+        state.status = 'idle';
       })
       .addCase(addProductAsync.fulfilled, (state, action) => {
-        // state.products =  action.payload
-        // console.log(action)
-        console.log('product added')
-        alert("מוצר נוסף בהצלחה")
-        state.status = 'idle'
-
+        console.log('product added');
+        alert("מוצר נוסף בהצלחה");
+        state.status = 'idle';
       })
       .addCase(editProductAsync.fulfilled, (state, action) => {
-        // state.products =  action.payload
-        // console.log(action)
-        console.log('product updated')
-        alert("מוצר עודכן בהצלחה")
-        state.status = 'idle'
+        console.log('product updated');
+        alert("מוצר עודכן בהצלחה");
+        state.status = 'idle';
+      })
+      .addCase(removeProductAsync.fulfilled, (state, action) => {
+        console.log('product removed',action.meta.arg['id']);
+        let deletedid=action.meta.arg['id']
+        console.log(deletedid,'************************************')
+        // state.products = state.products.filter(product => product.id !== deletedid);
+        // fetchProducts()
+        alert("מוצר נמחק בהצלחה");
+        state.status = 'idle';
       })
       .addCase(fetchOneProductAsync.fulfilled, (state, action) => {
-        state.product = action.payload
-        console.log('success', action.payload)
+        state.product = action.payload;
+        console.log('success', action.payload);
       })
       .addCase(fetchCategoryAsync.fulfilled, (state, action) => {
-        state.products = action.payload
-        console.log('success category', action.payload)
+        state.products = action.payload;
+        console.log('success category', action.payload);
+      })
+  
+      // REJECTED
+      .addCase(fetchProductsAsync.rejected, (state, action) => {
+        state.status = 'failed';
+        console.error('Failed to fetch products:', action.error.message);
+        alert("שגיאה בעת טעינת מוצרים");
+      })
+      .addCase(addProductAsync.rejected, (state, action) => {
+        state.status = 'failed';
+        console.error('Failed to add product:', action.error.message);
+        alert("שגיאה בהוספת מוצר");
+      })
+      .addCase(editProductAsync.rejected, (state, action) => {
+        state.status = 'failed';
+        console.error('Failed to edit product:', action.error.message);
+        alert("שגיאה בעדכון מוצר");
+      })
+      .addCase(removeProductAsync.rejected, (state, action) => {
+        state.status = 'failed';
+        console.error('Failed to remove product:', action.error.message);
+        alert("שגיאה במחיקת מוצר");
+      })
+      .addCase(fetchOneProductAsync.rejected, (state, action) => {
+        state.status = 'failed';
+        console.error('Failed to fetch product:', action.error.message);
+        alert("שגיאה בטעינת מוצר");
+      })
+      .addCase(fetchCategoryAsync.rejected, (state, action) => {
+        state.status = 'failed';
+        console.error('Failed to fetch category:', action.error.message);
+        alert("שגיאה בטעינת קטגוריה");
       });
+  }
+  
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(fetchProductsAsync.pending, (state) => {
+  //       state.status = 'loading';
+  //     })
+  //     .addCase(addProductAsync.pending, (state) => {
+  //       state.status = 'loading';
+  //     })
+  //     .addCase(editProductAsync.pending, (state) => {
+  //       state.status = 'loading';
+  //     })
+  //     .addCase(removeProductAsync.pending, (state) => {
+  //       state.status = 'loading';
+  //     })
+  //     .addCase(fetchProductsAsync.fulfilled, (state, action) => {
+  //       state.products = action.payload;
+  //       const tmpProds = [...action.payload];
+  //       const tmpCats = {};
+  //       tmpProds.forEach(element => {
+  //         if (!tmpCats[element.category]) {
+  //           tmpCats[element.category] = {
+  //             category: element.category,
+  //             products: [],
+  //           };
+  //         }
+  //         tmpCats[element.category].products.push(element);
+  //       });
+  //       state.categories = Object.values(tmpCats);
+  //       state.status = 'idle'
+  //     })
+  //     .addCase(addProductAsync.fulfilled, (state, action) => {
+  //       // state.products =  action.payload
+  //       // console.log(action)
+  //       console.log('product added')
+  //       alert("מוצר נוסף בהצלחה")
+  //       state.status = 'idle'
 
-  },
+  //     })
+  //     .addCase(editProductAsync.fulfilled, (state, action) => {
+  //       // state.products =  action.payload
+  //       // console.log(action)
+  //       console.log('product updated')
+  //       alert("מוצר עודכן בהצלחה")
+  //       state.status = 'idle'
+  //     })
+  //     .addCase(removeProductAsync.fulfilled, (state, action) => {
+  //       // state.products =  action.payload
+  //       // console.log(action)
+  //       console.log('product updated')
+  //       alert("מוצר נמחק בהצלחה")
+  //       state.status = 'idle'
+        
+  //     })
+  //     .addCase(fetchOneProductAsync.fulfilled, (state, action) => {
+  //       state.product = action.payload
+  //       console.log('success', action.payload)
+  //     })
+  //     .addCase(fetchCategoryAsync.fulfilled, (state, action) => {
+  //       state.products = action.payload
+  //       console.log('success category', action.payload)
+  //     });
+
+  // },
 });
 
 export const { setcategories, add2wish } = productsSlice.actions;

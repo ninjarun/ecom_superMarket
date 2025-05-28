@@ -36,7 +36,7 @@ const Cart = (props) => {
                         {/* <div className='prod_title'>{product.title}</div> */}
                         <div className='prod_title'>
                             {product.title.length > 50
-                                ? product.title.slice(0, 50) + '...'
+                                ? product.title.slice(0, 48) + '...'
                                 : product.title}
                         </div>
 

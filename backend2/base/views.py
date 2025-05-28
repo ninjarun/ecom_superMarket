@@ -34,7 +34,7 @@ from django.http import HttpRequest
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 import xml.etree.ElementTree as ET
-
+from django.http import Http404
 
 ###################################################################################################################
 # PROFILE VIEW
@@ -207,13 +207,29 @@ class Products(APIView):
         else:
             return Response(api_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    # def delete(self, request, *args, **kwargs):
+        # product_id = request.data['id']
+        # product = get_object_or_404(Product, pk=product_id)
+        # product.delete()
+        # # product.is_available = False  # Set the availability status to False
+        # return Response(status=status.HTTP_204_NO_CONTENT)
+
     def delete(self, request, *args, **kwargs):
-        product_id = request.data['id']
-        product = get_object_or_404(Product, pk=product_id)
-        product.delete()
-        # product.is_available = False  # Set the availability status to False
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
+        product_id = request.data.get('id')
+        
+        try:
+            product = Product.objects.get(pk=product_id)
+            product.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        
+        except Product.DoesNotExist:
+            print('**********************************************************product doesnt exist **********************************************************')
+            return Response(
+                {"error": "Product not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+   
+
 
 ###################################################################################################################
 # ORDERS VIEW
@@ -340,12 +356,12 @@ def create_payment(req):
 
     return JsonResponse({'clientSecret': intent['client_secret']})
 
-
+# make sure stire webhook is pointed at backend and not frontend
 @csrf_exempt
 def my_webhook_view(request):
     payload = request.body
     event = None
-
+    print ('xxxxxxxxxxxxxxxx stripe xxxxxxxxxxxxxxxxxx')
     try:
         event = stripe.Event.construct_from(
             json.loads(payload), stripe.api_key
@@ -388,6 +404,7 @@ def my_webhook_view(request):
         payment_intent_id = event.data.object.payment_intent
 
         try:
+            print
             order = Order.objects.get(payment_intent=payment_intent_id)
             order.payment_status = "paid"
             tmpitems=OrderItem.objects.filter(order=order.id)
@@ -402,9 +419,29 @@ def my_webhook_view(request):
         except Order.DoesNotExist:
             print("Order not found for payment_intent: {}".format(payment_intent_id))
 
+    # added may25 with chatgpt
+    elif event.type == 'payment_intent.succeeded':
+        payment_intent = event.data.object
+
+        try:
+            order = Order.objects.get(payment_intent=payment_intent.id)
+            serializer = OrderSerializer(
+                instance=order,
+                data={"payment_status": "paid"},
+                partial=True
+            )
+            if serializer.is_valid():
+                serializer.save()
+            else:
+                return HttpResponse(serializer.errors, status=400)
+        except Order.DoesNotExist:
+            print(f"Order with payment_intent {payment_intent.id} not found.")
+
+    
     else:
         print('Unhandled event type {}'.format(event.type))
 
+    print("Webhook handled successfully.")
     return HttpResponse(status=200)
 
 ##################################################################################################################
