@@ -76,7 +76,7 @@ const NavBar = () => {
     <>
       {/* whatsaap contact button */}
       {/* whatsapp contact button */}
-      {!location.pathname.startsWith('/admin') && !location.pathname.startsWith('/checkout') && !wishOpen && !cartOpen && !sideBarOpen && (
+      {!location.pathname.startsWith('/admin') && !location.pathname.startsWith('/checkout') && !location.pathname.startsWith('/product') && !wishOpen && !cartOpen && !sideBarOpen && (
         <div className="whatsappBtn">
           <a
             href="https://wa.me/1234567890?text=Hi%20there%2C%20I%20need%20some%20help!"
@@ -155,12 +155,13 @@ const NavBar = () => {
         <Link className="link" style={{ color: 'white' }} to="/">Queen Store </Link>
 
         {/* SIDE BAR - Categories*/}
+            {/* side bar icon */}
          <div className="sidebarToggle" onClick={() => setsideBarOpen(!sideBarOpen)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
           </svg>
         </div>
-
+                  {/* x */}
         <div className={`sideBar redesigned ${sideBarOpen ? 'open' : ''}`}>
           <div className="closeSideBar" onClick={() => setsideBarOpen(!sideBarOpen)}>
             &times;

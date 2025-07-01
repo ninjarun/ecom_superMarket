@@ -1,10 +1,14 @@
 .mainProductContainer {
     display: flex;
-    justify-content: center;
     padding-top: 100px;
     width: 80%;
-    right: 0    ;
-    position: fixed;
+    /* right: 0    ; */
+    /* position: fixed; */
+    /* text-align: center; */
+    /* justify-content: center; */
+    /* margin: auto; */
+    margin-left: 20%;
+
 }
 
 .backBTN {
@@ -19,10 +23,14 @@
 }
 
 .contentWrapper {
-    margin-top: 40px;
+    /* margin-top: 40px; */
+    /* margin-right: 0; */
+    /* justify-content: center; */
     padding: 20px;
     display: flex;
-    width: 85%;
+    width: 100%;
+    /* right: 0; */
+
 }
 
 .detailSection {
@@ -121,6 +129,8 @@
     .mainProductContainer {
         display: block;
         padding-top: 70px;
+        width: 100%;
+        margin-left: 0;
     }
 
     .contentWrapper {

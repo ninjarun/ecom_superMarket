@@ -39,6 +39,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
+
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.core.mail import send_mail, BadHeaderError
 ###################################################################################################################
 # PROFILE VIEW
 #################################################################################################################
@@ -492,23 +498,27 @@ def my_webhook_view(request):
     print("Webhook handled successfully.")
     return HttpResponse(status=200)
 
-##################################################################################################################
-# EMAIL TESTING
-##################################################################################################################
 
 class MailMail(APIView):
     def post(self, request, *args, **kwargs):
+        subject = request.data.get('subject', 'No Subject')
+        message = request.data.get('message', '')
+        from_email = request.data.get('from_email')
+        to_email = request.data.get('to_email')
+
+        if not subject or not message or not from_email or not to_email:
+            return Response({'error': 'Missing fields.'}, status=status.HTTP_400_BAD_REQUEST)
+
         try:
             send_mail(
-                'Test Subject',
-                'Test message body.',
-                'pizohim62@gmail.com',
-                ['orenyoni87@gmail.com'],
+                subject,
+                message,
+                from_email,
+                [to_email],
                 fail_silently=False,
             )
-            return HttpResponse('Email successfully sent!')
+            return Response({'message': 'Email successfully sent!'}, status=status.HTTP_200_OK)
         except BadHeaderError:
-            return HttpResponse('Invalid header found!')
-
+            return Response({'error': 'Invalid header found!'}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
-            return HttpResponse(f"An error occurred: {e}")
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

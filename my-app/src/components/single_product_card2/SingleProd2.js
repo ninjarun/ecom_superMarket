@@ -157,7 +157,7 @@ const SingleProd2 = ({ prod }) => {
                 }
               }}
             >−</button>
-            <div className="qty-count">{itemInCart.amount}</div>
+            <div className="qty-count">{itemInCart?.amount ?? 'N/A'}</div>
             <button
               className="qty-btn"
               onClick={() => dispatch(add2cart({ id: prod.id, title: prod.name, price: prod.price, img: prod.image, amount: 1 }))}

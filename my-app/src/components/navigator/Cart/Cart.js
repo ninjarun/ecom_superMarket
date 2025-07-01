@@ -29,7 +29,7 @@ const Cart = (props) => {
             <div className='cart_title' >
                 העגלה שלי
             </div>
-            <div className='empty_box'></div>
+            <div className='empty_box2'></div>
             {Cart.cart.map((product, index) =>
                 <div className='one_product' key={index}>
                     <div className='title_amount'>

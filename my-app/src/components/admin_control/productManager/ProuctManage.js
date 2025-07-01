@@ -181,6 +181,8 @@ const ProductManage = () => {
   const [selectedCat, setSelectedCat] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+
+
   useEffect(() => {
     dispatch(fetchProductsAsync());
   }, [dispatch]);
@@ -217,32 +219,11 @@ const ProductManage = () => {
     const productToUpdate = editedProducts.find((p) => p.id === productId);
     if (productToUpdate) {
       dispatch(editProductAsync(productToUpdate));
+      window.location.reload()
+
     }
   };
 
-  // const handleAvalability = (product) => {
-  //   console.log(product, 'PRODUCT AVALABILITY')
-  //   const tmpProd = { ...product }
-  //   tmpProd.available = true
-  //   dispatch(editProductAsync(tmpProd)
-
-
-  // )
-
-  //   // dispatch(ed)
-  //   console.log(tmpProd, 'PRODUCT AVALABILITY')
-
-  // }
-  // const handleAvalability = (product) => {
-
-  //   console.log(product, 'PRODUCT AVAILABILITY');
-  //   let tmpProd = products.find((p)=>p.id===product.id)
-  //   tmpProd={...tmpProd}
-  //   tmpProd.available = !tmpProd.available
-
-  //   console.log(typeof tmpProd.available)
-  //   dispatch(editProductAsync(tmpProd));
-  // };
 
   const handleAvalability = (productId, currentValue) => {
     setEditedProducts((prev) => {
@@ -264,7 +245,7 @@ const ProductManage = () => {
       setTimeout(() => {
         dispatch(editProductAsync(updatedProduct));
       }, 0);
-
+      window.location.reload()
       return updated;
     });
   };
@@ -272,6 +253,8 @@ const ProductManage = () => {
 
   const handleRemove = (productId) => {
     dispatch(removeProductAsync({ id: productId }));
+    window.location.reload()
+
   };
 
   const handleInputChange = (e, productId, field) => {
@@ -286,6 +269,7 @@ const ProductManage = () => {
         return [...prev, { id: productId, [field]: field === "image" ? files[0] : value }];
       }
     });
+    
   };
 
   console.log(products)

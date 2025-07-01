@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import './home.css'
 import { SERVER } from '../../globalVar'
 import Cart from "../navigator/Cart/Cart"
+import SingleProd2 from '../single_product_card2/SingleProd2'
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -118,7 +119,7 @@ const Home = () => {
             <div className='prodsCatWrap'>
               {cat_prods.map((prod, i) => (
                
-               <SingleProd
+               <SingleProd2
                   prod={prod}
                   // price={prod.price}
                   // img={prod.image}
@@ -127,7 +128,7 @@ const Home = () => {
                   amount={0}
                   key={i}>
 
-                </SingleProd >
+                </SingleProd2 >
               ))}
             </div>
 
