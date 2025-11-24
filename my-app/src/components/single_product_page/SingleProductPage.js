@@ -37,21 +37,6 @@ console.log(product)
     }, [product]);
 
 
-    // const structuredData = product && {
-    //     "@context": "http://schema.org/",
-    //     "@type": "Product",
-    //     "name": product.name,
-    //     "description": product.description,
-    //     "image": [`${SERVER}/static${product.image}`],
-    //     "price": product.price,
-    //     "priceCurrency": "USD",
-    //     // "sku": product.id,
-    //     // "brand": {
-    //     //     "@type": "Brand",
-    //     //     "name": "Your Brand Name Here"
-    //     // }
-    // };
-
     const structuredData = product && {
         "@context": "https://schema.org",
         "@type": "Product",
@@ -119,6 +104,7 @@ console.log(product)
                             <div className="productTitle">{product.name}</div>
                             <div className="productPrice">&#8362; {product.price}</div>
                             <div className="productDescription">{product.description}</div>
+                            
                             <div className="buttonContainer">
                                 {
                                     button_display ?

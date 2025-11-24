@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addProductAsync } from "../../../slicers/productsSlice";
+import { addProductAsync, fetchProductsAsync } from "../../../slicers/productsSlice";
 import { useAppDispatch } from "../../../app/hooks";
 import "./addproduct.css";
 
@@ -37,11 +37,29 @@ const AddProduct = () => {
   };
 
 
-  const sendProduct = () => {
-    dispatch(
-      addProductAsync({ name, price, description: desc, image: img,image1: img1,image2: img2,image3: img3,image4: img4, category })
-    );
-  };
+const sendProduct = () => {
+  dispatch(addProductAsync({
+    name,
+    price,
+    description: desc,
+    image: img,
+    image1: img1,
+    image2: img2,
+    image3: img3,
+    image4: img4,
+    category
+  }))
+  .unwrap()
+  .then(() => {
+    // reload products from server so new one appears
+    dispatch(fetchProductsAsync());
+  })
+  .catch((err) => {
+    console.error(err);
+    alert("שגיאה בהוספת מוצר");
+  });
+};
+
   return (
     <div className="main_add">
       <h4> הוספת מוצר:</h4>

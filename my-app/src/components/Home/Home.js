@@ -1,5 +1,5 @@
 import Hero from './Hero'
-import SingleProd from '../single_product_card/SingleProd'
+// import SingleProd from '../single_product_card/SingleProd'
 import Footer from './Footer'
 import { useSelector } from 'react-redux'
 import { fetchProductsAsync, selecProducts, selectCategories } from '../../slicers/productsSlice'

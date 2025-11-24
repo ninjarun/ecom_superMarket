@@ -1,0 +1,159 @@
+/* Screen-reader only helper */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Floating accessibility button – aligned next to WhatsApp */
+/* WhatsApp button is: bottom:40px; right:40px (from NavBar.css) */
+.a11yFloatingBtn {
+  position: fixed;
+  bottom: 40px;      /* same height as WhatsApp */
+  right: 150px;      /* a bit to the left of WhatsApp */
+  width: 80px;
+  height: 80px;
+  background: yellow;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  font-size: 38px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.a11yFloatingBtn:focus-visible {
+  outline: 3px solid yellow;
+  outline-offset: 3px;
+}
+
+/* Panel – fixed above the buttons */
+.a11y-panel-fixed {
+  position: fixed;
+  bottom: 110px;        /* above the buttons */
+  right: 40px;          /* align with WhatsApp/right side */
+  width: 280px;
+  max-width: 80vw;
+  background: #ffffff;
+  color: #111;
+  border-radius: 0.6rem;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  font-size: 0.9rem;
+  direction: rtl;
+  text-align: right;
+  z-index: 9999;
+}
+
+.a11y-title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.a11y-group {
+  margin-bottom: 0.5rem;
+}
+
+.a11y-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.a11y-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.a11y-small-info {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.a11y-panel-fixed button,
+.a11y-panel-fixed input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.a11y-panel-fixed button {
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  padding: 0.15rem 0.4rem;
+  background: #f5f5f5;
+}
+
+.a11y-panel-fixed button:focus-visible {
+  outline: 2px solid #0052cc;
+  outline-offset: 2px;
+}
+
+.a11y-reset {
+  margin-top: 0.4rem;
+  width: 100%;
+}
+
+.a11y-separator {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0.4rem 0;
+}
+
+/* High contrast mode */
+body.a11y-high-contrast {
+  background: #000;
+  color: #fff;
+}
+
+body.a11y-high-contrast a {
+  color: #00ffff;
+  text-decoration: underline;
+}
+
+/* Readable font – use system UI font stack */
+body.a11y-readable-font {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Highlight links */
+body.a11y-highlight-links a,
+body.a11y-highlight-links a:visited {
+  background: yellow;
+  color: #000 !important;
+  text-decoration: underline;
+  outline: 2px solid #000;
+}
+
+/* Reading mode: center content with max width */
+body.a11y-reading-mode #root,
+body.a11y-reading-mode main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* You can tweak this if your layout uses a different container */
+body.a11y-reading-mode p {
+  line-height: 1.9;
+}
+
+
+@media (max-width:900px) {
+
+.a11yFloatingBtn {
+  left: 40px;      /* align with WhatsApp on small screens */
+}
+}

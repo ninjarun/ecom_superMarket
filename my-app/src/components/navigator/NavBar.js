@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { SERVER } from "../../globalVar";
 import { selecCart } from "./Cart/cartSlice";
+import AccessibilityWidget from "../AccessibilityWidget/AccessibilityWidget";
 
 // import SearchBar from "./SearchBar/SearchBar";
 const NavBar = () => {
@@ -87,7 +88,9 @@ const NavBar = () => {
           </a>
         </div>
       )}
+            {!location.pathname.startsWith('/admin') && !location.pathname.startsWith('/checkout') && !location.pathname.startsWith('/product') && !wishOpen && !cartOpen && !sideBarOpen && (
 
+      <AccessibilityWidget />)}
       {/*         
       {!location.pathname.startsWith('/admin') && (
   <div className="whatsappBtn">
@@ -149,24 +152,27 @@ const NavBar = () => {
         </div>
         <div className={`searchBarMobile${searchBarDisplay ? "" : '2'}`} >
           <div className="closeSearchMobile" onClick={() => { setsearchBarDisplay(!searchBarDisplay); setsearchTerm(''); }}>X</div>
-          <SearchBar searchTerm={searchTerm} setSearch={setsearchTerm}></SearchBar>
+          <SearchBar searchTerm={searchTerm} setSearch={setsearchTerm} searchBar={searchBarDisplay} setSearchBar={setsearchBarDisplay} ></SearchBar>
         </div>
 
         <Link className="link" style={{ color: 'white' }} to="/">Queen Store </Link>
 
         {/* SIDE BAR - Categories*/}
-            {/* side bar icon */}
-         <div className="sidebarToggle" onClick={() => setsideBarOpen(!sideBarOpen)}>
+        {/* side bar icon */}
+        <div className="sidebarToggle" onClick={() => setsideBarOpen(!sideBarOpen)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
             <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
           </svg>
         </div>
-                  {/* x */}
-        <div className={`sideBar redesigned ${sideBarOpen ? 'open' : ''}`}>
-          <div className="closeSideBar" onClick={() => setsideBarOpen(!sideBarOpen)}>
-            &times;
+        {/* x */}
+        <div className={`sideBar  ${sideBarOpen ? 'open' : ''}`}>
+          <div className="sideBarTitle">קטגוריות
+          <div className="closeCatSideBar" onClick={() => setsideBarOpen(!sideBarOpen)}>
+            x
           </div>
-          <h3 className="sideBarTitle">קטגוריות</h3>
+
+
+          </div>
           <div className="sideBarContent">
             {categories.map((cat) => (
               <Link key={cat.category} className="sideBarLink" onClick={() => setsideBarOpen(!sideBarOpen)} to={`/${cat.category}`}>
@@ -174,7 +180,7 @@ const NavBar = () => {
               </Link>
             ))}
           </div>
-        </div> 
+        </div>
 
         {/* WISH LIST ICON */}
         <div onClick={() => setwishOpen(!wishOpen)} style={{ padding: '5px' }}>
@@ -183,8 +189,10 @@ const NavBar = () => {
           </svg>
         </div>
         <div className={`wishList ${wishOpen ? 'open' : ''}`}>
-          <div className="wishTitle">Wish List</div>
+          <div className="wishTitle">Wish List
+
           <div className="closeWish" style={{ display: wishOpen ? '' : 'none' }} onClick={() => setwishOpen(!wishOpen)}>X</div>
+          </div>
 
           {nav_wishlist.map((wishProd, i) =>
             <div>
@@ -209,20 +217,6 @@ const NavBar = () => {
 
 
 
-
-        {/* <div className="link_box">
-          <Link className={`link ${location.pathname === '/aboutus' && 'active_link'}`} to="/aboutus" >עלינו</Link>
-          <Link className={`link ${location.pathname === '/tracking' && 'active_link'}`} to="/tracking" >מעקב משלוחים</Link>
-          <Link className={`link ${location.pathname === '/faq' && 'active_link'}`} to="/faq" >שאלות תשובות</Link>
-          <Link className={`link ${location.pathname === '/contact' && 'active_link'}`} to="/contact" >צור קשר</Link>
-          <Link className={`link ${location.pathname === '/admin' && 'active_link'}`} to="/admin" >ADMIN</Link>
-        </div> */}
-
-        {/* 
-        <div className="sidebar">
-          <Sidebar ></Sidebar>
-        </div>
- */}
 
       </nav>
 

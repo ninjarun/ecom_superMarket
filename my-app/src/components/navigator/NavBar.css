@@ -1,10 +1,16 @@
+/* =========================================
+   FLOATING WHATSAPP BUTTON
+   ========================================= */
 .whatsappBtn {
     position: fixed;
-    z-index: 9999;
-right: 40px    ;
-bottom: 40px;
+    z-index: 9;
+    right: 40px    ;
+    bottom: 40px;
 }
 
+/* =========================================
+   TOP NAVIGATOR BAR
+   ========================================= */
 .navigator {
     display: flex;
     justify-content: space-around;
@@ -21,6 +27,9 @@ bottom: 40px;
     align-items: center;
 }
 
+/* =========================================
+   NAV LINKS CONTAINER / LINKS / ACTIVE LINK
+   ========================================= */
 .link_box {
     margin-left: auto;
     margin-right: 10px;
@@ -51,6 +60,9 @@ bottom: 40px;
 
 }
 
+/* =========================================
+   CART / LOGO / CART BUTTON IN NAV
+   ========================================= */
 .cart {
     margin-left: 10px;
 }
@@ -69,6 +81,9 @@ bottom: 40px;
 
 }
 
+/* =========================================
+   FULLSCREEN CART OVERLAY (forCartNav / forCartNav2)
+   ========================================= */
 .forCartNav {
     position: fixed;
     height: 100%;
@@ -106,6 +121,9 @@ bottom: 40px;
 } */
 
 
+/* =========================================
+   WISHLIST SIDEBAR
+   ========================================= */
 .wishList {
     position: fixed;
     width: 20%;
@@ -126,13 +144,18 @@ bottom: 40px;
 }
 
 
+/* =========================================
+   MOBILE CLOSE BUTTONS (CART / SEARCH)
+   ========================================= */
 .mobileCloseCart {
+    color: white;
     position: fixed;
     top: 20px;
     z-index: 999;
     right: 25px;
     padding: 3px;
     display: none;
+    font-weight: 700;
 }
 
 .closeSearchMobile {
@@ -143,17 +166,10 @@ bottom: 40px;
     display: none;
 }
 
+/* =========================================
+   CATEGORY SIDEBAR (DESKTOP + BASE)
+   ========================================= */
 .sideBar {
-    /* height: 100%;
-    width: 20%;
-    position: fixed;
-    top: 0;
-    right: 0;
-    background-color: white;
-    overflow-x: auto;
-text-align: center; */
-
-
     position: fixed;
     width: 20%;
     overflow-y: auto;
@@ -163,7 +179,7 @@ text-align: center; */
     top: 0px;
     background-color: white;
     text-align: center;
-    padding-right: 15px;
+    /* padding-right: 15px; */
     transition: right 0.5s ease;
 }
 
@@ -171,8 +187,71 @@ text-align: center; */
     right: 0;
 }
 
+.sideBarTitle {
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    z-index: 900;
+    height: 85px;
+    display: flex;               /* NEW */
+    justify-content: center;     /* horizontal center */
+    align-items: center;         /* vertical center */
+
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;          /* not required but helps */
+
+    padding: 0.9rem 1rem;
+
+    background-color: #1E1E1E;
+    color: white;
+    text-decoration: none;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
 
 
+.closeCatSideBar {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 1000;
+    
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    background-color: #ff4d4f;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.closeCatSideBar:hover {
+    background-color: #d9363e;
+    transform: scale(1.06);
+}
+.sideBarTitle,
+.sideBarTitle:link,
+.sideBarTitle:visited,
+.sideBarTitle:hover,
+.sideBarTitle:active {
+    color: white !important;
+    text-decoration: none;
+}
+
+/* =========================================
+   WISHLIST PRODUCT CARD + INNER ELEMENTS
+   ========================================= */
 .wish_one_product {
     display: flex;
     justify-content: space-around;
@@ -227,6 +306,9 @@ text-align: center; */
     padding: 9px;
 }
 
+/* =========================================
+   CART PRODUCT COUNTER BADGE
+   ========================================= */
 .cartProdCounter {
     position: absolute;
     background-color: gold;
@@ -238,26 +320,80 @@ text-align: center; */
     margin-left: 20px;
 }
 
+/* =========================================
+   WISHLIST TITLE / CLOSE BUTTONS
+   ========================================= */
 .wishTitle {
-    font-size: xx-large;
-    margin-top: 10px;
-    border-bottom: 1px solid black;
+    position: sticky;
+    top: 0px;
+    z-index: 900;
+    height: 85px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+
+    padding: 0.9rem 1rem;
+
+    background-color: #1E1E1E;
+    color: white;
+
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+
+    position: sticky;
+    position: relative; /* so the X is positioned inside this */
+}
+.wishTitle a,
+.wishTitle a:link,
+.wishTitle a:visited,
+.wishTitle a:hover,
+.wishTitle a:active {
+    color: white !important;
+    text-decoration: none;
 }
 
 .closeWish {
     position: absolute;
-    top: 20px;
-    right: 40px;
-    padding: 5px;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);  /* center inside title bar */
+
+    z-index: 1000;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    background-color: #ff4d4f;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
 }
 
-.closeSideBar {
-    position: absolute;
-    top: 10px;
-    right: 40px;
-    padding: 5px;
+.closeWish:hover {
+    background-color: #d9363e;
+    transform: translateY(-50%) scale(1.06);
 }
 
+
+/* =========================================
+   SIDEBAR CATEGORY ITEM + LINK STYLES
+   ========================================= */
 .sideBarCategory {
     background-color: #F8F7F4;
     width: 250px;
@@ -271,6 +407,14 @@ text-align: center; */
     font-size: x-large;
 }
 
+.sideBarContent{
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+/* =========================================
+   RESPONSIVE (MAX-WIDTH: 900PX)
+   MOBILE NAV / SIDEBAR / SEARCH / WISHLIST
+   ========================================= */
 @media (max-width:900px) {
     .cartBTN {
         display: block;

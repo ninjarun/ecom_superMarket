@@ -172,66 +172,90 @@ export const productsSlice = createSlice({
         state.categories = Object.values(tmpCats);
         state.status = 'idle';
       })
+      // src/slicers/productsSlice.js
+
       .addCase(addProductAsync.fulfilled, (state, action) => {
         console.log('product added');
         alert("מוצר נוסף בהצלחה");
         state.status = 'idle';
+
+        const newProduct = action.payload;
+
+        // 1) push to products list
+        state.products.push(newProduct);
+
+        // 2) rebuild categories from products that are available
+        const tmpProds = state.products.filter(p => p.available === true);
+        const tmpCats = {};
+
+        tmpProds.forEach(element => {
+          if (!tmpCats[element.category]) {
+            tmpCats[element.category] = {
+              category: element.category,
+              products: [],
+            };
+          }
+          tmpCats[element.category].products.push(element);
+        });
+
+        state.categories = Object.values(tmpCats);
       })
+
       .addCase(editProductAsync.fulfilled, (state, action) => {
         console.log('product updated');
         alert("מוצר עודכן בהצלחה");
         state.status = 'idle';
       })
-      .addCase(removeProductAsync.fulfilled, (state, action) => {
-        console.log('product removed', action.meta.arg['id']);
-        let deletedid = action.meta.arg['id']
-        console.log(deletedid, '************************************')
-        // state.products = state.products.filter(product => product.id !== deletedid);
-        // fetchProducts()
-        alert("מוצר נמחק בהצלחה");
-        state.status = 'idle';
-      })
-      .addCase(fetchOneProductAsync.fulfilled, (state, action) => {
-        state.product = action.payload;
-        console.log('success', action.payload);
-      })
-      .addCase(fetchCategoryAsync.fulfilled, (state, action) => {
-        state.products = action.payload;
-        console.log('success category', action.payload);
-      })
+    .addCase(removeProductAsync.fulfilled, (state, action) => {
+      console.log('product removed', action.meta.arg['id']);
+      let deletedid = action.meta.arg['id']
+      console.log(deletedid, '************************************')
+      // state.products = state.products.filter(product => product.id !== deletedid);
+      // fetchProducts()
+      alert("מוצר נמחק בהצלחה");
+      state.status = 'idle';
+    })
+    .addCase(fetchOneProductAsync.fulfilled, (state, action) => {
+      state.product = action.payload;
+      console.log('success', action.payload);
+    })
+    .addCase(fetchCategoryAsync.fulfilled, (state, action) => {
+      state.products = action.payload;
+      console.log('success category', action.payload);
+    })
 
-      // REJECTED
-      .addCase(fetchProductsAsync.rejected, (state, action) => {
-        state.status = 'failed';
-        console.error('Failed to fetch products:', action.error.message);
-        alert("שגיאה בעת טעינת מוצרים");
-      })
-      .addCase(addProductAsync.rejected, (state, action) => {
-        state.status = 'failed';
-        console.error('Failed to add product:', action.error.message);
-        alert("שגיאה בהוספת מוצר");
-      })
-      .addCase(editProductAsync.rejected, (state, action) => {
-        state.status = 'failed';
-        console.error('Failed to edit product:', action.error.message);
-        alert("שגיאה בעדכון מוצר");
-      })
-      .addCase(removeProductAsync.rejected, (state, action) => {
-        state.status = 'failed';
-        console.error('Failed to remove product:', action.error.message);
-        alert("שגיאה במחיקת מוצר");
-      })
-      .addCase(fetchOneProductAsync.rejected, (state, action) => {
-        state.status = 'failed';
-        console.error('Failed to fetch product:', action.error.message);
-        alert("שגיאה בטעינת מוצר");
-      })
-      .addCase(fetchCategoryAsync.rejected, (state, action) => {
-        state.status = 'failed';
-        console.error('Failed to fetch category:', action.error.message);
-        alert("שגיאה בטעינת קטגוריה");
-      });
-  }
+    // REJECTED
+    .addCase(fetchProductsAsync.rejected, (state, action) => {
+      state.status = 'failed';
+      console.error('Failed to fetch products:', action.error.message);
+      alert("שגיאה בעת טעינת מוצרים");
+    })
+    .addCase(addProductAsync.rejected, (state, action) => {
+      state.status = 'failed';
+      console.error('Failed to add product:', action.error.message);
+      alert("שגיאה בהוספת מוצר");
+    })
+    .addCase(editProductAsync.rejected, (state, action) => {
+      state.status = 'failed';
+      console.error('Failed to edit product:', action.error.message);
+      alert("שגיאה בעדכון מוצר");
+    })
+    .addCase(removeProductAsync.rejected, (state, action) => {
+      state.status = 'failed';
+      console.error('Failed to remove product:', action.error.message);
+      alert("שגיאה במחיקת מוצר");
+    })
+    .addCase(fetchOneProductAsync.rejected, (state, action) => {
+      state.status = 'failed';
+      console.error('Failed to fetch product:', action.error.message);
+      alert("שגיאה בטעינת מוצר");
+    })
+    .addCase(fetchCategoryAsync.rejected, (state, action) => {
+      state.status = 'failed';
+      console.error('Failed to fetch category:', action.error.message);
+      alert("שגיאה בטעינת קטגוריה");
+    });
+}
 
   // extraReducers: (builder) => {
   //   builder
