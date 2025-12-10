@@ -1,12 +1,33 @@
-body {
+/* body {
   font-family: 'Alef', sans-serif;
   background-color: #f2f2f2;
   margin: auto;
-  /* height: 5000px; */
   min-height: 100vh;
 
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* min-height: 100vh; */
-  /* font-family: 'Roboto', sans-serif;  */
+}
+ */
+
+
+
+/* Add this to your global/top-level CSS file */
+
+/* 1. Reset the box model globally to prevent width calculation issues */
+html {
+    box-sizing: border-box;
+    /* Optional: Improves font rendering on mobile */
+    -webkit-text-size-adjust: 100%;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* 2. Force the viewport to respect its boundaries on small screens */
+body, html {
+    /* Prevents horizontal scrolling */
+    overflow-x: hidden !important; 
+    /* Ensures the element does not exceed 100% of the viewport width */
+    width: 100vw; 
+    /* Remove any default margins that might be adding width */
+    margin: 0;
+    padding: 0;
 }

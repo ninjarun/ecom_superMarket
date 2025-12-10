@@ -262,7 +262,7 @@
         display: block;
         padding-top: 70px;
         width: 100%;
-        /* margin-left: 0; */
+        margin-left: 0;
     }
 
     .contentWrapper {

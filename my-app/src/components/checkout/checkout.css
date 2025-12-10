@@ -1,218 +1,220 @@
   .disabled_main_wrapper {
-  display: flex;
-}
-
-.main_wrapper {
-  display: flex;
-}
-
-.products_wrapper {
-  overflow: auto;
-  width: 40%;
-  margin: auto;
-  height: 750px;
-  padding-top: 50px;
-font-size: 12px;
-}
-
-.info_wrapper {
-  justify-content: center;
-  width: 60%;
-  text-align: right;
-  padding-top: 50px;
-}
-.final_info {
-  width: 100%;
-  margin: auto;
-  text-align: center;
-  background-color: lightgray;
-  padding: 50px;
-  direction: rtl;
-  position: relative;
-}
-
-.payment_method_box {
-  background-color: lightgray;
-}
-
-.disabled_main_wrapper .payment_method_box {
-  pointer-events: all;
-  opacity: 1;
-}
-
-.info_box_chqout {
-  background-color: grey;
-  margin-top: 10px;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  padding: 10px;
-}
-
-
-.hide {
-  display: none;
-}
-
-.continue_btn {
-  background-color: yellowgreen;
-  height: fit-content;
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-}
-
-
-
-table {
-  margin: auto;
-  width: 100%;
-  border-collapse: collapse;
-
-}
-
-th,
-td {
-  padding: 3px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  text-align: right;
-}
-
-th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-  text-align: right;
-}
-
-.product_img {
-  width: 80px;
-  height: 80px;
-}
-
-.product_title {
-  font-weight: bold;
-}
-
-.product_price,
-.subtotal {
-  font-style: italic;
-}
-
-.amount_wrapper {
-  display: flex;
-  justify-content: right;
-}
-
-.customer_info {
-  width: 100%;
-  margin: auto;
-  padding: 10px;
-  background-color: lightgray;
-  position: relative;
-}
-
-.animate__slideInDown {
-  animation-name: slideInDown;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
-
-@keyframes slideInDown {
-  from {
-    transform: translateY(-100%);
+    /* display: flex; */
   }
 
-  to {
-    transform: translateY(0);
-  }
-}
-
-.form_wrraper {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row-reverse;
-  width: 600px;
-  margin-left: auto;
-
-}
-
-.form-input {
-  width: 300px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  text-align: end;
-}
-
-
-.form-input:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
-.triple-height {
-  height: 100px;
-  vertical-align: top;
-
-}
-
-
-.checkout_button {
-  background-color: lightblue;
-  text-align: center;
-  width: fit-content;
-  padding: 15px;
-  margin: auto;
-  margin-top: 10px;
-
-}
-
-.ship_options {
-  text-align: right;
-}
-
-.ship_option_radio {
-  height: 100px;
-
-}
-
-.radioBTN {
-  transform: scale(2.5);
-  margin-left: 20px;
-}
-
-.radio_option_desc {
-  margin-top: 10px;
-  margin-right: 40px;
-}
-
-@media (max-width: 900px) {
   .main_wrapper {
     display: block;
-  }
-
-  .customer_info {
-
-    display: block;
-    padding-left: 80px;
-  }
-
-  .info_wrapper {
-    width: 100%;
+    /* display: flex; */
   }
 
   .products_wrapper {
-    width: 100%;
+    overflow: auto;
+    width: 90%;
+    margin: auto;
+    /* height: 750px; */
+    padding-top: 70px;
+    font-size: 12px;
+  }
+
+  .info_wrapper {
+    /* justify-content: center; */
+    margin: auto;
+    width: 90%;
+    text-align: right;
+    padding-top: 50px;
+  }
+
+  .final_info {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    background-color: lightgray;
+    padding: 50px;
+    direction: rtl;
+    position: relative;
+  }
+
+  .payment_method_box {
+    background-color: lightgray;
+  }
+
+  .disabled_main_wrapper .payment_method_box {
+    pointer-events: all;
+    opacity: 1;
+  }
+
+  .info_box_chqout {
+    background-color: grey;
+    margin-top: 10px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+  }
+
+
+  .hide {
+    display: none;
+  }
+
+  .continue_btn {
+    background-color: yellowgreen;
     height: fit-content;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+  }
+
+
+
+  table {
+    margin: auto;
+    width: 100%;
+    border-collapse: collapse;
+
+  }
+
+  th,
+  td {
+    padding: 3px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-align: right;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: right;
+  }
+
+  .product_img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .product_title {
+    font-weight: bold;
+  }
+
+  .product_price,
+  .subtotal {
+    font-style: italic;
+  }
+
+  .amount_wrapper {
+    display: flex;
+    justify-content: right;
+  }
+
+  .customer_info {
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+    background-color: lightgray;
+    position: relative;
+  }
+
+  .animate__slideInDown {
+    animation-name: slideInDown;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+
+  @keyframes slideInDown {
+    from {
+      transform: translateY(-100%);
+    }
+
+    to {
+      transform: translateY(0);
+    }
   }
 
   .form_wrraper {
-    width: 100%;
-  }
-} 
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    /* width: 600px; */
+    margin-left: auto;
 
+  }
+
+  .form-input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: end;
+  }
+
+
+  .form-input:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+
+  .triple-height {
+    height: 100px;
+    vertical-align: top;
+
+  }
+
+
+  .checkout_button {
+    background-color: lightblue;
+    text-align: center;
+    width: fit-content;
+    padding: 15px;
+    margin: auto;
+    margin-top: 10px;
+
+  }
+
+  .ship_options {
+    text-align: right;
+  }
+
+  .ship_option_radio {
+    height: 100px;
+
+  }
+
+  .radioBTN {
+    transform: scale(2.5);
+    margin-left: 20px;
+  }
+
+  .radio_option_desc {
+    margin-top: 10px;
+    margin-right: 40px;
+  }
+
+  @media (max-width: 900px) {
+    .main_wrapper {
+      display: block;
+    }
+
+    .customer_info {
+
+      display: block;
+      padding-left: 80px;
+    }
+
+    .info_wrapper {
+      width: 100%;
+    }
+
+    .products_wrapper {
+      width: 100%;
+      height: fit-content;
+    }
+
+    .form_wrraper {
+      width: 100%;
+    }
+  }

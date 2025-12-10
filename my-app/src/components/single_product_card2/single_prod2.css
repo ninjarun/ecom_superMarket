@@ -127,7 +127,7 @@
 
 .product-card {
   position: relative;
-  width: 260px;
+  width: 230px;
   height: 390px;
   padding: 10px;
   background-color: #FAFAFA;
@@ -193,6 +193,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* max-height: 10px; */
 }
 
 .btn.add-to-cart {
@@ -219,8 +220,8 @@
 }
 
 .qty-btn {
-  width: 40px;
-  height: 40px;
+  width: 15px;
+  height: 15px;
   background-color: #0057e7;
   color: white;
   border: none;
@@ -241,7 +242,7 @@
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .product-card {
     width: 180px;
     height: 320px;
@@ -262,4 +263,54 @@
     height: 36px;
     font-size: 14px;
   }
+
+
+  
+} */
+
+/* Responsive */
+/* Responsive */
+@media (max-width: 900px) {
+  .product-card {
+    width: 150px;
+    height: 320px;
+    padding: 8px;
+  }
+
+  .product-image {
+    height: 140px;
+  }
+
+  .product-name,
+  .product-price {
+    font-size: 12px;
+  }
+
+  .btn.add-to-cart {
+    height: 32px;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+  
+  /* === CRITICAL FIX START: Constraining the Quantity Controls === */
+  
+  /* 1. Shrink the main quantity wrapper width to ensure it is centered and small */
+  .quantity-control {
+    width: 120px !important; /* Forces the wrapper to a safe, small width */
+  }
+
+  /* 2. Force the +/- buttons to be small and override any external rules */
+  .qty-btn {
+    width: 7px !important;    /* Force small width */
+    height: 7px !important;   /* Force small height */
+    font-size: 14px !important; /* Shrink the +/- symbols */
+    border-radius: 5px;
+  }
+  
+  /* 3. Adjust the middle count text */
+  .qty-count {
+    font-size: 14px !important;
+    padding: 0 4px !important; /* Reduce padding around the number */
+  }
+  /* --- CRITICAL FIX END --- */
 }

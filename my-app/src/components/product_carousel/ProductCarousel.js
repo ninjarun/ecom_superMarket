@@ -37,7 +37,7 @@ const ProductCarousel = (props) => {
 
           },
           300: {
-            slidesPerView: 2.1,
+            slidesPerView: 2.2,
             spaceBetween: 1,
 
 

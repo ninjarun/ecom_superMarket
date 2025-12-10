@@ -142,22 +142,10 @@ const Checkout = () => {
                 <tr key={i}>
                   <td>{product.amount * product.price}&#8362;</td>
                   <td >
-                    {/* <div className='amount_wrapper'>
-                      <div className={!userInfoFlag && "hide"} onClick={() => {
-                        if (product.amount > 0) { dispatch(increment_amount({ 'id': product.id })) }
-                      }}>
-                        &nbsp; - &nbsp;
-                      </div> */}
                       <div className=''>
                         {product.amount}
 
                       </div>
-                      {/* <div className={!userInfoFlag && "hide"} onClick={() => {
-                        dispatch(add2cart({ 'id': product.id }))
-                      }}>
-                        &nbsp; + &nbsp;
-                      </div>
-                    </div> */}
                   </td>
                   <td>{product.price}&#8362;</td>
                   <td>{product.title}</td>
